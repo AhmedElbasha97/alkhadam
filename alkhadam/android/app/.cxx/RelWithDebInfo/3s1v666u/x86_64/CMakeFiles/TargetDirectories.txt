@@ -1,0 +1,2 @@
+C:/Users/elbasha/Desktop/alkhadam/alkhadam/android/app/.cxx/RelWithDebInfo/3s1v666u/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/elbasha/Desktop/alkhadam/alkhadam/android/app/.cxx/RelWithDebInfo/3s1v666u/x86_64/CMakeFiles/rebuild_cache.dir
