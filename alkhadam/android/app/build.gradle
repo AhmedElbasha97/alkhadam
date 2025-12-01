@@ -48,8 +48,8 @@ android {
 
     defaultConfig {
         applicationId "com.sync.alkhadam"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 25
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -76,7 +76,7 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.20"
 
 
 }

@@ -157,9 +157,9 @@ class _WebViewContainerState extends State<WebViewContainer> {
                             children: [
                               SizedBox(
                                 width: 150,height: 150,
-                                child: Image.asset("assets/logo.jpg",fit: BoxFit.fitWidth,),
+                                child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
                               ).animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1200.ms, color:  Color(0xFF7e2670))
+                                  .shimmer(duration: 1200.ms, color:  const Color(0xFF7e2670))
                                   .animate() // this wraps the previous Animate in another Animate
                                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                                   .slide(),
