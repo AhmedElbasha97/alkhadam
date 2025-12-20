@@ -1,5 +1,6 @@
-// تأكد إن flutter_inappwebview >= 6.4.0
-import 'dart:io';
+
+// ignore_for_file: curly_braces_in_flow_control_structures, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -47,7 +48,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
         systemNavigationBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
-        backgroundColor: Color(0xFF7e2670),
+        backgroundColor: const Color(0xFF7e2670),
 
         body: SafeArea(
           child: WillPopScope(
@@ -90,13 +91,13 @@ class _WebViewContainerState extends State<WebViewContainer> {
                         action: PermissionRequestResponseAction.GRANT);
                   },
                   onProgressChanged: (_, prog) {
-                    if (prog < 100 && !isLoading) setState(() => isLoading = true);
-                    else if (prog == 100) setState(() => isLoading = false);
+                    if (prog < 100 && !isLoading) {
+                      setState(() => isLoading = true);
+                    } else if (prog == 100) setState(() => isLoading = false);
                   },
 
                   shouldOverrideUrlLoading: (controller, navigationAction) async {
                     final url = navigationAction.request.url.toString().toLowerCase();
-                    print("Trying to open URL: $url");
 
                     final externalSchemes = [
                       "wa.me", "whatsapp", "facebook.com", "m.me", "fb.me",
@@ -111,7 +112,6 @@ class _WebViewContainerState extends State<WebViewContainer> {
                       if (await canLaunchUrl(uri)) {
                         await launchUrl(uri, mode: LaunchMode.externalApplication);
                       } else {
-                        print("❌ Can't launch $url");
                       }
                       return NavigationActionPolicy.CANCEL;
                     }
@@ -175,7 +175,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                                   letterSpacing: -1,
                                 ),
                               ) .animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1200.ms, color: Color(0xFF7e2670))
+                                  .shimmer(duration: 1200.ms, color: const Color(0xFF7e2670))
                                   .animate() // this wraps the previous Animate in another Animate
                                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                                   .slide(),

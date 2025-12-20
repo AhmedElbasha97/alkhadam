@@ -1,50 +1,101 @@
-import 'dart:io';
-
-import 'package:alkhadam/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/config/app_theme.dart';
+import 'core/data/datasources/storage_local_data_source.dart';
+import 'core/presentation/cubit/localization_cubit.dart';
+import 'core/presentation/cubit/theme_cubit.dart';
+import 'core/utils/app_route.dart';
+import 'features/auth/sign_in/cubit/log_in_cubit.dart';
+import 'features/auth/sign_up/cubit/regestier_cubit.dart';
+import 'features/companies/anti_bug_companies/cubit/anti_bug_companies_cubit.dart';
+import 'features/companies/cleaning_companies/cubit/cleaning_companies_cubit.dart';
+import 'features/companies/company_details/cubit/company_details_cubit.dart';
+import 'features/companies/nursing_companies/cubit/nursing_companies_cubit.dart';
+import 'features/companies/worker_companies/cubit/worker_companies_cubit.dart';
+import 'features/companies/worker_suppliers/cubit/worker_suppliers_cubit.dart';
+import 'features/drawer/cubit/drawer_cubit.dart';
+import 'features/home/cubit/home_cubit.dart';
+import 'features/splash/cubit/splash_cubit.dart';
+import 'features/splash/presentation/splash_screen.dart';
+import 'features/welcome/cubit/welcome_cuibit.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
-  if (Platform.isAndroid) {
-    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
-  }
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Color(0xFF7e2670), // navigation bar color
-    statusBarColor: Color(0xFF7e2670), // status bar color
-  ));
-  runApp(const MyApp());
+  await StorageLocalDataSource.init();
+  final storage = StorageLocalDataSource.instance;
+
+  final savedLocaleCode = await storage.getSavedLocaleCode();
+  final initialLocale = (savedLocaleCode != null && savedLocaleCode.isNotEmpty)
+      ? Locale(savedLocaleCode)
+      : const Locale('en');
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/lang',
+      fallbackLocale: const Locale('en'),
+      startLocale: initialLocale,
+      child: MyApp(storage: storage),
+    ),
+  );
 }
 
+class MyApp extends StatelessWidget {
+  final StorageLocalDataSource storage;
 
-
-class MyApp extends StatefulWidget {
-
-  const MyApp({Key? key,}) : super(key: key);
+  const MyApp({super.key, required this.storage});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);    super.initState();
-  }
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-        appBarTheme: const AppBarTheme(
-          backgroundColor:Color(0xFF7e2670),
-        ),
-      ),
-      home: WelcomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      builder: (_, __) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => LocalizationCubit(storage)..loadLocale(context),
+            ),
+            BlocProvider(create: (_) => LoginCubit()),
+            BlocProvider(create: (_) => RegisterCubit()),
+            BlocProvider(create: (_) => ThemeCubit(storage)..loadTheme()),
+            BlocProvider(create: (_) => SplashCubit()..startSplashAnimation()),
+            BlocProvider(create: (_) => WelcomeCubit()..startAnimation()),
+            BlocProvider(create: (_) => HomeCubit()),
+            BlocProvider(create: (_) => WorkerCompaniesCubit()),
+            BlocProvider(create: (_) => CleaningCompaniesCubit()),
+            BlocProvider(create: (_) => NursingCompaniesCubit()),
+            BlocProvider(create: (_) => AntiBugCompaniesCubit()),
+            BlocProvider(create: (_) => WorkerSuppliersCubit()),
+            BlocProvider(create: (_) => CompanyDetailsCubit()),
+            BlocProvider(create: (_) => DrawerCubit()),
+          ],
+          child: BlocBuilder<LocalizationCubit, Locale>(
+            builder: (_, localeState) {
+              return BlocBuilder<ThemeCubit, ThemeMode>(
+                builder: (_, themeMode) {
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'alkhadam',
+                    navigatorObservers: [appRouteObserver],
+                    locale: context.locale,
+                    supportedLocales: context.supportedLocales,
+                    localizationsDelegates: context.localizationDelegates,
+                    themeMode: themeMode,
+                    theme: AppTheme.lightTheme(context.locale),
+                    darkTheme: AppTheme.darkTheme(context.locale),
+                    home: const SplashScreen(),
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

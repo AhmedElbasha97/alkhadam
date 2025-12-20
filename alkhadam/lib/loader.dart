@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -45,16 +46,16 @@ final double width;
               children: [
                 SizedBox(
                   width: 150,height: 150,
-                  child: Image.asset("assets/logo.jpg",fit: BoxFit.fitWidth,),
+                  child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
                 ).animate(onPlay: (controller) => controller.repeat())
-                .shimmer(duration: 1200.ms, color:  Color(0xFF7e2670))
+                .shimmer(duration: 1200.ms, color:  const Color(0xFF7e2670))
                 .animate() // this wraps the previous Animate in another Animate
                 .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                 .slide(),
                  const SizedBox(height:10),
-                 const Text(
-                   "جار التحميل...",
-                  style:  TextStyle(
+                  Text(
+                   "loading".tr(),
+                  style:  const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 15,
@@ -63,7 +64,7 @@ final double width;
                     letterSpacing: -1,
                   ),
                 ) .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(duration: 1200.ms, color: Color(0xFF7e2670))
+                    .shimmer(duration: 1200.ms, color: const Color(0xFF7e2670))
                     .animate() // this wraps the previous Animate in another Animate
                     .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                     .slide(),

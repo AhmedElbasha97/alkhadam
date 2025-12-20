@@ -1,0 +1,169 @@
+import 'package:alkhadam/loader.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+
+import '../../../../core/data/datasources/storage_local_data_source.dart';
+import '../../../../widget/no_data_widget.dart';
+import '../../../drawer/cubit/drawer_cubit.dart';
+import '../../../drawer/presentation/drawer_screen.dart';
+import '../../../webview/web_view.dart';
+import '../../company_details/presentation/company_details_screen.dart';
+import '../../widget/companies_more_data_loader.dart';
+import '../../widget/companies_tap_widget.dart';
+import '../cubit/cleaning_comanies_state.dart';
+import '../cubit/cleaning_companies_cubit.dart';
+
+
+
+class CleaningCompaniesScreen extends StatefulWidget {
+  const CleaningCompaniesScreen({super.key});
+
+  @override
+  State<CleaningCompaniesScreen> createState() => _CleaningCompaniesScreenState();
+}
+
+class _CleaningCompaniesScreenState extends State<CleaningCompaniesScreen>
+    with SingleTickerProviderStateMixin {
+
+  late AnimationController controller;
+  final ScrollController scrollController = ScrollController();
+  final GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    final cubit = context.read<CleaningCompaniesCubit>();
+    cubit.loadCleaningCompanies(controller);
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent - 200) {
+        cubit.loadMore(context);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+
+      appBar:AppBar(
+        backgroundColor: const Color(0xFFdcdbdb),
+        elevation: 3,
+        title: Image.asset(
+          "assets/logo with out background.png",
+          scale: 4.5,
+        ),
+        centerTitle: true,
+        leading:IconButton(
+            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            onPressed: (){
+              // inside any widget with context:
+              showGeneralDialog(
+                context: context,
+                barrierDismissible: true,
+                barrierLabel: 'drawer',
+                pageBuilder: (ctx, anim1, anim2) {
+                  return BlocProvider(
+                    create: (_) => DrawerCubit()..load(),
+                    child: const CustomDrawer(
+
+                    ),
+                  );
+                },
+                transitionBuilder: (ctx, anim, secAnim, child) {
+                  return FadeTransition(
+                    opacity: anim,
+                    child: child,
+                  );
+                },
+              );
+
+            }
+        ),
+        actions:[IconButton(onPressed: (){
+          Navigator.maybePop(context);
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+      ),
+
+      body: BlocBuilder<CleaningCompaniesCubit, CleaningCompaniesState>(
+        builder: (context, state) {
+
+          if (state is CleaningCompaniesLoading) {
+            return const Loader();
+          }
+
+          if (state is CleaningCompaniesError) {
+            return Center(child: Text(state.message));
+          }
+
+          if (state is CleaningCompaniesLoaded || state is CleaningCompaniesLoadingMore) {
+            final cubit = context.read<CleaningCompaniesCubit>();
+            if (cubit.cleaningCompanies?.isEmpty??true) {
+              return const NoDataWidget();
+            } else {
+              return SafeArea(
+                child: ListView.builder(
+                  controller: scrollController,
+                  padding: const EdgeInsets.all(16),
+                  itemCount: (cubit.cleaningCompanies?.length ?? 0) +
+                      (cubit.hasMore? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == cubit.cleaningCompanies?.length) {
+                      return const CompaniesMoreDataLoader();
+                    }
+
+                    final item = cubit.cleaningCompanies?[index];
+
+                    return AnimatedBuilder(
+                      animation: controller,
+                      builder: (_, child) {
+                        return Opacity(
+                          opacity: cubit.fadeAnimations[index].value,
+                          child: Transform.translate(
+                            offset: cubit.slideAnimations[index].value * 50,
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: CompaniesTapWidget(company: item, onTap: () {
+                          if (cubit.activateWebViewUrls == 0) {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) =>
+                                  CompanyDetailsScreen(
+                                    companyId: item?.id ?? 0,),
+                              settings: const RouteSettings(
+                                  name: "CompanyDetailsScreen"),));
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    WebViewContainer(item?.url ?? ""),
+                                settings: const RouteSettings(
+                                    name: "WebViewContainer"),),
+                            );
+                          }
+                        }
+                      ,),
+                    );
+                  },
+                ),
+              );
+            }
+          }
+
+          return const SizedBox();
+        },
+      ),
+    );
+  }
+
+
+}
+
