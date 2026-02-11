@@ -10,7 +10,6 @@ import '../../../drawer/presentation/drawer_screen.dart';
 import '../../booking_screens/cubit/booking_state.dart';
 import '../cubit/location_selection_cubit.dart';
 import '../cubit/location_selection_state.dart';
-import '../data/address_model.dart';
 import '../data/place_suggestion.dart';
 import '../../payment/cubit/payment_cubit.dart';
 import '../../payment/screens/payment_screen.dart';
@@ -40,18 +39,36 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
     super.dispose();
   }
 
-  void _onNext(AddressModel address) {
+  void _onNext(LocationSelectionState state) {
+    if (!_hasAllRequiredFields(state)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('location_required_fields'.tr()),
+          backgroundColor: Colors.red.shade700,
+        ),
+      );
+      return;
+    }
+
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
         builder: (_) => BlocProvider(
           create: (_) => PaymentCubit(),
           child: PaymentScreen(
             bookingState: widget.bookingState,
-            address: address,
+            address: state.address,
           ),
         ),
       ),
     );
+  }
+
+  bool _hasAllRequiredFields(LocationSelectionState state) {
+    return state.streetName.trim().isNotEmpty &&
+        state.streetNumber.trim().isNotEmpty &&
+        state.regionName.trim().isNotEmpty &&
+        state.regionNumber.trim().isNotEmpty &&
+        state.buildingNumber.trim().isNotEmpty;
   }
 
   @override
@@ -146,7 +163,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            onPressed: () => _onNext(state.address),
+                            onPressed: () => _onNext(state),
                             child: Text(
                               "next".tr(),
                               style: const TextStyle(color: Colors.white),
