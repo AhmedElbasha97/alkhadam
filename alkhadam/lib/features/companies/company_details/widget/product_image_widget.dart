@@ -9,7 +9,7 @@ import '../../../../core/utils/responsive.dart';
 
 
 class ProductImageWidget extends StatelessWidget {
-  const ProductImageWidget({Key? key, required this.imageUrl, required this.activeIndex, required this.imageTotalCount, this.imagesLink}) : super(key: key);
+  const ProductImageWidget({super.key, required this.imageUrl, required this.activeIndex, required this.imageTotalCount, this.imagesLink});
   final String? imageUrl;
   final int activeIndex;
   final String imageTotalCount;

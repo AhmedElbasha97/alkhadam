@@ -2,15 +2,8 @@ import 'package:alkhadam/core/data/datasources/api_service.dart';
 import 'package:alkhadam/core/services/companies_services.dart';
 import 'package:alkhadam/features/companies/worker_suppliers/cubit/worker_suppliers_state.dart';
 import 'package:alkhadam/features/home/presentation/home_screen.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/data/datasources/storage_local_data_source.dart';
-import '../../../auth/sign_in/presentation/log_in_screen.dart';
-import '../../../auth/sign_up/presentation/regestier_screen.dart';
 import '../../worker_companies/data/worker_companies_model.dart';
 import '../presentation/worker_suppliers_screen.dart';
 

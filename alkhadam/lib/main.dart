@@ -1,3 +1,4 @@
+import 'package:alkhadam/features/auth/verification_code/cubit/verification_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,6 +11,7 @@ import 'core/utils/app_route.dart';
 import 'features/auth/sign_in/cubit/log_in_cubit.dart';
 import 'features/auth/sign_up/cubit/regestier_cubit.dart';
 import 'features/companies/anti_bug_companies/cubit/anti_bug_companies_cubit.dart';
+import 'features/companies/booking_screens/cubit/booking_cubit.dart';
 import 'features/companies/cleaning_companies/cubit/cleaning_companies_cubit.dart';
 import 'features/companies/company_details/cubit/company_details_cubit.dart';
 import 'features/companies/nursing_companies/cubit/nursing_companies_cubit.dart';
@@ -20,6 +22,8 @@ import 'features/home/cubit/home_cubit.dart';
 import 'features/splash/cubit/splash_cubit.dart';
 import 'features/splash/presentation/splash_screen.dart';
 import 'features/welcome/cubit/welcome_cuibit.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +31,9 @@ void main() async {
 
   await StorageLocalDataSource.init();
   final storage = StorageLocalDataSource.instance;
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final savedLocaleCode = await storage.getSavedLocaleCode();
   final initialLocale = (savedLocaleCode != null && savedLocaleCode.isNotEmpty)
       ? Locale(savedLocaleCode)
@@ -66,7 +72,9 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => SplashCubit()..startSplashAnimation()),
             BlocProvider(create: (_) => WelcomeCubit()..startAnimation()),
             BlocProvider(create: (_) => HomeCubit()),
+            BlocProvider(create: (_) => VerificationCodeCubit()),
             BlocProvider(create: (_) => WorkerCompaniesCubit()),
+            BlocProvider(create: (_) => BookingCubit()),
             BlocProvider(create: (_) => CleaningCompaniesCubit()),
             BlocProvider(create: (_) => NursingCompaniesCubit()),
             BlocProvider(create: (_) => AntiBugCompaniesCubit()),
@@ -81,7 +89,8 @@ class MyApp extends StatelessWidget {
                   return MaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: 'alkhadam',
-                    navigatorObservers: [appRouteObserver],
+                    /// ✅ REQUIRED for FlutterSmartDialog
+                    navigatorObservers: [ appRouteObserver, ], /// ✅ REQUIRED for FlutterSmartDialog
                     locale: context.locale,
                     supportedLocales: context.supportedLocales,
                     localizationsDelegates: context.localizationDelegates,

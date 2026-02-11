@@ -1,3 +1,4 @@
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,10 @@ class StorageLocalDataSource {
   static const onboardingKey = 'ONBOARDING_DONE';
   static const themeModeKey = 'THEME_MODE'; // ✅ Added key for theme
   static const userTokenKey = 'User_token';
+static const otpVerificationKey = 'otp_verification';
+static const userPhoneNumberKey = 'user_phone_number';
+static const userCountryCodeKey = 'user_country_code';
+
 
   Future<void> saveLocaleCode(String code) async {
     await prefsSync.setString(activeLocaleKey, code);
@@ -34,6 +39,12 @@ class StorageLocalDataSource {
       prefsSync.setString(activeLocaleKey, locale.languageCode);
   Future<void> setUserToken(String userId ) async =>
       prefsSync.setString(userTokenKey, userId);
+  Future<void> setOtpVerification(bool otpVerification ) async =>
+      prefsSync.setBool(otpVerificationKey, otpVerification);
+  Future<void> setUserPhoneNumber(String phoneNumber ) async =>
+      prefsSync.setString(userPhoneNumberKey, phoneNumber);
+  Future<void> setUserCountryCode(String countryCode ) async =>
+      prefsSync.setString(userCountryCodeKey, countryCode);
 
   // 🚀 Onboarding management
   bool get onboardingCompleted => prefsSync.getBool(onboardingKey) ?? false;
@@ -49,10 +60,23 @@ class StorageLocalDataSource {
   String getUserToken() {
     return prefsSync.getString(userTokenKey) ?? "";
   }
+  bool getOtpVerification() {
+    return prefsSync.getBool(otpVerificationKey) ?? false;
+  }
+  String getUserPhoneNumber() {
+    return prefsSync.getString(userPhoneNumberKey) ?? "";
+  }
+  String getUserCountryCode() {
+    return prefsSync.getString(userCountryCodeKey) ?? "";
+  }
   Future<void> loggingOut() async {
      await prefsSync.remove(userTokenKey);
   }
-
+  Future<void> theUserVerified() async{
+    await prefsSync.remove(otpVerificationKey);
+    await prefsSync.remove(userPhoneNumberKey);
+    await prefsSync.remove(userCountryCodeKey);
+  }
   Future<void> saveThemeIsDark(bool isDark) async {
     await prefsSync.setBool(themeModeKey, isDark);
   }

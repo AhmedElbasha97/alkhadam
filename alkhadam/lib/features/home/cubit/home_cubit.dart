@@ -36,7 +36,7 @@ class HomeCubit extends Cubit<HomeState> {
   ];
   List<Datum> homeData = [];
 
-  void resetState(context) {
+  void resetState(  BuildContext context) {
    _navigateIfNotOpen(context, screen: const HomeScreen(), routeName: "HomeScreen");
   }
   bool isScreenAlreadyOpen(BuildContext context, Type screenType) {

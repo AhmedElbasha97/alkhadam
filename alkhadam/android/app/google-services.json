@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "491577092822",
+    "project_id": "alkhadam-6863b",
+    "storage_bucket": "alkhadam-6863b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491577092822:android:8bf10de595b4b03efe7777",
+        "android_client_info": {
+          "package_name": "com.sync.alkhadam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8tD9EmoWw5YzGRPXK2oSP6r5rxaRVyd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

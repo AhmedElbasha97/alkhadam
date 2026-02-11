@@ -1,4 +1,5 @@
 
+import '../../features/companies/companies_services/data/company_services_model.dart';
 import '../../features/companies/company_details/data/company_detail_model.dart';
 import '../../features/companies/worker_companies/data/worker_companies_model.dart';
 import '../data/datasources/api_service.dart';
@@ -70,6 +71,14 @@ class CompaniesServices {
     if (data == null) return null;
 
     return CompanyDetailsModel.fromJson(data);
+  }
+  Future<CompaniesServicesModel?> getCompaniesServices() async {
+
+    final resp = await api.get(ApiConstant.companiesServicesLink,);
+    final data = resp.data;
+    if (data == null) return null;
+
+    return CompaniesServicesModel.fromJson(data);
   }
 
 

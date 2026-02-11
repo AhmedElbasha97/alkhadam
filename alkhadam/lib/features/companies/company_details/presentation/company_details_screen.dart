@@ -12,10 +12,12 @@ import '../../../../widget/no_data_widget.dart';
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
 import '../cubit/company_details_cubit.dart';
+import '../widget/cleaning_services_tap.dart';
 
 class CompanyDetailsScreen extends StatefulWidget {
   final int companyId;
-  const CompanyDetailsScreen({super.key, required this.companyId});
+  final bool? comingFromCleaningCompanies;
+  const CompanyDetailsScreen({super.key, required this.companyId,  this.comingFromCleaningCompanies = false});
 
   @override
   State<CompanyDetailsScreen> createState() => _CompanyDetailsScreenState();
@@ -31,7 +33,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
     cubit = context.read<CompanyDetailsCubit>();
 
     cubit.initAnimation(this);
-    cubit.loadCompanyDetailsData(widget.companyId);
+    cubit.loadCompanyDetailsData(widget.companyId, widget.comingFromCleaningCompanies);
   }
   CarouselSliderController carouselController = CarouselSliderController();
   @override
@@ -120,14 +122,14 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                           autoPlay: true,
                           enlargeCenterPage: true,
                         ),
-                        itemCount: data?.data.images.length,
+                        itemCount: data?.data?.images?.length,
                         itemBuilder: (BuildContext context, int index,
                             int realIndex) {
                           return ProductImageWidget(
-                            imageUrl: data?.data.images[index],
+                            imageUrl: data?.data?.images?[index],
                             activeIndex: index,
-                            imageTotalCount: "${data?.data.images.length}",
-                            imagesLink: data?.data.images,);
+                            imageTotalCount: "${data?.data?.images?.length}",
+                            imagesLink: data?.data?.images,);
                         },
                       ),
 
@@ -135,7 +137,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
 
                       /// Name
                       Text(
-                        data?.data.name??"",
+                        data?.data?.name??"",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 22,
@@ -167,7 +169,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                 Expanded(
                                   flex: 3,
                                   child:
-                                  callButton(data?.data.mobile??""),
+                                  callButton(data?.data?.mobile??""),
                                 ),
 
                               ],
@@ -198,7 +200,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                 Expanded(
                                   flex: 3,
                                   child:
-                                  whatsappButton(data?.data.whatsapp??""),
+                                  whatsappButton(data?.data?.whatsapp??""),
                                 ),
 
                               ],
@@ -229,7 +231,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                 Expanded(
                                   flex: 12,
                                   child:
-                                  emailButton(data?.data.email??""),
+                                  emailButton(data?.data?.email??""),
                                 ),
 
                               ],
@@ -240,10 +242,47 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
 
                       /// Info box
 
-                      _infoBox("company_details_address_title".tr(), data?.data.address??""),
-                      _infoBox("company_details_country_title".tr(), data?.data.country.name??""),
-                      _infoBox("company_details_type_title".tr(), data?.data.type.name??""),
+                      _infoBox("company_details_address_title".tr(), data?.data?.address??""),
+                      _infoBox("company_details_country_title".tr(), data?.data?.country?.name??""),
+                      _infoBox("company_details_type_title".tr(), data?.data?.type?.name??""),
+                     widget.comingFromCleaningCompanies == false?const SizedBox(): Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
+                          Text(
+                          "${"cleaningServices".tr()}: ",
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
+                            cubit.companyDetails?.data?.services?.isEmpty??true? Center(
+                              child: Text("cleaningServicesNotAvailable".tr() , style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                            ): Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15.0),
+                              child: Column(
+                                children:cubit.companyDetails!.data!.services!.map((e) {
+                                  return CleaningServicesTap(companyServices: e, onTap: () {  },);
+                                },
+                              ).toList(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

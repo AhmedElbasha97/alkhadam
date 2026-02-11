@@ -24,6 +24,17 @@ class Validation {
     }
     return null;
   }
+  /// Validates phone number input
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'phone_required'.tr(); // "Phone number is required"
+    }
+    final phoneRegex = RegExp(r'^\+?\d{7,15}$');
+    if (!phoneRegex.hasMatch(value)) {
+      return 'phone_invalid'.tr(); // "Please enter a valid phone number"
+    }
+    return null;
+  }
 
   /// Validates name input
   static String? validateName(String? value) {

@@ -70,7 +70,7 @@ class CustomDrawer extends StatelessWidget {
                             child: Column(
                               children: [
                                 const SizedBox(height: 6),
-                                ...items.map((it) => _buildRow(context, it, cubit)).toList(),
+                                ...items.map((it) => _buildRow(context, it, cubit)),
 
                                 const SizedBox(height: 12),
 

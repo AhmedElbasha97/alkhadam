@@ -1,3 +1,4 @@
+import 'package:alkhadam/features/auth/verification_code/presentation/verification_code_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,7 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SplashFinished) {
           if(StorageLocalDataSource.instance.userSignedIn() ) {
+
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const HomeScreen(),    settings: const RouteSettings(name: "HomeScreen"),
@@ -23,12 +25,21 @@ class SplashScreen extends StatelessWidget {
                   (route) => false,
             );
           }else {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const WelcomeScreen(),    settings: const RouteSettings(name: "WelcomeScreen"),
-              ),
-                  (route) => false,
-            );
+            if(StorageLocalDataSource.instance.getOtpVerification() ){
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const VerificationCodeScreen(),    settings: const RouteSettings(name: "VerificationCodeScreen"),
+                ),
+                    (route) => false,
+              );
+            }else{
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const WelcomeScreen(),    settings: const RouteSettings(name: "WelcomeScreen"),
+                ),
+                    (route) => false,
+              );}
+
           }
         }
       },

@@ -13,7 +13,7 @@ import '../../../../loader.dart';
 class PhotoDetailedScreen extends StatefulWidget {
   final List<String>? link;
   final int? index;
-  const PhotoDetailedScreen({Key? key,  this.link, this.index}) : super(key: key);
+  const PhotoDetailedScreen({super.key,  this.link, this.index});
 
   @override
   State<PhotoDetailedScreen> createState() => _PhotoDetailedScreenState();
@@ -21,13 +21,13 @@ class PhotoDetailedScreen extends StatefulWidget {
 
 class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
   int activeIndex = 0;
-  getNextImage(){
+  void getNextImage(){
     if(activeIndex != ((widget.link?.length??0)-1)){
       activeIndex += 1;
       setState((){});
     }
   }
-  getPreviousImage(){
+  void getPreviousImage(){
     if(activeIndex != 0){
       activeIndex -= 1;
       setState((){});

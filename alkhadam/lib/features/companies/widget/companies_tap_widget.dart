@@ -14,147 +14,153 @@ class CompaniesTapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap:onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 18),
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFF8E2393), width: 2),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 18),
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFF8E2393), width: 2),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+          flex: 2,
+          child: Hero(
+            tag: 'product_${company?.id}',
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: company?.thumb ?? "",
+              imageBuilder: ((context, image) {
+                return Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Container(
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: image,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              placeholder: (context, image) {
+                return Container(
+                  height: 110,
+                  width: 110,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF2F0F3),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0.0, 0.0),
+                        blurRadius: 13.0,
+                        spreadRadius: 2.0,
+                      ),
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.2),
+                        offset: const Offset(0.0, 0.0),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child:  Container(
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFDFDDDF),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    )
+                        .animate(onPlay: (c) => c.repeat())
+                        .shimmer(
+                      duration: 1200.ms,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                  ),
+                )
+                    .animate(onPlay: (c) => c.repeat())
+                    .shimmer(
+                  duration: 1200.ms,
+                  color: Theme.of(context).colorScheme.background,
+                );
+              },
+              errorWidget: (context, url, error) {
+                return SizedBox(
+                  height: 110,
+                  width: 110,
+                  child: Image.asset(
+                    "assets/logo with out background.png",
+                    fit: BoxFit.fitHeight,
+                  ),
+                );
+              },
+            ),
+          ),
         ),
-        child: Row(
-          children: [
-            Expanded(
-            flex: 2,
-            child: Hero(
-              tag: 'product_${company?.id}',
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: company?.thumb ?? "",
-                imageBuilder: ((context, image) {
-                  return Center(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Container(
-                        height: 110,
-                        width: 110,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: image,
-                            fit: BoxFit.fitHeight,
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  company?.name??"",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF8E2393),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "${company?.workers} ${"worker_suffix".tr()}",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                Align(
+                  alignment: StorageLocalDataSource.instance.getSavedLocaleCode() == "en"?Alignment.centerRight:Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap:onTap,
+
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF8E2393),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child:  Text(
+                            "more_button".tr(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-                placeholder: (context, image) {
-                  return Container(
-                    height: 110,
-                    width: 110,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF2F0F3),
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          offset: const Offset(0.0, 0.0),
-                          blurRadius: 13.0,
-                          spreadRadius: 2.0,
-                        ),
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.2),
-                          offset: const Offset(0.0, 0.0),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child:  Container(
-                        height: 110,
-                        width: 110,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFDFDDDF),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      )
-                          .animate(onPlay: (c) => c.repeat())
-                          .shimmer(
-                        duration: 1200.ms,
-                        color: Theme.of(context).colorScheme.background,
-                      ),
-                    ),
-                  )
-                      .animate(onPlay: (c) => c.repeat())
-                      .shimmer(
-                    duration: 1200.ms,
-                    color: Theme.of(context).colorScheme.background,
-                  );
-                },
-                errorWidget: (context, url, error) {
-                  return SizedBox(
-                    height: 110,
-                    width: 110,
-                    child: Image.asset(
-                      "assets/logo with out background.png",
-                      fit: BoxFit.fitHeight,
-                    ),
-                  );
-                },
-              ),
+
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-            Expanded(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    company?.name??"",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFF8E2393),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "${company?.workers} ${"worker_suffix".tr()}",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
 
-                  Align(
-                    alignment: StorageLocalDataSource.instance.getSavedLocaleCode() == "en"?Alignment.centerRight:Alignment.centerLeft,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF8E2393),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child:  Text(
-                        "more_button".tr(),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          // IMAGE
 
-            // IMAGE
-
-          ],
-        ),
+        ],
       ),
     );
   }

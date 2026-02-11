@@ -24,7 +24,7 @@ part 'company_details_state.dart';
 
 class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
   CompanyDetailsCubit() : super(CompanyDetailsInitial());
-
+  bool comingFromCleaningCompany =false;
   late AnimationController animationController;
   late Animation<double> fadeAnimation;
   late Animation<Offset> slideAnimation;
@@ -53,6 +53,7 @@ class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
         showCloseIcon: true
     ).show();
   }
+
   List<String> getAllRoutes() {
     return  appRouteObserver.routeStack
         .map((r) => r.settings.name ?? r.runtimeType.toString())
@@ -161,7 +162,7 @@ class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
 
     _navigateIfNotOpen(
       context,
-      screen: CompanyDetailsScreen(companyId: companyDetails?.data.id??0),
+      screen: CompanyDetailsScreen(companyId: companyDetails?.data?.id??0, comingFromCleaningCompanies: comingFromCleaningCompany,),
       routeName: "CompanyDetailsScreen",
     );// or reload data as needed
   }
@@ -214,12 +215,12 @@ class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
       throw "Could not open email client";
     }
   }
-  Future<void> loadCompanyDetailsData(int id) async {
+  Future<void> loadCompanyDetailsData(int id,bool? checker) async {
     emit(CompanyDetailsLoading());
 
     try {
       final response = await CompaniesServices(ApiService()).getCompanyDetails(id);
-
+      comingFromCleaningCompany = checker??false;
       companyDetails = response;
 
       animationController.forward();

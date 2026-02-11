@@ -52,10 +52,7 @@ class WelcomeScreen extends StatelessWidget {
 
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(50),
-                                        image: const DecorationImage(
-                                            image: AssetImage(
-                                                "assets/images/backgroundImage.png"),
-                                            fit: BoxFit.cover),
+
                                       ),
                                       child: Center(
                                         child: Padding(

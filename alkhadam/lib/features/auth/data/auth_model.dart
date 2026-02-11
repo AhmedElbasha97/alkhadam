@@ -65,13 +65,15 @@ class Data {
 class User {
   int? id;
   String? name;
-  String? mobile;
+  final String? mobile;
+  final int? otp;
+
   String? email;
   String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
 
-  User({
+  User({this.otp,
     this.id,
     this.name,
     this.mobile,
@@ -84,11 +86,12 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) =>  User(
     id: json["id"],
     name: json["name"],
-    mobile: json["mobile"],
-    email: json["email"],
+    mobile: "${json["mobile"]}",
+    email: "${json["email"]}",
     emailVerifiedAt: json["email_verified_at"],
     createdAt: json["created_at"],
     updatedAt: json["updated_at"],
+    otp: json["otp"],
   );
 
   Map<String, dynamic> toJson() => {

@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 
 class Loader extends StatelessWidget {
-  const Loader({Key? key, this.height=0, this.width=0}) : super(key: key);
+  const Loader({super.key, this.height=0, this.width=0});
 final double height;
 final double width;
   @override
