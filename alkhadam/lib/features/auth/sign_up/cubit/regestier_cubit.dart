@@ -139,7 +139,11 @@ class RegisterCubit extends Cubit<RegisterStates> {
     emit(RegisterLoading());
 
     try {
-      AuthModel? authData = await AuthServices(ApiService()).signingUp(emailController.text, passwordController.text, nameController.text);
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+      final name = nameController.text.trim();
+
+      AuthModel? authData = await AuthServices(ApiService()).signingUp(email, password, name);
       if (authData == null|| authData.success == false) {
         emit(RegisterError(authData?.message ?? "Login failed. Try again"));
         return;
