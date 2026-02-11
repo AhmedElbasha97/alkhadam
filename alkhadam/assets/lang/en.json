@@ -180,6 +180,7 @@
   "error_fetching_location": "Could not fetch location. Please try again.",
   "address_not_found": "Address not found. Try a different search.",
   "search": "Search",
+  "location_required_fields": "Please fill in all address fields before continuing.",
   "verification_code_title": "Code verification",
   "verification_confirm_button": "Verify",
   "resend_after": "Resend after",

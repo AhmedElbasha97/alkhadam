@@ -171,6 +171,7 @@
   "error_fetching_location": "عذراً، تعذر جلب الموقع. يرجى المحاولة مرة أخرى.",
   "address_not_found": "العنوان غير موجود. جرّب بحثاً آخر.",
   "search": "بحث",
+  "location_required_fields": "يرجى إدخال جميع حقول العنوان قبل المتابعة.",
   "verification_code_title": "تأكيد الرمز",
   "verification_confirm_button": "تحقق",
   "resend_after": "إعادة الإرسال بعد ",
