@@ -32,7 +32,10 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginLoading());
 
     try {
-      AuthModel? authData = await AuthServices(ApiService()).loggingIn(emailController.text, passwordController.text);
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+
+      AuthModel? authData = await AuthServices(ApiService()).loggingIn(email, password);
       if (authData == null|| authData.success == false) {
         emit(LoginError(authData?.message ?? "Login failed. Try again"));
         return;
