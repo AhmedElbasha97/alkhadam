@@ -417,7 +417,14 @@ emit(RegisterLoaded());
     emit(RegisterLoading());
 
     try {
-      RegisterModel? authData = await AuthServices(ApiService()).signingUp(emailController.text, passwordController.text, nameController.text,phoneController.text,"${selectedCountryCode?.countryId}");
+
+
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+      final name = nameController.text.trim();
+
+    RegisterModel? authData = await AuthServices(ApiService()).signingUp(email, password, name,phoneController.text,"${selectedCountryCode?.countryId}");
+
       if (authData == null|| authData.success == false) {
         emit(RegisterLoaded());
         ScaffoldMessenger.of(context).showSnackBar(
