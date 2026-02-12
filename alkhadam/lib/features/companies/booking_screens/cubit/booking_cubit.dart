@@ -27,6 +27,7 @@ class BookingCubit extends Cubit<BookingStates> with ChangeNotifier {
    Datum? arrivalTime;
    bool checkingThePrice = false;
    String servicesId = "";
+   String dateAndTime = "";
 TextEditingController notes = TextEditingController();
 
   String get formattedDate {
@@ -311,7 +312,15 @@ TextEditingController notes = TextEditingController();
                   builder: (_) => BlocProvider.value(
                     value:BookingCubit()
                     ,
-                    child: LocationSelectionScreen(bookingState: BookingLoadedState()),
+                    child: LocationSelectionScreen(
+                      selectedDate: selectedDate,
+                      selectedHours: selectedHours,
+                      selectedServices: selectedServices,
+                      selectedWorkers: selectedWorkers,
+                      arrivalTime: arrivalTime,
+                      totalPrice: totalPrice,
+                      note: notes.text.isEmpty?"":notes.text, servicesId: servicesId,
+                    ),
                   ),
                 ),
               );
@@ -322,7 +331,7 @@ TextEditingController notes = TextEditingController();
           ).show();
           checkingThePrice = false;
           emit(BookingLoadedState());
-
+          dateAndTime = formattedDate;
 
         } else {
           AwesomeDialog(

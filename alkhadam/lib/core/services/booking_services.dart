@@ -1,3 +1,5 @@
+import 'package:alkhadam/features/auth/sign_up/data/regestier_model.dart';
+
 import '../../features/companies/booking_screens/data/booking_category_model.dart';
 import '../../features/companies/booking_screens/data/booking_price_model.dart';
 import '../data/datasources/api_service.dart';
@@ -53,7 +55,7 @@ class BookingServices{
     if (data == null) return null;
 
     return BookingPriceModel.fromJson(data);
-  }Future<BookingPriceModel?> bookingForCompanyServices({String? workerId,String? date,String? workerNo,String? hoursNo,String? arrivalTime,List<String>? services,String? notes,String? longitude,String? latitude,String? region,String? regionNo,String? streetNo,String? buildingNo}) async {
+  }Future<RegisterModel?> bookingForCompanyServices({String? workerId,String? date,String? workerNo,String? hoursNo,String? arrivalTime,List<String>? services,String? notes,String? longitude,String? latitude,String? region,String? regionNo,String? streetNo,String? buildingNo}) async {
 
     final resp = await api.post(ApiConstant.bookingForCompanyServicesLink,data:{
       "worker_id": workerId,
@@ -61,7 +63,7 @@ class BookingServices{
       "workers_no": workerNo,
       "hours_no": hoursNo,
       "arrival_time":arrivalTime,
-      "services":services,
+      "services":"${services?.join(', ')}",
       "notes":notes,
       "location":"$longitude,$latitude",
       "region":region,
@@ -73,6 +75,6 @@ class BookingServices{
     final data = resp.data;
     if (data == null) return null;
 
-    return BookingPriceModel.fromJson(data);
+    return RegisterModel.fromJson(data);
   }
 }

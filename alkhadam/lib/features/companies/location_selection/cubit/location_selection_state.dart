@@ -36,9 +36,10 @@ class LocationSelectionState {
 
   AddressModel get address => AddressModel(
         streetName: streetName,
-        buildingNumber: regionName,
-        floorNumber: regionNumber,
-        apartmentNumber: buildingNumber,
+        streetNumber: streetNumber,
+        buildingNumber: buildingNumber,
+        regionNumber: regionNumber,
+        regionName: regionName,
         lat: lat,
         lng: lng,
       );
