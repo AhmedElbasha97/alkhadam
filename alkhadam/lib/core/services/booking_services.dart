@@ -106,11 +106,11 @@ class BookingServices {
     return BookingPriceModel.fromJson(data);
   }
 
-  Future<BookingListResponse?> getBookingList() async {
-    final resp = await api.get(ApiConstant.bookingListLink);
-    final data = resp.data;
-    if (data == null) return null;
-
-    return BookingListResponse.fromJson(data);
-  }
+  // Future<BookingListResponse?> getBookingList() async {
+  //   final resp = await api.get(ApiConstant.bookingListLink);
+  //   final data = resp.data;
+  //   if (data == null) return null;
+  //
+  //   return BookingListResponse.fromJson(data);
+  // }
 }

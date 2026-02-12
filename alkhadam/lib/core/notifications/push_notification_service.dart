@@ -53,7 +53,7 @@ class PushNotificationService {
 
     await _localNotifications
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+        AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(androidChannel);
 
     const initializationSettings = InitializationSettings(
@@ -61,9 +61,7 @@ class PushNotificationService {
       iOS: DarwinInitializationSettings(),
     );
 
-    await _localNotifications.initialize(
-      initializationSettings: initializationSettings,
-    );
+    await _localNotifications.initialize(initializationSettings);
   }
 
   Future<void> showLocal(RemoteMessage message) async {
@@ -71,10 +69,10 @@ class PushNotificationService {
     if (notification == null) return;
 
     await _localNotifications.show(
-      id: notification.hashCode,
-      title: notification.title,
-      body: notification.body,
-      notificationDetails: const NotificationDetails(
+      notification.hashCode,
+      notification.title,
+      notification.body,
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           'high_importance_channel',
           'High Importance Notifications',
@@ -114,7 +112,7 @@ class PushNotificationService {
 
   Map<String, dynamic> getSavedPayload() {
     final jsonString =
-        StorageLocalDataSource.prefsSync.getString(notificationPayloadKey);
+    StorageLocalDataSource.prefsSync.getString(notificationPayloadKey);
     if (jsonString == null || jsonString.isEmpty) {
       return <String, dynamic>{};
     }

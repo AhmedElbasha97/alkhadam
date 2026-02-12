@@ -14,7 +14,7 @@ class BookingListCubit extends Cubit<BookingListState> {
     emit(BookingListLoading());
 
     try {
-      bookingListResponse = await BookingServices(ApiService()).getBookingList();
+      // bookingListResponse = await BookingServices(ApiService()).getBookingList();
       if (bookingListResponse == null) {
         emit(BookingListError('Empty response from server'));
         return;
