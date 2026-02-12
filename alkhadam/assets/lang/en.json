@@ -203,9 +203,8 @@
   "booking_list_title": "Booking List",
   "booking_list_button": "Confirm Address",
   "booking_id": "Booking",
-  "status": "Status"
+  "status": "Status",
 
-  "otp_title": "Enter the verification code \n you received on WhatsApp",
   "payment_alert": "Online payment is currently unavailable, but it will be available soon.",
   "reservation_error_alert":" There was an error while you tried to make the reservation. Please try again.",
   "reservation_success_alert": "Your reservation for the services has been successfully completed.",

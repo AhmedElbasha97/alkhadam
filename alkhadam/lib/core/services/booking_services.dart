@@ -69,40 +69,8 @@ class BookingServices {
     return BookingPriceModel.fromJson(data);
   }
 
-  Future<BookingPriceModel?> bookingForCompanyServices({
-    String? workerId,
-    String? date,
-    String? workerNo,
-    String? hoursNo,
-    String? arrivalTime,
-    List<String>? services,
-    String? notes,
-    String? longitude,
-    String? latitude,
-    String? region,
-    String? regionNo,
-    String? streetNo,
-    String? buildingNo,
-  }) async {
-    final resp = await api.post(
-      ApiConstant.bookingForCompanyServicesLink,
-      data: {
-        'worker_id': workerId,
-        'date': date,
-        'workers_no': workerNo,
-        'hours_no': hoursNo,
-        'arrival_time': arrivalTime,
-        'services': services,
-        'notes': notes,
-        'location': '$longitude,$latitude',
-        'region': region,
-        'region_no': regionNo,
-        'street_no': streetNo,
-        'building_no': buildingNo,
-      },
-    );
 
-  }Future<RegisterModel?> bookingForCompanyServices({String? workerId,String? date,String? workerNo,String? hoursNo,String? arrivalTime,List<String>? services,String? notes,String? longitude,String? latitude,String? region,String? regionNo,String? streetNo,String? buildingNo}) async {
+  Future<RegisterModel?> bookingForCompanyServices({String? workerId,String? date,String? workerNo,String? hoursNo,String? arrivalTime,List<String>? services,String? notes,String? longitude,String? latitude,String? region,String? regionNo,String? streetNo,String? buildingNo}) async {
 
     final resp = await api.post(ApiConstant.bookingForCompanyServicesLink,data:{
       "worker_id": workerId,
@@ -125,11 +93,11 @@ class BookingServices {
     return RegisterModel.fromJson(data);
   }
 
-  // Future<BookingListResponse?> getBookingList() async {
-  //   final resp = await api.get(ApiConstant.bookingListLink);
-  //   final data = resp.data;
-  //   if (data == null) return null;
-  //
-  //   return BookingListResponse.fromJson(data);
-  // }
+  Future<BookingListResponse?> getBookingList() async {
+    final resp = await api.get(ApiConstant.bookingListLink);
+    final data = resp.data;
+    if (data == null) return null;
+
+    return BookingListResponse.fromJson(data);
+  }
 }

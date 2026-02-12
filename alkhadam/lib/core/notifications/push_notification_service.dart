@@ -54,7 +54,6 @@ class PushNotificationService {
     await _localNotifications
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
-            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(androidChannel);
 
     const initializationSettings = InitializationSettings(
@@ -114,7 +113,6 @@ class PushNotificationService {
   Map<String, dynamic> getSavedPayload() {
     final jsonString =
     StorageLocalDataSource.prefsSync.getString(notificationPayloadKey);
-        StorageLocalDataSource.prefsSync.getString(notificationPayloadKey);
     if (jsonString == null || jsonString.isEmpty) {
       return <String, dynamic>{};
     }

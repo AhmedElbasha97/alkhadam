@@ -196,7 +196,7 @@
   "booking_list_title": "قائمة الحجوزات",
   "booking_list_button": "تأكيد العنوان عندنا",
   "booking_id": "حجز",
-  "status": "الحالة"
+  "status": "الحالة",
   "payment_alert":"الدفع الإلكتروني غير متاح حاليًا، ولكنه سيكون متاحًا قريبًا.",
   "reservation_error_alert": "حدث خطأ أثناء محاولتك إجراء الحجز. يرجى المحاولة مرة أخرى.",
   "reservation_success_alert": "تم إتمام حجزك للخدمات بنجاح.",

@@ -21,7 +21,8 @@ class ApiConstant {
   static String bookingWorkersLink = "booking/workers";//get
   static String bookingTimesLink = "booking/times";//get
   static String checkingPricesOfBookingLink = "booking/pricing";//post
-  static String bookingForCompanyServicesLink = "booking/new";//post
+  static String bookingForCompanyServicesLink = "booking/new";
+
   static String bookingListLink = "booking/list";//get
 
 }

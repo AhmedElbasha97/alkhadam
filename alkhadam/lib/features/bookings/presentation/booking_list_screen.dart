@@ -1,6 +1,8 @@
+import 'package:alkhadam/features/bookings/widget/booking_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../drawer/cubit/drawer_cubit.dart';
 import '../../drawer/presentation/drawer_screen.dart';
@@ -17,24 +19,17 @@ class BookingListScreen extends StatelessWidget {
       create: (_) => BookingListCubit()..getBookingList(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.8,
-          title: Text(
-            'booking_list_title'.tr(),
-            style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w700,
-            ),
+          backgroundColor: const Color(0xFFdcdbdb),
+          elevation: 3,
+          title: Image.asset(
+            "assets/logo with out background.png",
+            scale: 4.5,
           ),
           centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black87),
-            onPressed: () => Navigator.maybePop(context),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black87),
-              onPressed: () {
+          leading:IconButton(
+              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+              onPressed: (){
+                // inside any widget with context:
                 showGeneralDialog(
                   context: context,
                   barrierDismissible: true,
@@ -42,16 +37,23 @@ class BookingListScreen extends StatelessWidget {
                   pageBuilder: (ctx, anim1, anim2) {
                     return BlocProvider(
                       create: (_) => DrawerCubit()..load(),
-                      child: const CustomDrawer(),
+                      child: const CustomDrawer(
+
+                      ),
                     );
                   },
                   transitionBuilder: (ctx, anim, secAnim, child) {
-                    return FadeTransition(opacity: anim, child: child);
+                    return FadeTransition(
+                      opacity: anim,
+                      child: child,
+                    );
                   },
                 );
-              },
-            ),
-          ],
+
+              }        ),
+          actions:[IconButton(onPressed: (){
+            Navigator.maybePop(context);
+          }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
         ),
         body: Container(
           color: const Color(0xFFE9EDF2),
