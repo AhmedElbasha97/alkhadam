@@ -10,6 +10,7 @@ import '../../../core/data/datasources/storage_local_data_source.dart';
 import '../../../core/presentation/cubit/localization_cubit.dart';
 import '../../auth/sign_in/presentation/log_in_screen.dart';
 import '../../auth/sign_up/presentation/regestier_screen.dart';
+import '../../bookings/presentation/booking_list_screen.dart';
 import '../../companies/anti_bug_companies/presentaion/anti_bug_companies_screen.dart';
 import '../../companies/cleaning_companies/presentation/cleaning_companies_screen.dart';
 import '../../companies/nursing_companies/presentation/nursing_companies_screen.dart';
@@ -49,6 +50,7 @@ class DrawerCubit extends Cubit<DrawerState> {
       ],
     ),
      DrawerItemModel(id: 'news', title:'news'.tr(), icon: Icons.article_outlined),
+     DrawerItemModel(id: 'booking_list', title:'booking_list_title'.tr(), icon: Icons.list_alt),
 
      DrawerItemModel(id: 'privacyPolicy', title: 'privacy_Policy'.tr(), icon: Icons.privacy_tip),
      DrawerItemModel(id: 'termsAndCondition', title:'terms_And_Condition'.tr(), icon: Icons.import_contacts_sharp),
@@ -195,6 +197,13 @@ class DrawerCubit extends Cubit<DrawerState> {
           context,
           screen: const WorkerSuppliersScreen(),
           routeName: "WorkerSuppliersScreen",
+        );
+        break;
+      case "booking_list":
+        _navigateIfNotOpen(
+          context,
+          screen: const BookingListScreen(),
+          routeName: "BookingListScreen",
         );
         break;
         case "termsAndCondition":

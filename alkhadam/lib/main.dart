@@ -1,4 +1,13 @@
+import 'package:alkhadam/core/notifications/push_notification_service.dart';
+import 'package:alkhadam/core/presentation/cubit/notification/notification_cubit.dart';
+import 'package:alkhadam/core/presentation/cubit/notification/notification_state.dart';
+import 'package:alkhadam/features/auth/sign_in/presentation/log_in_screen.dart';
 import 'package:alkhadam/features/auth/verification_code/cubit/verification_code_cubit.dart';
+import 'package:alkhadam/features/bookings/presentation/booking_list_screen.dart';
+import 'package:alkhadam/features/home/presentation/home_screen.dart';
+import 'package:alkhadam/features/profile_screen/presentation/profile_screen.dart';
+import 'package:alkhadam/features/webview/web_view.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -25,15 +34,21 @@ import 'features/welcome/cubit/welcome_cuibit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
   await StorageLocalDataSource.init();
   final storage = StorageLocalDataSource.instance;
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
   final savedLocaleCode = await storage.getSavedLocaleCode();
   final initialLocale = (savedLocaleCode != null && savedLocaleCode.isNotEmpty)
       ? Locale(savedLocaleCode)
@@ -81,30 +96,84 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => WorkerSuppliersCubit()),
             BlocProvider(create: (_) => CompanyDetailsCubit()),
             BlocProvider(create: (_) => DrawerCubit()),
+            BlocProvider(
+              create: (_) => NotificationCubit(PushNotificationService())
+                ..initialize(),
+            ),
           ],
-          child: BlocBuilder<LocalizationCubit, Locale>(
-            builder: (_, localeState) {
-              return BlocBuilder<ThemeCubit, ThemeMode>(
-                builder: (_, themeMode) {
-                  return MaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'alkhadam',
-                    /// ✅ REQUIRED for FlutterSmartDialog
-                    navigatorObservers: [ appRouteObserver, ], /// ✅ REQUIRED for FlutterSmartDialog
-                    locale: context.locale,
-                    supportedLocales: context.supportedLocales,
-                    localizationsDelegates: context.localizationDelegates,
-                    themeMode: themeMode,
-                    theme: AppTheme.lightTheme(context.locale),
-                    darkTheme: AppTheme.darkTheme(context.locale),
-                    home: const SplashScreen(),
-                  );
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<NotificationCubit, NotificationState>(
+                listenWhen: (previous, current) =>
+                    previous.route != current.route && current.route != null,
+                listener: (context, state) async {
+                  await _handleNotificationNavigation(context, state);
                 },
-              );
-            },
+              ),
+            ],
+            child: BlocBuilder<LocalizationCubit, Locale>(
+              builder: (_, localeState) {
+                return BlocBuilder<ThemeCubit, ThemeMode>(
+                  builder: (_, themeMode) {
+                    return MaterialApp(
+                      navigatorKey: appNavigatorKey,
+                      debugShowCheckedModeBanner: false,
+                      title: 'alkhadam',
+                      navigatorObservers: [appRouteObserver],
+                      locale: context.locale,
+                      supportedLocales: context.supportedLocales,
+                      localizationsDelegates: context.localizationDelegates,
+                      themeMode: themeMode,
+                      theme: AppTheme.lightTheme(context.locale),
+                      darkTheme: AppTheme.darkTheme(context.locale),
+                      home: const SplashScreen(),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         );
       },
     );
+  }
+
+  Future<void> _handleNotificationNavigation(
+    BuildContext context,
+    NotificationState state,
+  ) async {
+    final navigator = appNavigatorKey.currentState;
+    if (navigator == null || state.route == null || state.route!.isEmpty) return;
+
+    final route = state.route!;
+    Widget? screen;
+
+    switch (route) {
+      case 'home':
+        screen = const HomeScreen();
+        break;
+      case 'profile':
+        screen = const ProfileScreen();
+        break;
+      case 'login':
+        screen = const LoginScreen();
+        break;
+      case 'booking_list':
+        screen = const BookingListScreen();
+        break;
+      case 'web':
+        final url = state.payload['url']?.toString();
+        if (url != null && url.isNotEmpty) {
+          screen = WebViewContainer(url);
+        }
+        break;
+      default:
+        screen = null;
+    }
+
+    if (screen != null) {
+      navigator.push(MaterialPageRoute(builder: (_) => screen!));
+      await context.read<NotificationCubit>().markRouteHandled();
+    }
   }
 }
