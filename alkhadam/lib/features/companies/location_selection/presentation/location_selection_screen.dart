@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
-import '../../booking_screens/cubit/booking_state.dart';
+import '../../booking_screens/data/booking_category_model.dart';
 import '../cubit/location_selection_cubit.dart';
 import '../cubit/location_selection_state.dart';
 import '../data/place_suggestion.dart';
@@ -19,12 +19,17 @@ const double _kDefaultMapLng = 51.5310;
 
 class LocationSelectionScreen extends StatefulWidget {
   const LocationSelectionScreen({
-    super.key,
-    required this.bookingState,
+    super.key, this.selectedHours, this.selectedWorkers, this.selectedDate, this.arrivalTime, this.totalPrice, required this.selectedServices, this.note, required this.servicesId,
   });
 
-  final BookingLoadedState bookingState;
-
+  final String? totalPrice ;
+  final List<Datum>? selectedServices ;
+  final Datum? selectedHours;
+  final Datum? selectedWorkers;
+  final DateTime? selectedDate;
+  final Datum? arrivalTime;
+  final String? note;
+  final  String servicesId;
   @override
   State<LocationSelectionScreen> createState() => _LocationSelectionScreenState();
 }
@@ -55,8 +60,15 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
         builder: (_) => BlocProvider(
           create: (_) => PaymentCubit(),
           child: PaymentScreen(
-            bookingState: widget.bookingState,
+            selectedDate: widget.selectedDate,
+            selectedHours: widget.selectedHours,
+            selectedServices: widget.selectedServices,
+            selectedWorkers: widget.selectedWorkers,
+            arrivalTime: widget.arrivalTime,
+            totalPrice: widget.totalPrice,
+            note: widget.note,
             address: state.address,
+            servicesId: widget.servicesId,
           ),
         ),
       ),
@@ -64,7 +76,9 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
   }
 
   bool _hasAllRequiredFields(LocationSelectionState state) {
-    return state.streetName.trim().isNotEmpty &&
+    print("${state.streetNumber} + ${state.regionName} + ${state.regionNumber} + ${state.buildingNumber}");
+
+    return
         state.streetNumber.trim().isNotEmpty &&
         state.regionName.trim().isNotEmpty &&
         state.regionNumber.trim().isNotEmpty &&
@@ -170,7 +184,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 32),
+                         SizedBox(height:  MediaQuery.of(context).padding.bottom),
                       ],
                     ),
                   ),
@@ -648,6 +662,9 @@ class _AddressFields extends StatelessWidget {
           value: state.streetName,
           onChanged: cubit.setStreetName,
           hint: "search_placeholder".tr(),
+          focusNode: cubit.streetNameFocusNode,
+          nextFocusNode: cubit.streetNumberFocusNode,
+
         ),
         const SizedBox(height: 12),
         _AddressTextField(
@@ -655,6 +672,8 @@ class _AddressFields extends StatelessWidget {
           value: state.streetNumber,
           onChanged: cubit.setStreetNumber,
           keyboardType: TextInputType.number,
+          focusNode: cubit.streetNumberFocusNode,
+          nextFocusNode: cubit.regionNameFocusNode,
         ),
         const SizedBox(height: 12),
         _AddressTextField(
@@ -662,6 +681,8 @@ class _AddressFields extends StatelessWidget {
           value: state.regionName,
           onChanged: cubit.setRegionName,
           keyboardType: TextInputType.streetAddress,
+          focusNode: cubit.regionNameFocusNode,
+          nextFocusNode: cubit.regionNumberFocusNode,
         ),
         const SizedBox(height: 12),
         _AddressTextField(
@@ -669,6 +690,8 @@ class _AddressFields extends StatelessWidget {
           value: state.regionNumber,
           onChanged: cubit.setRegionNumber,
           keyboardType: TextInputType.number,
+          focusNode: cubit.regionNumberFocusNode,
+          nextFocusNode: cubit.buildingNumberFocusNode,
         ),
         const SizedBox(height: 12),
         _AddressTextField(
@@ -676,6 +699,8 @@ class _AddressFields extends StatelessWidget {
           value: state.buildingNumber,
           onChanged: cubit.setBuildingNumber,
           keyboardType: TextInputType.number,
+          focusNode: cubit.buildingNumberFocusNode,
+          nextFocusNode: null,
         ),
       ],
     );
@@ -688,9 +713,10 @@ class _AddressTextField extends StatefulWidget {
     required this.value,
     required this.onChanged,
     this.hint,
-    this.keyboardType = TextInputType.streetAddress,
+    this.keyboardType = TextInputType.streetAddress, this.focusNode, this.nextFocusNode,
   });
-
+  final FocusNode? focusNode;
+  final FocusNode? nextFocusNode;
   final String label;
   final String value;
   final ValueChanged<String> onChanged;
@@ -747,6 +773,15 @@ class _AddressTextFieldState extends State<_AddressTextField> {
         TextField(
           controller: _controller,
           keyboardType: widget.keyboardType,
+          focusNode: widget.focusNode,
+          textInputAction: widget.nextFocusNode != null
+              ? TextInputAction.next
+              : TextInputAction.done,
+          onSubmitted: (_) {
+            if (widget.nextFocusNode != null) {
+              FocusScope.of(context).requestFocus(widget.nextFocusNode);
+            }
+          },
           decoration: InputDecoration(
             hintText: widget.hint ?? widget.label,
             hintStyle: const TextStyle(color: Color(0xFFBDBDBD)),

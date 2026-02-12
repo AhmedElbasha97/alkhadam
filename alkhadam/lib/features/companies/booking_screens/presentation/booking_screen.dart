@@ -303,7 +303,6 @@ class _SectionLabel extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 6),
-        Icon(Icons.help_outline, size: 18, color:Color(0xFF424242)),
       ],
     );
   }

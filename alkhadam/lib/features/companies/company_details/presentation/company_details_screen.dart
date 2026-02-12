@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/data/datasources/storage_local_data_source.dart';
+import '../../../../core/utils/responsive.dart';
 import '../../../../loader.dart';
 import '../../../../widget/no_data_widget.dart';
 import '../../../drawer/cubit/drawer_cubit.dart';
@@ -331,14 +332,19 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           children: [
             const Icon(Icons.email_outlined, size: 22, color: Colors.white),
             const SizedBox(width: 12),
-             Text(
-              email,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+             SizedBox(
+              width: screenWidth(context) * 0.4,
+               child: Text(
+                email,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+                           ),
+             ),
           ],
         ),
       ),

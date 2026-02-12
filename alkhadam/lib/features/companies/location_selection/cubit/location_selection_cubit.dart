@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,6 +13,12 @@ const double _defaultLat = 25.2854;
 const double _defaultLng = 51.5310;
 
 class LocationSelectionCubit extends Cubit<LocationSelectionState> {
+  final FocusNode streetNameFocusNode = FocusNode();
+  final FocusNode streetNumberFocusNode = FocusNode();
+  final FocusNode regionNameFocusNode = FocusNode();
+  final FocusNode regionNumberFocusNode = FocusNode();
+  final FocusNode buildingNumberFocusNode = FocusNode();
+
   LocationSelectionCubit() : super(const LocationSelectionState()) {
     _places = PlacesAutocompleteService();
     fetchCurrentLocation();
@@ -128,7 +135,7 @@ class LocationSelectionCubit extends Cubit<LocationSelectionState> {
       emit(state.copyWith(streetName: value));
 
   void setRegionName(String value) =>
-      emit(state.copyWith(buildingNumber: value));
+      emit(state.copyWith(regionName: value));
   void setStreetNumber(String value) =>
       emit(state.copyWith(streetNumber: value));
 
