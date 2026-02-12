@@ -3,6 +3,7 @@ import 'package:alkhadam/core/presentation/cubit/notification/notification_cubit
 import 'package:alkhadam/core/presentation/cubit/notification/notification_state.dart';
 import 'package:alkhadam/features/auth/sign_in/presentation/log_in_screen.dart';
 import 'package:alkhadam/features/auth/verification_code/cubit/verification_code_cubit.dart';
+import 'package:alkhadam/features/bookings/presentation/booking_list_screen.dart';
 import 'package:alkhadam/features/home/presentation/home_screen.dart';
 import 'package:alkhadam/features/profile_screen/presentation/profile_screen.dart';
 import 'package:alkhadam/features/webview/web_view.dart';
@@ -158,6 +159,9 @@ class MyApp extends StatelessWidget {
         break;
       case 'login':
         screen = const LoginScreen();
+        break;
+      case 'booking_list':
+        screen = const BookingListScreen();
         break;
       case 'web':
         final url = state.payload['url']?.toString();
