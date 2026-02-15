@@ -120,7 +120,13 @@ class LoginScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
-
+                              focusNode: cubit.emailFocusNode,
+                          textInputAction:
+                               TextInputAction.next
+                              ,
+                         onFieldSubmitted: (_) {
+                                FocusScope.of(context).requestFocus(cubit.passwordFocusNode);
+                         },
                               controller: cubit.emailController,
                               validator: Validation.validateEmail,
                               keyboardType: TextInputType.emailAddress,
@@ -141,7 +147,12 @@ class LoginScreen extends StatelessWidget {
                             TextFormField(
                               controller: cubit.passwordController,
                               obscureText: cubit.showPassword,
-
+                              focusNode: cubit.passwordFocusNode,
+                              textInputAction: TextInputAction.done,
+                               onFieldSubmitted: (_) {
+                                cubit.passwordFocusNode.unfocus();
+                                cubit.login(context);
+                         },
                               keyboardType: TextInputType.visiblePassword,
                               validator: Validation.validatePassword,
                               decoration: InputDecoration(

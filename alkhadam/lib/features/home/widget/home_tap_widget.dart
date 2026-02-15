@@ -38,7 +38,6 @@ class HomeTapWidget extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                textAlign: TextAlign.right,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,

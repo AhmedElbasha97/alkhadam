@@ -100,6 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: Column(
                                   children: [
                                     TextFormField(
+                                      focusNode: cubit.nameFocusNode,
+                                      textInputAction: TextInputAction.next,
+                                      onFieldSubmitted: (_) {
+                                        FocusScope.of(context).requestFocus(cubit.phoneFocusNode);
+                                      },
                                       controller: cubit.nameController,
                                       validator: Validation.validateName,
                                       keyboardType: TextInputType.name,
@@ -121,7 +126,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                     TextFormField(
                                       controller: cubit.phoneController,
-
+                                      focusNode: cubit.phoneFocusNode,
+                                      textInputAction: TextInputAction.next,
+                                      onFieldSubmitted: (_) {
+                                        FocusScope.of(context).requestFocus(cubit.emailFocusNode);
+                                      },
                                       validator: Validation.validatePhoneNumber,
                                       keyboardType: TextInputType.phone,
                                       decoration: InputDecoration(
@@ -196,6 +205,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       controller: cubit.emailController,
                                       validator: Validation.validateEmail,
                                       keyboardType: TextInputType.emailAddress,
+                                      focusNode: cubit.emailFocusNode,
+                                       textInputAction: TextInputAction.next,
+                                      onFieldSubmitted: (_) {
+                                        FocusScope.of(context).requestFocus(cubit.passwordFocusNode);
+                                      },
                                       decoration: InputDecoration(
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
@@ -215,6 +229,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       obscureText: cubit.showPassword,
                                       keyboardType: TextInputType.visiblePassword,
                                       validator: Validation.validatePassword,
+                                      focusNode: cubit.passwordFocusNode,
+                                      textInputAction: TextInputAction.done,
+                                      onFieldSubmitted: (_) {
+                                        cubit.passwordFocusNode.unfocus();
+                                      },
+
                                       decoration: InputDecoration(
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 

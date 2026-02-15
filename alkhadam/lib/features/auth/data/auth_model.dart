@@ -42,22 +42,28 @@ class Data {
   User? user;
   String? token;
   String? tokenType;
+  final String? error;
 
-  Data({
+  Data( {this.error,
     this.user,
     this.token,
     this.tokenType,
+
   });
 
   factory Data.fromJson(Map<String, dynamic> json) =>  Data(
     user: json["user"] == null ? null : User.fromJson(json["user"]),
     token: json["token"],
+    error: json["error"]??"",
+
     tokenType: json["token_type"],
   );
 
   Map<String, dynamic> toJson() => {
     "user": user?.toJson(),
     "token": token,
+    "error": error,
+
     "token_type": tokenType,
   };
 }
@@ -67,7 +73,6 @@ class User {
   String? name;
   final String? mobile;
   final int? otp;
-
   String? email;
   String? emailVerifiedAt;
   String? createdAt;
@@ -91,7 +96,7 @@ class User {
     emailVerifiedAt: json["email_verified_at"],
     createdAt: json["created_at"],
     updatedAt: json["updated_at"],
-    otp: json["otp"],
+    otp: json["otp"]??0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -102,5 +107,6 @@ class User {
     "email_verified_at": emailVerifiedAt,
     "created_at": createdAt,
     "updated_at": updatedAt,
+    "otp": otp,
   };
 }

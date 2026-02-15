@@ -10,6 +10,8 @@ import '../../../../core/data/datasources/storage_local_data_source.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../loader.dart';
 import '../../../../widget/no_data_widget.dart';
+import '../../../auth/sign_in/presentation/log_in_screen.dart';
+import '../../../auth/sign_up/presentation/regestier_screen.dart';
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
 import '../cubit/company_details_cubit.dart';
@@ -303,7 +305,21 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         if(StorageLocalDataSource.instance.userSignedIn()) {
           cubit.sendEmail(email);
         }else{
-          cubit.showSignInSignUpDialog(context: context);
+          cubit.showSignInSignUpDialog(context: context,onSignIn: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const LoginScreen(),
+                  settings: const RouteSettings(name: "LoginScreen"),));
+
+          },
+          onSignUp: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const RegisterScreen(),
+                  settings: const RouteSettings(name: "RegisterScreen"),) );
+          });
         }
         },
       child: AnimatedContainer(
@@ -380,7 +396,24 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           if(StorageLocalDataSource.instance.userSignedIn()) {
           cubit.openWhatsApp(phone);
           }else{
-            cubit.showSignInSignUpDialog(context: context);
+            cubit.showSignInSignUpDialog(context: context,
+            onSignUp:
+                (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const RegisterScreen(),
+                    settings: const RouteSettings(name: "RegisterScreen"),) );
+            },
+            onSignIn: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LoginScreen(),
+                    settings: const RouteSettings(name: "LoginScreen"),) );
+            },
+
+            );
           }
         },
       child: AnimatedContainer(
@@ -431,7 +464,21 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           if(StorageLocalDataSource.instance.userSignedIn()) {
           cubit.makeCall(phone);
           }else{
-            cubit.showSignInSignUpDialog(context: context);
+            cubit.showSignInSignUpDialog(context: context,
+                onSignUp: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const RegisterScreen(),
+                    settings: const RouteSettings(name: "RegisterScreen"),) );
+            },
+                onSignIn: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LoginScreen(),
+                    settings: const RouteSettings(name: "LoginScreen"),) );
+            });
           }
         },
       child: AnimatedContainer(

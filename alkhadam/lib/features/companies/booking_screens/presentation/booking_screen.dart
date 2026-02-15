@@ -103,113 +103,114 @@ class _BookingView extends StatelessWidget {
               return const NoDataWidget();
             } else {
               final cubit = context.read<BookingCubit>();
-              return SingleChildScrollView(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _DateField(
-                      formatted: cubit.formattedDate.isEmpty
-                          ? 'Fri, 23 Jan 26'
-                          : cubit.formattedDate,
-                      onTap: () => _showDatePicker(context, state,cubit),
-                    ),
-                    const SizedBox(height: 24),
-                    _SectionLabel(label: "numberOfProviders".tr()),
-                    const SizedBox(height: 8),
-                Row(
-                  children: cubit.bookingWorkers?.data?.map((v) {
-                    return OptionChips(
-                      option: v,
-                      selected: cubit.selectedWorkers == v,
-                      onSelect: (v) {
-                          cubit
-                              .setProviderCount(v);
+              return SafeArea(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _DateField(
+                        formatted: cubit.formattedDate.isEmpty
+                            ? 'Fri, 23 Jan 26'
+                            : cubit.formattedDate,
+                        onTap: () => _showDatePicker(context, state,cubit),
+                      ),
+                      const SizedBox(height: 24),
+                      _SectionLabel(label: "numberOfProviders".tr()),
+                      const SizedBox(height: 8),
+                  Row(
+                    children: cubit.bookingWorkers?.data?.map((v) {
+                      return OptionChips(
+                        option: v,
+                        selected: cubit.selectedWorkers == v,
+                        onSelect: (v) {
+                            cubit
+                                .setProviderCount(v);
 
-                          },
-                    );
-                  }).toList()??[SizedBox()],
+                            },
+                      );
+                    }).toList()??[SizedBox()],
 
-                    ),
-                    const SizedBox(height: 20),
-                    _SectionLabel(label: "cleaningHours".tr()),
-                    const SizedBox(height: 8),
-                Row(
-                  children:  cubit.bookingHours?.data?.map((v) {
-                   return OptionChips(
-                      option: v,
-                      selected: cubit.selectedHours == v,
-                      onSelect: (v) =>
-                          cubit
-                              .setCleaningHours(v),
-                    )
-                    ;
-                  }).toList()??[SizedBox()],
-
-
-                    ),
-                    const SizedBox(height: 20),
-                    _SectionLabel(label: "arrivalTime".tr()),
-                    const SizedBox(height: 8),
-                    _TimeField(
-                      value: cubit.arrivalTime ??
-                          Datum(name: "selectStartTime".tr(), id: 0),
-                      onTap: () => _showTimePicker(context,cubit),
-                    ),
-                    const SizedBox(height: 24),
-                    _SectionLabel(label: "services".tr()),
-                    const SizedBox(height: 12),
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      childAspectRatio: 1.6,
-                      children:
-                        cubit.bookingServices?.data?.map((e){
-                          return ServiceCard(
-                            label:e.name??"",
-                            icon: Icons.cleaning_services,
-                            selected: (cubit.selectedServices
-                                .contains(e)),
-                            onTap: () =>
-                                context
-                                    .read<BookingCubit>()
-                                    .toggleService(e),
-                          );
-                        }).toList()??[],
+                      ),
+                      const SizedBox(height: 20),
+                      _SectionLabel(label: "cleaningHours".tr()),
+                      const SizedBox(height: 8),
+                  Row(
+                    children:  cubit.bookingHours?.data?.map((v) {
+                     return OptionChips(
+                        option: v,
+                        selected: cubit.selectedHours == v,
+                        onSelect: (v) =>
+                            cubit
+                                .setCleaningHours(v),
+                      )
+                      ;
+                    }).toList()??[SizedBox()],
 
 
-                    ),
+                      ),
+                      const SizedBox(height: 20),
+                      _SectionLabel(label: "arrivalTime".tr()),
+                      const SizedBox(height: 8),
+                      _TimeField(
+                        value: cubit.arrivalTime ??
+                            Datum(name: "selectStartTime".tr(), id: 0),
+                        onTap: () => _showTimePicker(context,cubit),
+                      ),
+                      const SizedBox(height: 24),
+                      _SectionLabel(label: "services".tr()),
+                      const SizedBox(height: 12),
+                      GridView.count(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 1.6,
+                        children:
+                          cubit.bookingServices?.data?.map((e){
+                            return ServiceCard(
+                              label:e.name??"",
+                              icon: Icons.cleaning_services,
+                              selected: (cubit.selectedServices
+                                  .contains(e)),
+                              onTap: () =>
+                                  context
+                                      .read<BookingCubit>()
+                                      .toggleService(e),
+                            );
+                          }).toList()??[],
 
-                    const SizedBox(height: 20),
-                    _SectionLabel(label: "yourNotes".tr()),
-                    const SizedBox(height: 8),
-                    TextField(
-                      maxLines: 4,
-                      controller: cubit.notes,
-                      decoration: InputDecoration(
-                        hintText: "yourNotes".tr(),
 
-                        hintStyle: const TextStyle(color: Color(0xFF757575)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Color(0xFF8E2393))
-                        ),
-                        filled: true,
-                        fillColor: const Color(0xFFF2F2F2),
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 14),
                       ),
 
-                    ),
-                    const SizedBox(height: 100),
-                  ],
+                      const SizedBox(height: 20),
+                      _SectionLabel(label: "yourNotes".tr()),
+                      const SizedBox(height: 8),
+                      TextField(
+                        maxLines: 4,
+                        controller: cubit.notes,
+                        decoration: InputDecoration(
+                          hintText: "yourNotes".tr(),
+
+                          hintStyle: const TextStyle(color: Color(0xFF757575)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Color(0xFF8E2393))
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFF2F2F2),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 14),
+                        ),
+
+                      ),
+                    ],
+                  ),
                 ),
               );
             }

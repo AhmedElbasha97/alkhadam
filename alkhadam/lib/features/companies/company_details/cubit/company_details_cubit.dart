@@ -45,11 +45,10 @@ class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
         btnCancelOnPress: onSignIn ?? () {},
         btnOkText: "sign_up_btn".tr(),
         btnOkOnPress: onSignUp ?? () {},
-        buttonsTextStyle:  const TextStyle(color: Colors.white, fontSize: 12),
+        buttonsTextStyle:  const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
         btnOkColor:  const Color(0xFF6A1B9A),
         btnCancelColor:  const Color(0xFF6A1B9A),
-        btnCancelIcon: Icons.login,
-        btnOkIcon: Icons.app_registration,
+
         showCloseIcon: true
     ).show();
   }

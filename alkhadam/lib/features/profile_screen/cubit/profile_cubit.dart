@@ -114,6 +114,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         showAppMessage(context, "deleteFail".tr(), success: false);
         return;
       }else{
+        await StorageLocalDataSource.instance.loggingOut();
         showAppMessage(context, "deleteSuccess".tr(), success: true);
         Navigator.pushAndRemoveUntil(
           context,

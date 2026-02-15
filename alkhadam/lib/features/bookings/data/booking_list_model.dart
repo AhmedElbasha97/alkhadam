@@ -29,7 +29,7 @@ class BookingListItem {
   final String workersNo;
   final String hoursNo;
   final String arrivalTime;
-  final List<int> services;
+  final String services;
   final String address;
   final String location;
   final String region;
@@ -69,7 +69,7 @@ class BookingListItem {
       workersNo: (json['workers_no'] ?? '').toString(),
       hoursNo: (json['hours_no'] ?? '').toString(),
       arrivalTime: (json['arrival_time'] ?? '').toString(),
-      services: _parseServices(json['services']),
+      services: json['services'],
       address: (json['address'] ?? '').toString(),
       location: (json['location'] ?? '').toString(),
       region: (json['region'] ?? '').toString(),
@@ -86,6 +86,19 @@ class BookingListItem {
   static int _toInt(dynamic value) {
     if (value is int) return value;
     return int.tryParse(value?.toString() ?? '') ?? 0;
+  }
+
+  double? get latitude => _parseCoordinate(index: 0);
+
+  double? get longitude => _parseCoordinate(index: 1);
+
+  bool get hasValidCoordinates => latitude != null && longitude != null;
+
+  double? _parseCoordinate({required int index}) {
+    final parts = location.split(',');
+    if (parts.length < 2) return null;
+
+    return double.tryParse(parts[index].trim());
   }
 
   static List<int> _parseServices(dynamic raw) {

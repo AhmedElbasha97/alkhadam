@@ -4,9 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/data/datasources/storage_local_data_source.dart';
+import '../../../auth/sign_in/presentation/log_in_screen.dart';
+import '../../../auth/sign_up/presentation/regestier_screen.dart';
 import '../../booking_screens/presentation/booking_screen.dart';
+import '../cubit/company_details_cubit.dart';
 import '../data/company_detail_model.dart';
 
 class CleaningServicesTap extends StatelessWidget {
@@ -133,13 +137,33 @@ class CleaningServicesTap extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) =>
-                                BookingScreen(servicesId: companyServices?.workerId??""),
-                            settings: const RouteSettings(
-                                name: "BookingScreen"),));
+                          if(StorageLocalDataSource.instance.userSignedIn()) {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) =>
+                                  BookingScreen(servicesId: companyServices?.workerId??""),
+                              settings: const RouteSettings(
+                                  name: "BookingScreen"),));
+                          }else{
+                            context.read<CompanyDetailsCubit>().showSignInSignUpDialog(context: context,
+                                onSignUp: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const RegisterScreen(),
+                                    settings: const RouteSettings(name: "RegisterScreen"),) );
+                            },
+                                onSignIn: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const LoginScreen(),
+                                    settings: const RouteSettings(name: "LoginScreen"),) );
+                            });
+                          }
+
                         },
                         child: Container(
+                          width: 150,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 6,
@@ -150,6 +174,7 @@ class CleaningServicesTap extends StatelessWidget {
                           ),
                           child:  Text(
                             "reservationOfServices".tr(),
+                            maxLines: 2,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,

@@ -16,6 +16,8 @@ class LoginCubit extends Cubit<LoginStates> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool showPassword = true;
   void resetState() {

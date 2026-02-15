@@ -153,7 +153,6 @@ class CustomDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
                       it.title,
-                      textAlign: TextAlign.right,
                       style: const TextStyle(
                         color: Color(0xFF7E2670),
                         fontSize: 16,
@@ -167,7 +166,7 @@ class CustomDrawer extends StatelessWidget {
                 hasChildren
                     ? Transform.rotate(
                   angle: expanded ? 3.14 / 2 : 0,
-                  child: const Icon(Icons.keyboard_arrow_left, color: Colors.black54),
+                  child:  Icon((context.locale.languageCode == 'en' ) ?  Icons.keyboard_arrow_right: Icons.keyboard_arrow_left, color: Colors.black54),
                 )
                     : const SizedBox(width: 24),
               ],

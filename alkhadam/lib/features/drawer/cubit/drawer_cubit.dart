@@ -17,6 +17,7 @@ import '../../companies/nursing_companies/presentation/nursing_companies_screen.
 import '../../companies/worker_companies/presentation/worker_companies_screen.dart';
 import '../../companies/worker_suppliers/presentation/worker_suppliers_screen.dart';
 import '../../home/presentation/home_screen.dart';
+import '../../locations/presentation/location_list_screen.dart';
 import '../../profile_screen/presentation/profile_screen.dart';
 import '../data/drawer_model.dart';
 
@@ -50,7 +51,6 @@ class DrawerCubit extends Cubit<DrawerState> {
       ],
     ),
      DrawerItemModel(id: 'news', title:'news'.tr(), icon: Icons.article_outlined),
-     DrawerItemModel(id: 'booking_list', title:'booking_list_title'.tr(), icon: Icons.list_alt),
 
      DrawerItemModel(id: 'privacyPolicy', title: 'privacy_Policy'.tr(), icon: Icons.privacy_tip),
      DrawerItemModel(id: 'termsAndCondition', title:'terms_And_Condition'.tr(), icon: Icons.import_contacts_sharp),
@@ -75,7 +75,10 @@ class DrawerCubit extends Cubit<DrawerState> {
   void load() {
     if (StorageLocalDataSource.instance.userSignedIn()) {
       _initialItems.insert(4, DrawerItemModel(id: 'profile', title: 'profile'.tr(), icon: Icons.person));
+      _initialItems.insert(5,  DrawerItemModel(id: 'booking_list', title:'booking_list_title'.tr(), icon: Icons.list_alt),
 
+      );
+      _initialItems.insert(6,  DrawerItemModel(id: 'locations', title:'location'.tr(), icon: Icons.location_on),);
     }else{
       _initialItems.insert(4, DrawerItemModel(id: 'login', title: 'login_title'.tr(), icon: Icons.login));
       _initialItems.insert(5, DrawerItemModel(id: 'register', title: 'register_title'.tr(), icon: Icons.login));
@@ -204,6 +207,13 @@ class DrawerCubit extends Cubit<DrawerState> {
           context,
           screen: const BookingListScreen(),
           routeName: "BookingListScreen",
+        );
+        break;
+      case "locations":
+        _navigateIfNotOpen(
+          context,
+          screen: const LocationListScreen(),
+          routeName: "LocationListScreen",
         );
         break;
         case "termsAndCondition":

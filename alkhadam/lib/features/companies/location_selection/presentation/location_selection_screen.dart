@@ -108,87 +108,88 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
             }
           },
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _MapSection(
-                    state: state,
-                    onMapCreated: (c) {
-                      _mapController = c;
-                      if (!_mapCompleter.isCompleted) {
-                        _mapCompleter.complete(c);
-                      }
-                    },
-                    onMapReady: _moveToUserLocation,
-                    onMapTap: (latLng) => context
-                        .read<LocationSelectionCubit>()
-                        .updatePositionFromMap(latLng.latitude, latLng.longitude),
-                    onCameraIdle: _onCameraIdle,
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _UseCurrentLocationButton(
-                          isLoading: state.isLoading,
-                          onTap: () => context
-                              .read<LocationSelectionCubit>()
-                              .useCurrentLocation(),
-                        ),
-                        const SizedBox(height: 20),
-                        _AddressFields(state: state),
-                        const SizedBox(height: 20),
-                        Text(
-                          "saved_locations".tr(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF757575),
-                            fontWeight: FontWeight.w500,
+            return SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _MapSection(
+                      state: state,
+                      onMapCreated: (c) {
+                        _mapController = c;
+                        if (!_mapCompleter.isCompleted) {
+                          _mapCompleter.complete(c);
+                        }
+                      },
+                      onMapReady: _moveToUserLocation,
+                      onMapTap: (latLng) => context
+                          .read<LocationSelectionCubit>()
+                          .updatePositionFromMap(latLng.latitude, latLng.longitude),
+                      onCameraIdle: _onCameraIdle,
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _UseCurrentLocationButton(
+                            isLoading: state.isLoading,
+                            onTap: () => context
+                                .read<LocationSelectionCubit>()
+                                .useCurrentLocation(),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        _SavedLocationChip(
-                          icon: Icons.home,
-                          label: "homeAddress".tr(),
-                          selected: state.selectedSavedLocation == SavedLocationType.home,
-                          onTap: () => context
-                              .read<LocationSelectionCubit>()
-                              .selectSavedLocation(SavedLocationType.home),
-                        ),
-                        const SizedBox(height: 8),
-                        _SavedLocationChip(
-                          icon: Icons.work,
-                          label: "work".tr(),
-                          selected: state.selectedSavedLocation == SavedLocationType.work,
-                          onTap: () => context
-                              .read<LocationSelectionCubit>()
-                              .selectSavedLocation(SavedLocationType.work),
-                        ),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF8E2393),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                          const SizedBox(height: 20),
+                          _AddressFields(state: state),
+                          const SizedBox(height: 20),
+                          Text(
+                            "saved_locations".tr(),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF757575),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          _SavedLocationChip(
+                            icon: Icons.home,
+                            label: "homeAddress".tr(),
+                            selected: state.selectedSavedLocation == SavedLocationType.home,
+                            onTap: () => context
+                                .read<LocationSelectionCubit>()
+                                .selectSavedLocation(SavedLocationType.home),
+                          ),
+                          const SizedBox(height: 8),
+                          _SavedLocationChip(
+                            icon: Icons.work,
+                            label: "work".tr(),
+                            selected: state.selectedSavedLocation == SavedLocationType.work,
+                            onTap: () => context
+                                .read<LocationSelectionCubit>()
+                                .selectSavedLocation(SavedLocationType.work),
+                          ),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF8E2393),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: () => _onNext(state),
+                              child: Text(
+                                "next".tr(),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
-                            onPressed: () => _onNext(state),
-                            child: Text(
-                              "next".tr(),
-                              style: const TextStyle(color: Colors.white),
-                            ),
                           ),
-                        ),
-                         SizedBox(height:  MediaQuery.of(context).padding.bottom),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

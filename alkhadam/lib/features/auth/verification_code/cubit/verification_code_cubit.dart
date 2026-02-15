@@ -116,8 +116,8 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        authData?.message ?? ((context.locale.languageCode == 'en' ) ? 'An error occurred when checking the otp code'
-                            : 'حدث خطأ أثناء التحقق رمز التحقق'),
+                        (authData?.data?.error?.isEmpty??true)||(authData?.data?.error=="")?  ((context.locale.languageCode == 'en' ) ? 'An error occurred when checking the otp code'
+                            : 'حدث خطأ أثناء التحقق رمز التحقق'):(authData?.data?.error??""),
                         style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),

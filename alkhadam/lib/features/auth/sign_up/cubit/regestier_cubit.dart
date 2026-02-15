@@ -27,6 +27,10 @@ CountryCodeModel? countriesCodesData;
   bool isFoundCountry = false;
   final phoneController = TextEditingController();
 
+  final emailFocusNode = FocusNode();
+  final nameFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final phoneFocusNode = FocusNode();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();

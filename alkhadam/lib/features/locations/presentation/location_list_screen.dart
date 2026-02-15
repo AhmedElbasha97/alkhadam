@@ -8,17 +8,17 @@ import '../../../loader.dart';
 import '../../../widget/no_data_widget.dart';
 import '../../drawer/cubit/drawer_cubit.dart';
 import '../../drawer/presentation/drawer_screen.dart';
-import '../cubit/booking_list_cubit.dart';
+import '../cubit/location_list_cubit.dart';
 import '../cubit/booking_list_state.dart';
-import '../data/booking_list_model.dart';
+import '../data/location_list_model.dart';
 
-class BookingListScreen extends StatelessWidget {
-  const BookingListScreen({super.key});
+class LocationListScreen extends StatelessWidget {
+  const LocationListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => BookingListCubit()..getBookingList(),
+      create: (_) => LocationListCubit()..getBookingList(),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFFdcdbdb),
@@ -59,13 +59,13 @@ class BookingListScreen extends StatelessWidget {
         ),
         body: Container(
           color: const Color(0xFFE9EDF2),
-          child: BlocBuilder<BookingListCubit, BookingListState>(
+          child: BlocBuilder<LocationListCubit, LocationListState>(
             builder: (context, state) {
-              if (state is BookingListLoading) {
+              if (state is LocationListLoading) {
                 return const Loader();
               }
 
-              if (state is BookingListError) {
+              if (state is LocationListError) {
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
@@ -77,8 +77,8 @@ class BookingListScreen extends StatelessWidget {
                 );
               }
 
-              if (state is BookingListLoaded) {
-                if (state.bookingListResponse.data.isEmpty) {
+              if (state is LocationListLoaded) {
+                if (state.locationListResponse.data?.isEmpty ?? true) {
                   return NoDataWidget();
                 }
 
@@ -88,10 +88,10 @@ class BookingListScreen extends StatelessWidget {
                       Expanded(
                         child: ListView.separated(
                           padding: const EdgeInsets.all(16),
-                          itemCount: state.bookingListResponse.data.length,
+                          itemCount: state.locationListResponse.data?.length??0,
                           separatorBuilder: (_, __) => const SizedBox(height: 14),
                           itemBuilder: (_, index) =>
-                              _BookingCard(item: state.bookingListResponse.data[index]),
+                              _LocationCard(item: state.locationListResponse.data?[index]??LocationListItem()),
                         ),
                       ),
 
@@ -110,10 +110,10 @@ class BookingListScreen extends StatelessWidget {
   }
 }
 
-class _BookingCard extends StatelessWidget {
-  const _BookingCard({required this.item});
+class _LocationCard extends StatelessWidget {
+  const _LocationCard({required this.item});
 
-  final BookingListItem item;
+  final LocationListItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -134,52 +134,15 @@ class _BookingCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _BookingMapPreview(item: item),
+          _LocationMapPreview(item: item),
           const SizedBox(height: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.work, color: Color(0xFF6F4AD7), size: 21),
-                  const SizedBox(width: 8),
-                  Text(
-                    '${'booking_id'.tr()} #${item.id}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 19,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
+
 
               Text(
-                '${"numberOfProviders".tr()}: ${item.workersNo}'+
-                    '- ${"cleaningHours".tr()}: ${item.hoursNo}'+
-                    '- ${"services".tr()}: ${item.services}'+
-                    ' - ${"arrivalTime".tr()}: ${item.arrivalTime}',
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                item.notes,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                item.address,
+                item.address??"",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -202,13 +165,7 @@ class _BookingCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              Text(
-                '${'status'.tr()}: ${item.status} • ${item.date}',
-                style: const TextStyle(
-                  color: Colors.black45,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+
             ],
           ),
         ],
@@ -217,10 +174,10 @@ class _BookingCard extends StatelessWidget {
   }
 }
 
-class _BookingMapPreview extends StatelessWidget {
-  const _BookingMapPreview({required this.item});
+class _LocationMapPreview extends StatelessWidget {
+  const _LocationMapPreview({required this.item});
 
-  final BookingListItem item;
+  final LocationListItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +200,7 @@ class _BookingMapPreview extends StatelessWidget {
             initialCameraPosition: CameraPosition(target: latLng, zoom: 14),
             markers: {
               Marker(
-                markerId: MarkerId('booking-${item.id}'),
+                markerId: MarkerId('booking-${item.streetNo}'),
                 position: latLng,
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                   BitmapDescriptor.hueViolet,

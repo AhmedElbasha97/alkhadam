@@ -24,5 +24,6 @@ class ApiConstant {
   static String bookingForCompanyServicesLink = "booking/new";
 
   static String bookingListLink = "booking/list";//get
+  static String locationListLink = "locations";//get
 
 }

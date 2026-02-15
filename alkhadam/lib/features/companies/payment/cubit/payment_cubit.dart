@@ -25,6 +25,13 @@ class PaymentCubit extends Cubit<PaymentState> {
     final d = selectedDate!;
     return '${days[d.weekday - 1]}, ${d.day} ${months[d.month - 1]} ${d.year.toString().substring(2)}';
   }
+  String formatDateToYMD(DateTime dateTime) {
+    final year = dateTime.year.toString().padLeft(4, '0');
+    final month = dateTime.month.toString().padLeft(2, '0');
+    final day = dateTime.day.toString().padLeft(2, '0');
+
+    return '$year-$month-$day';
+  }
   Future<void> startSendingReservation(BuildContext context,
    String? totalPrice ,
    List<Datum>? selectedServices ,
@@ -69,8 +76,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     isSendingReservation = true;
     emit(PaymentLoadedState());
     RegisterModel? data = await BookingServices(ApiService()).bookingForCompanyServices(
+      address: address?.streetName,
       workerId: servicesId,
-      date: selectedDate != null ? selectedDate.toString() : '',
+      date: selectedDate != null ? formatDateToYMD(selectedDate) : '',
       workerNo: selectedWorkers?.id.toString(),
       hoursNo: selectedHours?.id.toString(),
       arrivalTime: selectedHours?.id.toString(),
