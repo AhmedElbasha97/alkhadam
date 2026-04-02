@@ -78,7 +78,7 @@ CountryCodeModel? countriesCodesData;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/3/mobile"),
+                  builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/3/mobile"),
                   settings: const RouteSettings(name: "webView"),
                 ),
               );
@@ -101,7 +101,7 @@ CountryCodeModel? countriesCodesData;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/10/mobile"),
+                  builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/10/mobile"),
                   settings: const RouteSettings(name: "webView"),
                 ),
               );
