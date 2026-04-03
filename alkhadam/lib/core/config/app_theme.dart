@@ -3,7 +3,18 @@ import 'package:flutter/services.dart';
 
 class AppTheme {
   // Base colors from dohamaid.com branding
-  static const primaryColor = Colors.deepPurple;
+  static const primaryColor = MaterialColor(0xFF6A1B9A, <int, Color>{
+    50: Color(0xFFEAD8F3),
+    100: Color(0xFFD3B0E7),
+    200: Color(0xFFBC88DB),
+    300: Color(0xFFA560CF),
+    400: Color(0xFF8F38C3),
+    500: Color(0xFF6A1B9A),
+    600: Color(0xFF5E188A),
+    700: Color(0xFF53167A),
+    800: Color(0xFF47136A),
+    900: Color(0xFF3B105A),
+  });
   static const lightBackground = Colors.white;
   static const darkBackground = Color(0xFF121212);
 
@@ -12,7 +23,8 @@ class AppTheme {
   static const darkTextColor = Colors.white70;
 
   // Brand colors
-  static const brandColor = Color(0xFF7E2670);
+  static const brandColor = Color(0xFF6A1B9A);
+  static const accentColor = Color(0xFF0E8982);
   static const brandLightColor = Color(0xFFA85D9B);
 
   // State colors
@@ -42,13 +54,13 @@ class AppTheme {
       ).copyWith(
         surface: lightBackground,
         primary: selectedColorLight,
-        secondary: unselectedColorLight,
+        secondary: accentColor,
       ),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: lightTextColor),
         bodyMedium: TextStyle(color: lightTextColor),
       ),
-      iconTheme: const IconThemeData(color: unselectedColorLight),
+      iconTheme: const IconThemeData(color: accentColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorLight,
         unselectedItemColor: unselectedColorLight,
@@ -82,13 +94,13 @@ class AppTheme {
       ).copyWith(
         surface: darkBackground,
         primary: selectedColorDark,
-        secondary: unselectedColorDark,
+        secondary: accentColor,
       ),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: darkTextColor),
         bodyMedium: TextStyle(color: darkTextColor),
       ),
-      iconTheme: const IconThemeData(color: unselectedColorDark),
+      iconTheme: const IconThemeData(color: accentColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorDark,
         unselectedItemColor: unselectedColorDark,
