@@ -2,6 +2,7 @@ import 'package:alkhadam/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import '../../../../core/config/app_theme.dart';
 import '../../../../widget/no_data_widget.dart';
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
@@ -60,34 +61,33 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-          icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
-        onPressed: (){
-          // inside any widget with context:
-          showGeneralDialog(
-            context: context,
-            barrierDismissible: true,
-            barrierLabel: 'drawer',
-            pageBuilder: (ctx, anim1, anim2) {
-              return BlocProvider(
-                create: (_) => DrawerCubit()..load(),
-                child: const CustomDrawer(
+            icon: const Icon(Icons.menu, color:  AppTheme.primaryColor),
+            onPressed: (){
+              // inside any widget with context:
+              showGeneralDialog(
+                context: context,
+                barrierDismissible: true,
+                barrierLabel: 'drawer',
+                pageBuilder: (ctx, anim1, anim2) {
+                  return BlocProvider(
+                    create: (_) => DrawerCubit()..load(),
+                    child: const CustomDrawer(
 
-                ),
+                    ),
+                  );
+                },
+                transitionBuilder: (ctx, anim, secAnim, child) {
+                  return FadeTransition(
+                    opacity: anim,
+                    child: child,
+                  );
+                },
               );
-            },
-            transitionBuilder: (ctx, anim, secAnim, child) {
-              return FadeTransition(
-                opacity: anim,
-                child: child,
-              );
-            },
-          );
 
-        }
-    ),
+            }        ),
         actions:[IconButton(onPressed: (){
-    Navigator.maybePop(context);
-    }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A)))],
+          Navigator.maybePop(context);
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.primaryColor)) ],
       ),
 
       body: BlocBuilder<AntiBugCompaniesCubit, AntiBugCompaniesState>(
