@@ -13,6 +13,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../widget/home_tap_widget.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       centerTitle: true,
 actions: const [SizedBox()],
       leading: IconButton(
-        icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+        icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
         onPressed: (){
           // inside any widget with context:
           showGeneralDialog(

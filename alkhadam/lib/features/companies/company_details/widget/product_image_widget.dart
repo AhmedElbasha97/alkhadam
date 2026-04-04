@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../core/utils/responsive.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 class ProductImageWidget extends StatelessWidget {
@@ -47,7 +48,7 @@ class ProductImageWidget extends StatelessWidget {
                     height:screenHeight(context)*0.03,
                   decoration:BoxDecoration(
                       borderRadius:BorderRadius.circular(20),
-                    color: const Color(0xFF6A1B9A).withOpacity(0.65),
+                    color: AppTheme.brandColor.withOpacity(0.65),
                   ),
                   child:Center(
                     child:Text(
@@ -105,12 +106,12 @@ class ProductImageWidget extends StatelessWidget {
 
                 ),
               ).animate(onPlay: (controller) => controller.repeat())
-                  .shimmer(duration: 1200.ms, color:   const Color(0xFF6A1B9A).withAlpha(10))
+                  .shimmer(duration: 1200.ms, color:   AppTheme.brandColor.withAlpha(10))
                   .animate() // this wraps the previous Animate in another Animate
               ,
             ),
           ).animate(onPlay: (controller) => controller.repeat())
-              .shimmer(duration: 1200.ms, color:   const Color(0xFF6A1B9A).withAlpha(10))
+              .shimmer(duration: 1200.ms, color:   AppTheme.brandColor.withAlpha(10))
               .animate() // this wraps the previous Animate in another Animate
               ;
         },

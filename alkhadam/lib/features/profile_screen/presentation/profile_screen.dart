@@ -14,6 +14,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
 import '../data/profile_model.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -34,9 +35,9 @@ class ProfileScreen extends StatelessWidget {
           centerTitle: true,
           leading:IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFF6A1B9A))),
+          }, icon: const Icon(Icons.arrow_back_ios, color:  AppTheme.brandColor)),
           actions:[ IconButton(
-              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+              icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -256,7 +257,7 @@ Widget _animatedHeader() {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF8E24AA), Color(0xFF6A1B9A)],
+          colors: [Color(0xFF8E24AA), AppTheme.brandColor],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),

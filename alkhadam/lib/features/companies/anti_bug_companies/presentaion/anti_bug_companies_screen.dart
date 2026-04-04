@@ -11,6 +11,7 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/anti_bug_companies_cubit.dart';
 import '../cubit/anti_bug_companies_state.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 
@@ -60,7 +61,7 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-          icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+          icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
         onPressed: (){
           // inside any widget with context:
           showGeneralDialog(
@@ -87,7 +88,7 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
     ),
         actions:[IconButton(onPressed: (){
     Navigator.maybePop(context);
-    }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A)))],
+    }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor))],
       ),
 
       body: BlocBuilder<AntiBugCompaniesCubit, AntiBugCompaniesState>(

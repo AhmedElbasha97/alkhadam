@@ -8,6 +8,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 
 import '../../../../core/utils/responsive.dart';
 import '../../../../loader.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 class PhotoDetailedScreen extends StatefulWidget {
@@ -112,7 +113,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.clear_outlined,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppTheme.brandColor,
                   size: 50,
                 ),
               )),
@@ -124,7 +125,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 height:screenHeight(context)*0.04,
                 decoration:BoxDecoration(
                   borderRadius:BorderRadius.circular(20),
-                  color: const Color(0xFF6A1B9A).withOpacity(0.65),
+                  color: AppTheme.brandColor.withOpacity(0.65),
                 ),
                 child:Center(
                   child: Row(
@@ -163,7 +164,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.arrow_back_ios_new_sharp,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppTheme.brandColor,
                   size: 50,
                 ),
               )):const SizedBox(),
@@ -176,7 +177,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.arrow_forward_ios_sharp,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppTheme.brandColor,
                   size: 50,
                 ),
               )):const SizedBox(),
