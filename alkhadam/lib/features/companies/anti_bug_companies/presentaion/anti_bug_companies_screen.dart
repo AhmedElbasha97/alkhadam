@@ -12,6 +12,7 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/anti_bug_companies_cubit.dart';
 import '../cubit/anti_bug_companies_state.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 
@@ -61,27 +62,25 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  AppTheme.primaryColor),
-            onPressed: (){
-              // inside any widget with context:
-              showGeneralDialog(
-                context: context,
-                barrierDismissible: true,
-                barrierLabel: 'drawer',
-                pageBuilder: (ctx, anim1, anim2) {
-                  return BlocProvider(
-                    create: (_) => DrawerCubit()..load(),
-                    child: const CustomDrawer(
+          icon: const Icon(Icons.menu, color:  AppTheme.primaryColor),
+        onPressed: (){
+          // inside any widget with context:
+          showGeneralDialog(
+            context: context,
+            barrierDismissible: true,
+            barrierLabel: 'drawer',
+            pageBuilder: (ctx, anim1, anim2) {
+              return BlocProvider(
+                create: (_) => DrawerCubit()..load(),
+                child: const CustomDrawer(
 
-                    ),
-                  );
-                },
-                transitionBuilder: (ctx, anim, secAnim, child) {
-                  return FadeTransition(
-                    opacity: anim,
-                    child: child,
-                  );
-                },
+                ),
+              );
+            },
+            transitionBuilder: (ctx, anim, secAnim, child) {
+              return FadeTransition(
+                opacity: anim,
+                child: child,
               );
 
             }        ),

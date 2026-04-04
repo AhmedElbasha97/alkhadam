@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class CancellationPolicyScreen extends StatelessWidget {
   const CancellationPolicyScreen({super.key, this.onAgree});
@@ -24,7 +25,7 @@ class CancellationPolicyScreen extends StatelessWidget {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -50,7 +51,7 @@ class CancellationPolicyScreen extends StatelessWidget {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),

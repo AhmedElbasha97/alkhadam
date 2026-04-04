@@ -16,6 +16,7 @@ import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
 import '../cubit/company_details_cubit.dart';
 import '../widget/cleaning_services_tap.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class CompanyDetailsScreen extends StatefulWidget {
   final int companyId;
@@ -52,9 +53,9 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         centerTitle: true,
         leading:IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFF6A1B9A))),
+        }, icon: const Icon(Icons.arrow_back_ios, color:  AppTheme.brandColor)),
         actions:[ IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(

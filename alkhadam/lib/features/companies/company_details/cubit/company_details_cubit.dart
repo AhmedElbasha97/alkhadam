@@ -17,6 +17,7 @@ import '../../nursing_companies/presentation/nursing_companies_screen.dart';
 import '../../worker_companies/presentation/worker_companies_screen.dart';
 import '../../worker_suppliers/presentation/worker_suppliers_screen.dart';
 import '../data/company_detail_model.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 
@@ -46,8 +47,8 @@ class CompanyDetailsCubit extends Cubit<CompanyDetailsState> {
         btnOkText: "sign_up_btn".tr(),
         btnOkOnPress: onSignUp ?? () {},
         buttonsTextStyle:  const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
-        btnOkColor:  const Color(0xFF6A1B9A),
-        btnCancelColor:  const Color(0xFF6A1B9A),
+        btnOkColor:  AppTheme.brandColor,
+        btnCancelColor:  AppTheme.brandColor,
 
         showCloseIcon: true
     ).show();

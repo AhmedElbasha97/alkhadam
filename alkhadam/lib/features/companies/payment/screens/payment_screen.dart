@@ -13,6 +13,7 @@ import '../../location_selection/data/address_model.dart';
 import '../cubit/payment_cubit.dart';
 import '../cubit/payment_state.dart';
 import 'cancellation_policy_screen.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({
@@ -73,7 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -99,7 +100,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
       ),
       body: BlocBuilder<PaymentCubit, PaymentState>(
         builder: (context, payment) {
