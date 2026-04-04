@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTheme {
-  // Base colors
-  static const primaryColor = Colors.indigo;
+  // Base colors from dohamaid.com branding
+  static const primaryColor = MaterialColor(0xFF6A1B9A, <int, Color>{
+    50: Color(0xFFEAD8F3),
+    100: Color(0xFFD3B0E7),
+    200: Color(0xFFBC88DB),
+    300: Color(0xFFA560CF),
+    400: Color(0xFF8F38C3),
+    500: Color(0xFF6A1B9A),
+    600: Color(0xFF5E188A),
+    700: Color(0xFF53167A),
+    800: Color(0xFF47136A),
+    900: Color(0xFF3B105A),
+  });
   static const lightBackground = Colors.white;
   static const darkBackground = Color(0xFF121212);
 
@@ -11,24 +22,23 @@ class AppTheme {
   static const lightTextColor = Colors.black87;
   static const darkTextColor = Colors.white70;
 
-  // Custom brand color (your color)
-  static const brandColor = Color(0xFF7e2670);
+  // Brand colors
+  static const brandColor = Color(0xFF6A1B9A);
+  static const accentColor = Color(0xFF0E8982);
+  static const brandLightColor = Color(0xFFA85D9B);
 
-  // 🌟 Custom state colors
-  static const selectedColorLight = Color(0xFF3949AB);
-  static const unselectedColorLight = Colors.grey;
+  // State colors
+  static const selectedColorLight = brandColor;
+  static const unselectedColorLight = Color(0xFF9E9E9E);
 
-  static const selectedColorDark = Color(0xFF90CAF9);
-  static const unselectedColorDark = Colors.grey;
+  static const selectedColorDark = brandLightColor;
+  static const unselectedColorDark = Color(0xFFBDBDBD);
 
-  // ⭐ LIGHT THEME
   static ThemeData lightTheme(Locale locale) {
     return ThemeData(
       brightness: Brightness.light,
       scaffoldBackgroundColor: lightBackground,
       fontFamily: locale.languageCode == 'ar' ? 'ElMessiri' : 'NotoSans',
-
-      // 👇 Global System UI Overlay (Status + Nav bar)
       appBarTheme: const AppBarTheme(
         backgroundColor: brandColor,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -38,30 +48,25 @@ class AppTheme {
           systemNavigationBarIconBrightness: Brightness.light,
         ),
       ),
-
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: primaryColor,
         brightness: Brightness.light,
       ).copyWith(
         surface: lightBackground,
         primary: selectedColorLight,
-        secondary: unselectedColorLight,
+        secondary: accentColor,
       ),
-
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: lightTextColor),
         bodyMedium: TextStyle(color: lightTextColor),
       ),
-
-      iconTheme: const IconThemeData(color: unselectedColorLight),
-
+      iconTheme: const IconThemeData(color: accentColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorLight,
         unselectedItemColor: unselectedColorLight,
         backgroundColor: lightBackground,
       ),
-
-      tabBarTheme:  const TabBarThemeData(
+      tabBarTheme: const TabBarThemeData(
         labelColor: selectedColorLight,
         unselectedLabelColor: unselectedColorLight,
         indicatorColor: selectedColorLight,
@@ -69,14 +74,11 @@ class AppTheme {
     );
   }
 
-  // ⭐ DARK THEME
   static ThemeData darkTheme(Locale locale) {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: darkBackground,
       fontFamily: locale.languageCode == 'ar' ? 'ElMessiri' : 'NotoSans',
-
-      // 👇 Global System UI Overlay (Status + Nav bar)
       appBarTheme: const AppBarTheme(
         backgroundColor: brandColor,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -86,30 +88,25 @@ class AppTheme {
           systemNavigationBarIconBrightness: Brightness.light,
         ),
       ),
-
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: primaryColor,
         brightness: Brightness.dark,
       ).copyWith(
         surface: darkBackground,
         primary: selectedColorDark,
-        secondary: unselectedColorDark,
+        secondary: accentColor,
       ),
-
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: darkTextColor),
         bodyMedium: TextStyle(color: darkTextColor),
       ),
-
-      iconTheme: const IconThemeData(color: unselectedColorDark),
-
+      iconTheme: const IconThemeData(color: accentColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorDark,
         unselectedItemColor: unselectedColorDark,
         backgroundColor: darkBackground,
       ),
-
-      tabBarTheme:  const TabBarThemeData(
+      tabBarTheme: const TabBarThemeData(
         labelColor: selectedColorDark,
         unselectedLabelColor: unselectedColorDark,
         indicatorColor: selectedColorDark,
