@@ -7,6 +7,7 @@ import '../../home/presentation/home_screen.dart';
 import '../../welcome/presentation/welcome_screen.dart';
 import '../cubit/splash_cubit.dart';
 import '../cubit/splash_state.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class SplashScreen extends StatelessWidget {
    const SplashScreen({super.key});
@@ -68,7 +69,7 @@ class SplashScreen extends StatelessWidget {
                           ,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                            color: Color(0xFF7e2670),
+                            color: AppColor.mainColor,
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.8,

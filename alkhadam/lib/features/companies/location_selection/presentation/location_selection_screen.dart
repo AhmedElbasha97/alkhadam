@@ -13,6 +13,7 @@ import '../cubit/location_selection_state.dart';
 import '../data/place_suggestion.dart';
 import '../../payment/cubit/payment_cubit.dart';
 import '../../payment/screens/payment_screen.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 const double _kDefaultMapLat = 25.2854;
 const double _kDefaultMapLng = 51.5310;
@@ -49,7 +50,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('location_required_fields'.tr()),
-          backgroundColor: Colors.red.shade700,
+          backgroundColor: AppColor.red.shade700,
         ),
       );
       return;
@@ -90,7 +91,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
     return BlocProvider(
       create: (_) => LocationSelectionCubit(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         appBar: _buildAppBar(context),
         body: BlocConsumer<LocationSelectionCubit, LocationSelectionState>(
           listener: (context, state) {
@@ -101,7 +102,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(msg),
-                  backgroundColor: Colors.red.shade700,
+                  backgroundColor: AppColor.red.shade700,
                 ),
               );
               context.read<LocationSelectionCubit>().clearError();
@@ -146,7 +147,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                             "saved_locations".tr(),
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Color(0xFF757575),
+                              color: AppColor.textSecondaryDark,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -173,7 +174,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                             width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF8E2393),
+                                backgroundColor: const AppColor.secondaryColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -181,7 +182,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                               onPressed: () => _onNext(state),
                               child: Text(
                                 "next".tr(),
-                                style: const TextStyle(color: Colors.white),
+                                style: const TextStyle(color: AppColor.white),
                               ),
                             ),
                           ),
@@ -215,7 +216,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFFdcdbdb),
+      backgroundColor: const AppColor.appBarBackground,
       elevation: 3,
       title: Image.asset(
         "assets/logo with out background.png",
@@ -223,7 +224,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
       ),
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.menu, color: Color(0xFF6A1B9A)),
+        icon: const Icon(Icons.menu, color: AppColor.mainColor),
         onPressed: () {
           showGeneralDialog(
             context: context,
@@ -244,7 +245,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
       actions: [
         IconButton(
           onPressed: () => Navigator.maybePop(context),
-          icon: const Icon(Icons.arrow_forward_ios, color: Color(0xFF6A1B9A)),
+          icon: const Icon(Icons.arrow_forward_ios, color: AppColor.mainColor),
         ),
       ],
     );
@@ -351,7 +352,7 @@ class _MapSectionState extends State<_MapSection> {
         if (widget.state.isLoading)
           const Positioned(
             child: Center(
-              child: CircularProgressIndicator(color: Color(0xFF8E2393)),
+              child: CircularProgressIndicator(color: AppColor.secondaryColor),
             ),
           ),
       ],
@@ -438,11 +439,11 @@ class _SuggestionsList extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxHeight: 200),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: AppColor.black.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -457,7 +458,7 @@ class _SuggestionsList extends StatelessWidget {
                   height: 24,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: Color(0xFF8E2393),
+                    color: AppColor.secondaryColor,
                   ),
                 ),
               ),
@@ -472,14 +473,14 @@ class _SuggestionsList extends StatelessWidget {
                 return ListTile(
                   leading: const Icon(
                     Icons.place_outlined,
-                    color: Color(0xFF8E2393),
+                    color: AppColor.secondaryColor,
                     size: 22,
                   ),
                   title: Text(
                     s.description,
                     style: const TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF424242),
+                      color: AppColor.textPrimaryDark,
                     ),
                   ),
                     dense: true,
@@ -540,11 +541,11 @@ class _SearchBarState extends State<_SearchBar> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: AppColor.black.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -552,7 +553,7 @@ class _SearchBarState extends State<_SearchBar> {
       ),
       child: Row(
         children: [
-          const Icon(Icons.search, color: Color(0xFF757575), size: 22),
+          const Icon(Icons.search, color: AppColor.textSecondaryDark, size: 22),
           const SizedBox(width: 12),
           Expanded(
             child: TextField(
@@ -562,7 +563,7 @@ class _SearchBarState extends State<_SearchBar> {
               onSubmitted: (_) => widget.onSearch(),
               decoration: InputDecoration(
                 hintText: "search_placeholder".tr(),
-                hintStyle: const TextStyle(color: Color(0xFF757575), fontSize: 15),
+                hintStyle: const TextStyle(color: AppColor.textSecondaryDark, fontSize: 15),
                 border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
@@ -578,10 +579,10 @@ class _SearchBarState extends State<_SearchBar> {
                     height: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: Color(0xFF8E2393),
+                      color: AppColor.secondaryColor,
                     ),
                   )
-                : const Icon(Icons.search, color: Color(0xFF8E2393), size: 24),
+                : const Icon(Icons.search, color: AppColor.secondaryColor, size: 24),
             tooltip: "search".tr(),
           ),
         ],
@@ -602,7 +603,7 @@ class _UseCurrentLocationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColor.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: isLoading ? null : onTap,
@@ -611,7 +612,7 @@ class _UseCurrentLocationButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE0E0E0)),
+            border: Border.all(color: const AppColor.borderLight),
           ),
           child: Row(
             children: [
@@ -621,13 +622,13 @@ class _UseCurrentLocationButton extends StatelessWidget {
                   height: 24,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: Color(0xFF8E2393),
+                    color: AppColor.secondaryColor,
                   ),
                 )
               else
                 const Icon(
                   Icons.my_location,
-                  color: Color(0xFF8E2393),
+                  color: AppColor.secondaryColor,
                   size: 24,
                 ),
               const SizedBox(width: 12),
@@ -635,7 +636,7 @@ class _UseCurrentLocationButton extends StatelessWidget {
                 "use_current_location".tr(),
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF424242),
+                  color: AppColor.textPrimaryDark,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -766,7 +767,7 @@ class _AddressTextFieldState extends State<_AddressTextField> {
           widget.label,
           style: const TextStyle(
             fontSize: 14,
-            color: Color(0xFF757575),
+            color: AppColor.textSecondaryDark,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -785,17 +786,17 @@ class _AddressTextFieldState extends State<_AddressTextField> {
           },
           decoration: InputDecoration(
             hintText: widget.hint ?? widget.label,
-            hintStyle: const TextStyle(color: Color(0xFFBDBDBD)),
+            hintStyle: const TextStyle(color: AppColor.gray400),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFF8E2393)),
+              borderSide: const BorderSide(color: AppColor.secondaryColor),
             ),
             filled: true,
-            fillColor: const Color(0xFFF2F2F2),
+            fillColor: const AppColor.cardLight,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           ),
         ),
@@ -820,7 +821,7 @@ class _SavedLocationChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColor.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -830,19 +831,19 @@ class _SavedLocationChip extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected ? const Color(0xFF8E2393) : const Color(0xFFE0E0E0),
+              color: selected ? const AppColor.secondaryColor : const AppColor.borderLight,
               width: selected ? 2 : 1,
             ),
           ),
           child: Row(
             children: [
-              Icon(icon, color: const Color(0xFF8E2393), size: 24),
+              Icon(icon, color: const AppColor.secondaryColor, size: 24),
               const SizedBox(width: 12),
               Text(
                 label,
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF424242),
+                  color: AppColor.textPrimaryDark,
                   fontWeight: FontWeight.w500,
                 ),
               ),

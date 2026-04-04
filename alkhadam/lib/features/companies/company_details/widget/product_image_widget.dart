@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../core/utils/responsive.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class ProductImageWidget extends StatelessWidget {
@@ -47,7 +48,7 @@ class ProductImageWidget extends StatelessWidget {
                     height:screenHeight(context)*0.03,
                   decoration:BoxDecoration(
                       borderRadius:BorderRadius.circular(20),
-                    color: const Color(0xFF6A1B9A).withOpacity(0.65),
+                    color: AppColor.mainColor.withOpacity(0.65),
                   ),
                   child:Center(
                     child:Text(
@@ -57,7 +58,7 @@ class ProductImageWidget extends StatelessWidget {
                         fontSize: 12,
                         letterSpacing: 0,
 
-                        color: Colors.white,
+                        color: AppColor.white,
                       ),
                     ),
 
@@ -74,11 +75,11 @@ class ProductImageWidget extends StatelessWidget {
             width:screenWidth(context),
             height:screenHeight(context)*0.4,
             decoration:BoxDecoration(
-              color:  const Color(0xFFF2F0F3),
+              color:  const AppColor.cardSoft,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: AppColor.black.withOpacity(0.1),
                   offset: const Offset(
                     0.0,
                     0.0,
@@ -87,7 +88,7 @@ class ProductImageWidget extends StatelessWidget {
                   spreadRadius: 2.0,
                 ), //BoxShadow
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.2),
+                  color: AppColor.white.withOpacity(0.2),
                   offset: const Offset(0.0, 0.0),
                   blurRadius: 0.0,
                   spreadRadius: 0.0,
@@ -100,17 +101,17 @@ class ProductImageWidget extends StatelessWidget {
                 width:screenWidth(context)*0.95,
                 height:screenHeight(context)*0.38,
                 decoration:BoxDecoration(
-                  color:  const Color(0xFFDFDDDF),
+                  color:  const AppColor.borderSoft,
                   borderRadius: BorderRadius.circular(15),
 
                 ),
               ).animate(onPlay: (controller) => controller.repeat())
-                  .shimmer(duration: 1200.ms, color:   const Color(0xFF6A1B9A).withAlpha(10))
+                  .shimmer(duration: 1200.ms, color:   AppColor.mainColor.withAlpha(10))
                   .animate() // this wraps the previous Animate in another Animate
               ,
             ),
           ).animate(onPlay: (controller) => controller.repeat())
-              .shimmer(duration: 1200.ms, color:   const Color(0xFF6A1B9A).withAlpha(10))
+              .shimmer(duration: 1200.ms, color:   AppColor.mainColor.withAlpha(10))
               .animate() // this wraps the previous Animate in another Animate
               ;
         },

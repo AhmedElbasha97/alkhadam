@@ -6,6 +6,7 @@ import '../../../../core/data/datasources/storage_local_data_source.dart';
 import '../../../../core/utils/responsive.dart';
 import '../cubit/verification_code_cubit.dart';
 import '../cubit/verification_code_state.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
@@ -32,7 +33,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         final cubit = context.read<VerificationCodeCubit>();
         if(state is VerificationCodeInitial){
           return Scaffold(
-            backgroundColor: const Color(0xFFF8F1FA),
+            backgroundColor: const AppColor.authBackground,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -49,7 +50,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       style: const TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF7E2670),
+                        color: AppColor.mainColor,
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -57,11 +58,11 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 30, horizontal: 16),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColor.white,
                         borderRadius: BorderRadius.circular(22),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.08),
+                            color: AppColor.black.withOpacity(0.08),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -78,7 +79,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                   fontSize: 14,
 
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF7E2670),
+                                  color: AppColor.mainColor,
                                 ),
                               ),
                             ],
@@ -118,14 +119,14 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                           borderRadius: BorderRadius.circular(
                                               15),
                                           borderSide: const BorderSide(
-                                            color: Color(0xFF7E2670),
+                                            color: AppColor.mainColor,
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(
                                               5),
                                           borderSide: const BorderSide(
-                                            color: Color(0xFF7E2670),
+                                            color: AppColor.mainColor,
                                           ),
                                         ),
                                       ),
@@ -140,8 +141,8 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: cubit.isResendingOTPCode
-                                  ? Colors.grey
-                                  : const Color(0xFF7E2670),
+                                  ? AppColor.grey
+                                  : const AppColor.mainColor,
                               minimumSize: const Size(double.infinity, 52),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
@@ -151,7 +152,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                               "verification_confirm_button".tr(),
                               style: const TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
+                                color: AppColor.white,
                               ),
                             ),
                           ),
@@ -161,7 +162,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                 .remainingSeconds} ${"seconds".tr()}",
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF6F6F6F),
+                              color: AppColor.textMuted,
                             ),
                           ),
                         ],
@@ -171,9 +172,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     cubit.isResendingOTPCode?Container(
                         width:screenWidth(context)*0.24,
                         height:screenHeight(context)*0.07,
-                        decoration: const BoxDecoration( color:  Color(0xFF7E2670), shape: BoxShape.circle ),
+                        decoration: const BoxDecoration( color:  AppColor.mainColor, shape: BoxShape.circle ),
                         child: const Padding( padding: EdgeInsets.all(8.0),
-                          child: Center( child: CircularProgressIndicator(color: Colors.white, ), ),)
+                          child: Center( child: CircularProgressIndicator(color: AppColor.white, ), ),)
                     ):ElevatedButton(
                       onPressed:  (cubit.remainingSeconds != 0 )
                           ? (){
@@ -184,8 +185,8 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: (cubit.remainingSeconds!=0)
-                            ? Colors.grey
-                            : const Color(0xFF7E2670),
+                            ? AppColor.grey
+                            : const AppColor.mainColor,
                         minimumSize: const Size(double.infinity, 52),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -200,11 +201,11 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                               "resend_code_button".tr(),
                               style: const TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
+                                color: AppColor.white,
                               ),
                             ),SizedBox(width: 10,),Icon(
                               Icons.refresh,
-                              color: Colors.white,
+                              color: AppColor.white,
                             )
                           ],
                         ),

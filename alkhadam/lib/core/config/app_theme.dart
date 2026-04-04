@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class AppTheme {
   // Base colors
-  static const primaryColor = Colors.indigo;
-  static const lightBackground = Colors.white;
-  static const darkBackground = Color(0xFF121212);
+  static const primaryColor = AppColor.indigo;
+  static const lightBackground = AppColor.white;
+  static const darkBackground = AppColor.darkBackground;
 
   // Text colors
-  static const lightTextColor = Colors.black87;
-  static const darkTextColor = Colors.white70;
+  static const lightTextColor = AppColor.black87;
+  static const darkTextColor = AppColor.white70;
 
   // Custom brand color (your color)
-  static const brandColor = Color(0xFF7e2670);
+  static const brandColor = AppColor.mainColor;
 
   // 🌟 Custom state colors
-  static const selectedColorLight = Color(0xFF3949AB);
-  static const unselectedColorLight = Colors.grey;
+  static const selectedColorLight = AppColor.selectedLight;
+  static const unselectedColorLight = AppColor.grey;
 
-  static const selectedColorDark = Color(0xFF90CAF9);
-  static const unselectedColorDark = Colors.grey;
+  static const selectedColorDark = AppColor.selectedDark;
+  static const unselectedColorDark = AppColor.grey;
 
   // ⭐ LIGHT THEME
   static ThemeData lightTheme(Locale locale) {

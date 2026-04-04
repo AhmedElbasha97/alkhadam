@@ -13,6 +13,7 @@ import '../../location_selection/data/address_model.dart';
 import '../cubit/payment_cubit.dart';
 import '../cubit/payment_state.dart';
 import 'cancellation_policy_screen.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({
@@ -63,9 +64,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.white,
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor: const AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -73,7 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -99,7 +100,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
       ),
       body: BlocBuilder<PaymentCubit, PaymentState>(
         builder: (context, payment) {
@@ -116,7 +117,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF424242),
+                          color: AppColor.textPrimaryDark,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -133,7 +134,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         "address".tr(),
                         style: const TextStyle(
                           fontSize: 14,
-                          color: Color(0xFF757575),
+                          color: AppColor.textSecondaryDark,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -145,7 +146,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             : "sampleAddress".tr(),
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Color(0xFF424242),
+                          color: AppColor.textPrimaryDark,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -157,7 +158,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF424242),
+                              color: AppColor.textPrimaryDark,
                             ),
                           ),
                           const SizedBox(width: 6),
@@ -165,7 +166,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ),
                       const SizedBox(height: 12),
                       Material(
-                        color: Color(0xFFF5F5F5),
+                        color: AppColor.gray100,
                         borderRadius: BorderRadius.circular(12),
                         child: InkWell(
                           onTap: () {
@@ -214,7 +215,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: Color(0xFFE0E0E0),
+                                color: AppColor.borderLight,
                                 width: 2,
                               ),
                             ),
@@ -226,8 +227,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   height: 22,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(4),
-                                    border: Border.all(color: Colors.blueGrey),
-                                    color: Colors.transparent,
+                                    border: Border.all(color: AppColor.blueGrey),
+                                    color: AppColor.transparent,
                                   ),
 
                                 ),
@@ -237,7 +238,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xFF424242),
+                                    color: AppColor.textPrimaryDark,
                                   ),
                                 ),
                               ],
@@ -262,7 +263,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF424242),
+                          color: AppColor.textPrimaryDark,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -281,7 +282,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 context
                                     .read<PaymentCubit>()
                                     .setPolicyAgreed(v ?? false),
-                            activeColor: Color(0xFF8E2393),
+                            activeColor: AppColor.secondaryColor,
                           ),
                           Expanded(
                             child: GestureDetector(
@@ -298,7 +299,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               child: Text.rich(
                                 TextSpan(
                                   style: const TextStyle(
-                                      color: Color(0xFF424242), fontSize: 14),
+                                      color: AppColor.textPrimaryDark, fontSize: 14),
                                   children: [
                                     TextSpan(text: "cancellationPolicyAgree"
                                         .tr()
@@ -307,7 +308,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       text: ' ${"cancellationPolicyLink".tr()}',
                                       style: const TextStyle(
                                         decoration: TextDecoration.underline,
-                                        color: Color(0xFF8E2393),
+                                        color: AppColor.secondaryColor,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -326,7 +327,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           width: screenWidth(context) * 0.24,
                           height: screenHeight(context) * 0.07,
                           decoration: const BoxDecoration(
-                              color: Color(0xFF7E2670), shape: BoxShape.circle),
+                              color: AppColor.mainColor, shape: BoxShape.circle),
                           child: const Padding(padding: EdgeInsets.all(8.0),
                             child: Center(
                               child: CircularProgressIndicator(color: Colors
@@ -336,7 +337,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF8E2393),
+                            backgroundColor: const AppColor.secondaryColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -357,7 +358,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             );
                           },
                           child: Text("requestService".tr(),
-                            style: const TextStyle(color: Colors.white),),
+                            style: const TextStyle(color: AppColor.white),),
                         ),
                       ),
                     ],
@@ -384,9 +385,9 @@ class _InfoRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: Text(value, style: const TextStyle(color: Color(0xFF424242), fontSize: 15))),
+        Expanded(child: Text(value, style: const TextStyle(color: AppColor.textPrimaryDark, fontSize: 15))),
         const SizedBox(width: 12),
-        Text(label, style: const TextStyle(color: Color(0xFF757575), fontSize: 15)),
+        Text(label, style: const TextStyle(color: AppColor.textSecondaryDark, fontSize: 15)),
       ],
     );
   }
@@ -397,7 +398,7 @@ class _Divider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 12),
-      child: Divider(height: 1, color: Color(0xFFE0E0E0)),
+      child: Divider(height: 1, color: AppColor.borderLight),
     );
   }
 }
@@ -418,7 +419,7 @@ class _PaymentOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color(0xFFF5F5F5),
+      color: AppColor.gray100,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -428,7 +429,7 @@ class _PaymentOption extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected ? Color(0xFF8E2393) : Color(0xFFE0E0E0),
+              color: selected ? AppColor.secondaryColor : AppColor.borderLight,
               width: selected ? 2 : 1,
             ),
           ),
@@ -440,8 +441,8 @@ class _PaymentOption extends StatelessWidget {
                   height: 22,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Color(0xFF8E2393), width: 2),
-                    color: selected ? Color(0xFF8E2393) : Colors.transparent,
+                    border: Border.all(color: AppColor.secondaryColor, width: 2),
+                    color: selected ? AppColor.secondaryColor : AppColor.transparent,
                   ),
                 )
               else
@@ -450,11 +451,11 @@ class _PaymentOption extends StatelessWidget {
                   height: 22,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xFF8E2393)),
-                    color: selected ? Color(0xFF8E2393) : Colors.transparent,
+                    border: Border.all(color: AppColor.secondaryColor),
+                    color: selected ? AppColor.secondaryColor : AppColor.transparent,
                   ),
                   child: selected
-                      ? const Icon(Icons.check, size: 16, color: Colors.white)
+                      ? const Icon(Icons.check, size: 16, color: AppColor.white)
                       : null,
                 ),
               const SizedBox(width: 14),
@@ -463,7 +464,7 @@ class _PaymentOption extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF424242),
+                  color: AppColor.textPrimaryDark,
                 ),
               ),
             ],
@@ -485,8 +486,8 @@ class _SummaryRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(value, style: const TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.w600)),
-        Text(label, style: const TextStyle(color: Color(0xFF757575))),
+        Text(value, style: const TextStyle(color: AppColor.textPrimaryDark, fontWeight: FontWeight.w600)),
+        Text(label, style: const TextStyle(color: AppColor.textSecondaryDark)),
       ],
     );
   }
