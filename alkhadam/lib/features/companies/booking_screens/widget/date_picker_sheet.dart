@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class DatePickerSheet extends StatefulWidget {
@@ -36,7 +37,7 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: SafeArea(
@@ -49,7 +50,7 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color:  Color(0xFF8E2393),
+                color:  AppColor.secondaryColor,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -59,7 +60,7 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+                color: AppColor.blueGrey,
               ),
             ),
             Expanded(
@@ -77,11 +78,11 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
                 onPageChanged: (focused) => setState(() => _focusedDay = focused),
                 calendarStyle: CalendarStyle(
                   selectedDecoration: const BoxDecoration(
-                    color: Color(0xFF8E2393),
+                    color: AppColor.secondaryColor,
                     shape: BoxShape.circle,
                   ),
                   todayDecoration: BoxDecoration(
-                    color:  Color(0xFF8E2393).withValues(alpha: 0.3),
+                    color:  AppColor.secondaryColor.withValues(alpha: 0.3),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -97,7 +98,7 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF8E2393),
+                    backgroundColor: AppColor.secondaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -110,7 +111,7 @@ class _DatePickerSheetState extends State<DatePickerSheet> {
                   },
                   child: Text("done".tr(),
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColor.white,
                       fontSize: 16),
                 ),
               ),

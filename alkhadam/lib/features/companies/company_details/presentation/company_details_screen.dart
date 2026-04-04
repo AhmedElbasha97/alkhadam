@@ -16,7 +16,7 @@ import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
 import '../cubit/company_details_cubit.dart';
 import '../widget/cleaning_services_tap.dart';
-import 'package:alkhadam/core/config/app_theme.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class CompanyDetailsScreen extends StatefulWidget {
   final int companyId;
@@ -44,7 +44,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor: const AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -53,9 +53,9 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         centerTitle: true,
         leading:IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_back_ios, color:  AppTheme.brandColor)),
+        }, icon: const Icon(Icons.arrow_back_ios, color:  AppColor.mainColor)),
         actions:[ IconButton(
-            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -91,7 +91,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
             }
 
             if (state is CompanyDetailsError) {
-              return Center(child: Text(state.message, style: const TextStyle(color: Colors.red)));
+              return Center(child: Text(state.message, style: const TextStyle(color: AppColor.red)));
             }
 
             if (state is CompanyDetailsLoaded) {
@@ -155,7 +155,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: AppColor.grey.shade200,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -186,7 +186,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: AppColor.grey.shade200,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -217,7 +217,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: AppColor.grey.shade200,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -254,7 +254,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: AppColor.grey.shade200,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -264,14 +264,14 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                           Text(
                           "${"cleaningServices".tr()}: ",
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: AppColor.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                           ),
                             cubit.companyDetails?.data?.services?.isEmpty??true? Center(
                               child: Text("cleaningServicesNotAvailable".tr() , style: const TextStyle(
-                                color: Colors.black,
+                                color: AppColor.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
                               ),),
@@ -330,15 +330,15 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           borderRadius: BorderRadius.circular(30),
           gradient: const LinearGradient(
             colors: [
-              Color(0xff4285F4), // Google blue
-              Color(0xff1A73E8),
+              AppColor.actionBlue, // Google blue
+              AppColor.actionBlueDark,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xff4285F4).withOpacity(0.4),
+              color: const AppColor.actionBlue.withOpacity(0.4),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),
@@ -347,7 +347,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.email_outlined, size: 22, color: Colors.white),
+            const Icon(Icons.email_outlined, size: 22, color: AppColor.white),
             const SizedBox(width: 12),
              SizedBox(
               width: screenWidth(context) * 0.4,
@@ -356,7 +356,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: AppColor.white,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
@@ -373,7 +373,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: AppColor.grey.shade200,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -424,15 +424,15 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           borderRadius: BorderRadius.circular(30),
           gradient: const LinearGradient(
             colors: [
-              Color(0xff25D366), // WhatsApp green
-              Color(0xff128C7E),
+              AppColor.actionWhatsapp, // WhatsApp green
+              AppColor.actionTealDark,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xff25D366).withOpacity(0.4),
+              color: const AppColor.actionWhatsapp.withOpacity(0.4),
               blurRadius: 12,
               offset: const Offset(0, 6),
             )
@@ -441,12 +441,12 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         child:  Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-             const Icon(Icons.message, color: Colors.white, size: 24),
+             const Icon(Icons.message, color: AppColor.white, size: 24),
             const SizedBox(width: 12),
             Text(
               phone,
               style: const TextStyle(
-                color: Colors.white,
+                color: AppColor.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -489,15 +489,15 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           borderRadius: BorderRadius.circular(30),
           gradient: const LinearGradient(
             colors: [
-              Color(0xff1dd1a1),
-              Color(0xff10ac84),
+              AppColor.actionGreen,
+              AppColor.actionGreenDark,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.green.withOpacity(0.35),
+              color: AppColor.green.withOpacity(0.35),
               blurRadius: 12,
               spreadRadius: 1,
               offset: const Offset(0, 5),
@@ -507,12 +507,12 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.call, color: Colors.white, size: 24),
+            const Icon(Icons.call, color: AppColor.white, size: 24),
             const SizedBox(width: 9),
             Text(
               phone,
               style: const TextStyle(
-                color: Colors.white,
+                color: AppColor.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),

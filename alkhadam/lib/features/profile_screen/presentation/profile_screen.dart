@@ -14,7 +14,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
 import '../data/profile_model.dart';
-import 'package:alkhadam/core/config/app_theme.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
       create: (_) => ProfileCubit(AuthServices(ApiService()))..loadProfile(),
       child: Scaffold(
         appBar:AppBar(
-          backgroundColor: const Color(0xFFdcdbdb),
+          backgroundColor: const AppColor.appBarBackground,
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -35,9 +35,9 @@ class ProfileScreen extends StatelessWidget {
           centerTitle: true,
           leading:IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_back_ios, color:  AppTheme.brandColor)),
+          }, icon: const Icon(Icons.arrow_back_ios, color:  AppColor.mainColor)),
           actions:[ IconButton(
-              icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
+              icon: const Icon(Icons.menu, color:  AppColor.mainColor),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -127,12 +127,12 @@ Widget _glassCard({required List<Widget> children}) {
         width: double.infinity,
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(25),
-          border: Border.all(color: Colors.white.withOpacity(0.3)),
+          border: Border.all(color: AppColor.white.withOpacity(0.3)),
           boxShadow: const [
             BoxShadow(
-              color: Colors.black12,
+              color: AppColor.black12,
               blurRadius: 12,
               offset: Offset(0, 4),
             )
@@ -154,18 +154,18 @@ Widget _infoRow(IconData icon, String title, String value) {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color:const Color(0xFF7E2670).withOpacity(0.1),
+            color:const AppColor.mainColor.withOpacity(0.1),
 
             borderRadius: BorderRadius.circular(14),
           ),
-          child: Icon(icon, color: const Color(0xFF7E2670), size: 22),
+          child: Icon(icon, color: const AppColor.mainColor, size: 22),
         ),
         const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: const TextStyle(fontSize: 13, color: Colors.black54)),
+              Text(title, style: const TextStyle(fontSize: 13, color: AppColor.black54)),
               Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
             ],
           ),
@@ -181,7 +181,7 @@ Widget _logoutButton(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-      backgroundColor: Colors.redAccent,
+      backgroundColor: AppColor.redAccent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       elevation: 4,
     ),
@@ -196,12 +196,12 @@ Widget _logoutButton(BuildContext context) {
     child:  Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.logout, color: Colors.white),
+        const Icon(Icons.logout, color: AppColor.white),
         const SizedBox(width: 10),
         Text(
             "logout".tr()
           ,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white),
         ),
       ],
     ),
@@ -213,7 +213,7 @@ Widget _deleteButton(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-      backgroundColor: Colors.redAccent,
+      backgroundColor: AppColor.redAccent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       elevation: 4,
     ),
@@ -229,12 +229,12 @@ Widget _deleteButton(BuildContext context) {
     child:  Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.delete, color: Colors.white),
+        const Icon(Icons.delete, color: AppColor.white),
         const SizedBox(width: 10),
         Text(
             "delete_title".tr()
           ,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white),
         ),
       ],
     ),
@@ -257,14 +257,14 @@ Widget _animatedHeader() {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF8E24AA), AppTheme.brandColor],
+          colors: [AppColor.secondaryColor, AppColor.mainColor],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
         borderRadius: BorderRadius.circular(22),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF7E2670).withOpacity(0.25),
+            color: const AppColor.mainColor.withOpacity(0.25),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -275,7 +275,7 @@ Widget _animatedHeader() {
             "profile_title".tr()
           ,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppColor.white,
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),

@@ -1,38 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class AppTheme {
-  // Base colors from dohamaid.com branding
-  static const primaryColor = MaterialColor(0xFF6A1B9A, <int, Color>{
-    50: Color(0xFFEAD8F3),
-    100: Color(0xFFD3B0E7),
-    200: Color(0xFFBC88DB),
-    300: Color(0xFFA560CF),
-    400: Color(0xFF8F38C3),
-    500: Color(0xFF6A1B9A),
-    600: Color(0xFF5E188A),
-    700: Color(0xFF53167A),
-    800: Color(0xFF47136A),
-    900: Color(0xFF3B105A),
-  });
-  static const lightBackground = Colors.white;
-  static const darkBackground = Color(0xFF121212);
+  // Base colors
+  static const primaryColor = AppColor.indigo;
+  static const lightBackground = AppColor.white;
+  static const darkBackground = AppColor.darkBackground;
 
   // Text colors
-  static const lightTextColor = Colors.black87;
-  static const darkTextColor = Colors.white70;
+  static const lightTextColor = AppColor.black87;
+  static const darkTextColor = AppColor.white70;
 
-  // Brand colors
-  static const brandColor = Color(0xFF6A1B9A);
-  static const accentColor = Color(0xFF0E8982);
-  static const brandLightColor = Color(0xFFA85D9B);
+  // Custom brand color (your color)
+  static const brandColor = AppColor.mainColor;
 
-  // State colors
-  static const selectedColorLight = brandColor;
-  static const unselectedColorLight = Color(0xFF9E9E9E);
+  // 🌟 Custom state colors
+  static const selectedColorLight = AppColor.selectedLight;
+  static const unselectedColorLight = AppColor.grey;
 
-  static const selectedColorDark = brandLightColor;
-  static const unselectedColorDark = Color(0xFFBDBDBD);
+  static const selectedColorDark = AppColor.selectedDark;
+  static const unselectedColorDark = AppColor.grey;
 
   static ThemeData lightTheme(Locale locale) {
     return ThemeData(

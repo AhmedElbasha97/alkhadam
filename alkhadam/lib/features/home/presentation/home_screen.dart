@@ -13,7 +13,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../widget/home_tap_widget.dart';
-import 'package:alkhadam/core/config/app_theme.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             body: Center(
               child: Text(
                 state.message,
-                style: const TextStyle(color: Colors.red, fontSize: 18),
+                style: const TextStyle(color: AppColor.red, fontSize: 18),
               ),
             ),
           );
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   PreferredSizeWidget  _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color(0xFFdcdbdb),
+      backgroundColor: const AppColor.appBarBackground,
       elevation: 3,
       title: Image.asset(
         "assets/logo with out background.png",
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       centerTitle: true,
 actions: const [SizedBox()],
       leading: IconButton(
-        icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
+        icon: const Icon(Icons.menu, color:  AppColor.mainColor),
         onPressed: (){
           // inside any widget with context:
           showGeneralDialog(

@@ -10,7 +10,7 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/worker_companies_cubit.dart';
 import '../cubit/worker_companies_states.dart';
-import 'package:alkhadam/core/config/app_theme.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class WorkerCompaniesScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
     return Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor: const AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -58,7 +58,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -84,7 +84,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
       ),
 
       body: BlocBuilder<WorkerCompaniesCubit, WorkerCompaniesState>(

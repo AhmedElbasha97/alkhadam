@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class ServiceCard extends StatelessWidget {
   const ServiceCard({
@@ -17,7 +18,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColor.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -27,7 +28,7 @@ class ServiceCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected ?  Color(0xFF8E2393) : Color(0xFFE0E0E0),
+              color: selected ?  AppColor.secondaryColor : AppColor.borderLight,
               width: selected ? 2 : 1,
             ),
           ),
@@ -36,20 +37,20 @@ class ServiceCard extends StatelessWidget {
               Checkbox(
                 value: selected,
                 onChanged: (_) => onTap(),
-                activeColor:  Color(0xFF8E2393),
+                activeColor:  AppColor.secondaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
               const SizedBox(width: 1),
-              Icon(icon, color:  Color(0xFF8E2393), size: 28),
+              Icon(icon, color:  AppColor.secondaryColor, size: 28),
               const SizedBox(width: 1),
               Expanded(
                 child: Text(
                   label,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    color:Color(0xFF8E2393),
+                    color:AppColor.secondaryColor,
                   ),
                 ),
               ),

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:alkhadam/core/utils/responsive.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class NoDataWidget extends StatefulWidget {
   /// If null → use localized default
@@ -69,17 +70,17 @@ class _NoDataWidgetState extends State<NoDataWidget>
                   gradient: LinearGradient(
                     colors: [
                       isDark
-                          ? Colors.white.withOpacity(0.05)
-                          : const Color(0xFF7E2670).withOpacity(0.05),
+                          ? AppColor.white.withOpacity(0.05)
+                          : const AppColor.mainColor.withOpacity(0.05),
                       isDark
-                          ? Colors.white.withOpacity(0.02)
-                          : const Color(0xFF7E2670).withOpacity(0.02),
+                          ? AppColor.white.withOpacity(0.02)
+                          : const AppColor.mainColor.withOpacity(0.02),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   border: Border.all(
-                    color: const Color(0xFF7E2670).withOpacity(0.2),
+                    color: const AppColor.mainColor.withOpacity(0.2),
                     width: 1.2,
                   ),
                 ),
@@ -105,7 +106,7 @@ class _NoDataWidgetState extends State<NoDataWidget>
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : Colors.blueGrey[700],
+                        color: isDark ? AppColor.white : Colors.blueGrey[700],
                       ),
                     ),
 
@@ -115,7 +116,7 @@ class _NoDataWidgetState extends State<NoDataWidget>
                       'no_data_retry'.tr(),
                       style: TextStyle(
                         fontSize: 14,
-                        color: isDark ? Colors.white70 : Colors.grey[600],
+                        color: isDark ? AppColor.white70 : AppColor.grey[600],
                       ),
                     ),
                   ],

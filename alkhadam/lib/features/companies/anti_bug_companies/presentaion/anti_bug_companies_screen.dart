@@ -12,7 +12,7 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/anti_bug_companies_cubit.dart';
 import '../cubit/anti_bug_companies_state.dart';
-import 'package:alkhadam/core/config/app_theme.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 
@@ -54,7 +54,7 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
     return  Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor: const AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -62,7 +62,7 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-          icon: const Icon(Icons.menu, color:  AppTheme.primaryColor),
+          icon: const Icon(Icons.menu, color:  AppColor.mainColor),
         onPressed: (){
           // inside any widget with context:
           showGeneralDialog(
@@ -85,8 +85,8 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
 
             }        ),
         actions:[IconButton(onPressed: (){
-          Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.primaryColor)) ],
+    Navigator.maybePop(context);
+    }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor))],
       ),
 
       body: BlocBuilder<AntiBugCompaniesCubit, AntiBugCompaniesState>(

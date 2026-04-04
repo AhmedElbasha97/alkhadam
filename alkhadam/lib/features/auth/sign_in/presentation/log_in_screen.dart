@@ -7,6 +7,7 @@ import '../../../../core/utils/validation.dart';
 import '../../sign_up/presentation/regestier_screen.dart';
 import '../cubit/log_in_cubit.dart';
 import '../cubit/log_in_state.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -23,17 +24,17 @@ class LoginScreen extends StatelessWidget {
               SnackBar(
                 content: Row(
                   children: [
-                    const Icon(Icons.check_circle_outline, color: Colors.white),
+                    const Icon(Icons.check_circle_outline, color: AppColor.white),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         "login_success".tr(),
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: AppColor.white, fontSize: 16),
                       ),
                     ),
                   ],
                 ),
-                backgroundColor: Colors.green.shade600, // Success color
+                backgroundColor: AppColor.successShade, // Success color
                 duration: const Duration(milliseconds: 1500),
                 behavior: SnackBarBehavior.floating, // For a cleaner look
                 shape: RoundedRectangleBorder(
@@ -47,17 +48,17 @@ class LoginScreen extends StatelessWidget {
               SnackBar(
                 content: Row(
                   children: [
-                    const Icon(Icons.error_outline, color: Colors.white),
+                    const Icon(Icons.error_outline, color: AppColor.white),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         state.message,
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: AppColor.white, fontSize: 16),
                       ),
                     ),
                   ],
                 ),
-                backgroundColor: Colors.red.shade600, // Error color
+                backgroundColor: AppColor.errorShade, // Error color
                 duration: const Duration(seconds: 3),
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
@@ -71,7 +72,7 @@ class LoginScreen extends StatelessWidget {
           final cubit = LoginCubit.get(context);
 
           return Scaffold(
-            backgroundColor: const Color(0xFFF8F1FA),
+            backgroundColor: const AppColor.authBackground,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -95,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF7E2670),
+                        color: AppColor.mainColor,
                       ),
                     ),
 
@@ -105,11 +106,11 @@ class LoginScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColor.white,
                         borderRadius: BorderRadius.circular(22),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.08),
+                            color: AppColor.black.withOpacity(0.08),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           )
@@ -132,11 +133,11 @@ class LoginScreen extends StatelessWidget {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 labelText: "email_label".tr(),
-                                prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF7E2670)),
+                                prefixIcon: const Icon(Icons.email_outlined, color: AppColor.mainColor),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(14),
                                   borderSide: const BorderSide(
-                                    color: Color(0xFF7E2670),
+                                    color: AppColor.mainColor,
                                   ),
                                 ),
                                 errorMaxLines: 3, // <-- Allow multiple lines for errors
@@ -159,12 +160,12 @@ class LoginScreen extends StatelessWidget {
                                 errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                 labelText: "password_label".tr(),
-                                prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF7E2670)),
+                                prefixIcon: const Icon(Icons.lock_outline, color: AppColor.mainColor),
                                 suffixIcon:IconButton(
                                   icon: Icon(
                                     cubit.showPassword
                                         ? Icons.visibility_off:Icons.visibility,
-                                    color: const Color(0xFF7E2670),
+                                    color: const AppColor.mainColor,
                                   ),
                                   onPressed: () => cubit.showingPassword(),
                                 ),
@@ -172,7 +173,7 @@ class LoginScreen extends StatelessWidget {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(14),
                                   borderSide: const BorderSide(
-                                    color: Color(0xFF7E2670),
+                                    color: AppColor.mainColor,
                                   ),
                                 ),
                               ),
@@ -183,14 +184,14 @@ class LoginScreen extends StatelessWidget {
 
                             state is LoginLoading
                                 ?Container(
-                                decoration: const BoxDecoration( color:  Color(0xFF7E2670), shape: BoxShape.circle ),
+                                decoration: const BoxDecoration( color:  AppColor.mainColor, shape: BoxShape.circle ),
                                 child: const Padding( padding: EdgeInsets.all(8.0),
-                                  child: Center( child: CircularProgressIndicator( color:  Colors.white), ),)
+                                  child: Center( child: CircularProgressIndicator( color:  AppColor.white), ),)
                             )
                                 : ElevatedButton(
                               onPressed: () => cubit.login(context),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF7E2670),
+                                backgroundColor: const AppColor.mainColor,
                                 minimumSize: const Size(double.infinity, 55),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14),
@@ -198,7 +199,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                               child:  Text(
                                 "login_button".tr(),
-                                style: const TextStyle(fontSize: 18,color: Colors.white),
+                                style: const TextStyle(fontSize: 18,color: AppColor.white),
                               ),
                             ),
                           ],
@@ -226,7 +227,7 @@ class LoginScreen extends StatelessWidget {
                           child:  Text(
                             "create_account_button".tr(),
                             style: const TextStyle(
-                              color: Color(0xFF7E2670),
+                              color: AppColor.mainColor,
                               fontSize: 16,
                             ),
                           ),
