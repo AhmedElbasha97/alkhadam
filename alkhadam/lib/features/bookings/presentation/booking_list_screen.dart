@@ -11,6 +11,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/booking_list_cubit.dart';
 import '../cubit/booking_list_state.dart';
 import '../data/booking_list_model.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class BookingListScreen extends StatelessWidget {
   const BookingListScreen({super.key});
@@ -29,7 +30,7 @@ class BookingListScreen extends StatelessWidget {
           ),
           centerTitle: true,
           leading:IconButton(
-              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+              icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -55,7 +56,7 @@ class BookingListScreen extends StatelessWidget {
               }        ),
           actions:[IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+          }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
         ),
         body: Container(
           color: const Color(0xFFE9EDF2),

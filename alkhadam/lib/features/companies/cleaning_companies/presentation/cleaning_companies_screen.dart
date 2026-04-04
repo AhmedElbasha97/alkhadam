@@ -11,6 +11,7 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/cleaning_comanies_state.dart';
 import '../cubit/cleaning_companies_cubit.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 
@@ -59,7 +60,7 @@ class _CleaningCompaniesScreenState extends State<CleaningCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -86,7 +87,7 @@ class _CleaningCompaniesScreenState extends State<CleaningCompaniesScreen>
         ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
       ),
 
       body: BlocBuilder<CleaningCompaniesCubit, CleaningCompaniesState>(

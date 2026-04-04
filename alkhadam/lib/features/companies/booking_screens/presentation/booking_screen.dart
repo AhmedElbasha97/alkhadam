@@ -13,6 +13,7 @@ import '../../location_selection/presentation/location_selection_screen.dart';
 import '../widget/date_picker_sheet.dart';
 import '../widget/services_tile.dart';
 import '../widget/time_picker_sheet.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 part'../widget/option_chips.dart';
 class BookingScreen extends StatefulWidget {
    const BookingScreen({super.key, required this.servicesId});
@@ -54,7 +55,7 @@ class _BookingView extends StatelessWidget {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppTheme.brandColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -80,7 +81,7 @@ class _BookingView extends StatelessWidget {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppTheme.brandColor)) ],
       ),
       body: BlocBuilder<BookingCubit, BookingStates>(
         builder: (context, state) {

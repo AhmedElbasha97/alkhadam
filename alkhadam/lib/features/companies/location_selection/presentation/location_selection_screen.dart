@@ -13,6 +13,7 @@ import '../cubit/location_selection_state.dart';
 import '../data/place_suggestion.dart';
 import '../../payment/cubit/payment_cubit.dart';
 import '../../payment/screens/payment_screen.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 const double _kDefaultMapLat = 25.2854;
 const double _kDefaultMapLng = 51.5310;
@@ -223,7 +224,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
       ),
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.menu, color: Color(0xFF6A1B9A)),
+        icon: const Icon(Icons.menu, color: AppTheme.brandColor),
         onPressed: () {
           showGeneralDialog(
             context: context,
@@ -244,7 +245,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
       actions: [
         IconButton(
           onPressed: () => Navigator.maybePop(context),
-          icon: const Icon(Icons.arrow_forward_ios, color: Color(0xFF6A1B9A)),
+          icon: const Icon(Icons.arrow_forward_ios, color: AppTheme.brandColor),
         ),
       ],
     );

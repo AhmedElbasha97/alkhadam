@@ -16,6 +16,7 @@ import '../../../webview/web_view.dart';
 import '../../data/auth_model.dart';
 import '../../verification_code/presentation/verification_code_screen.dart';
 import '../data/country_code_model.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 
 class RegisterCubit extends Cubit<RegisterStates> {
@@ -348,12 +349,12 @@ emit(RegisterLoaded());
                                           ),
                                         ],
                                         border: Border.all(
-                                            color:  Color(0xFF6A1B9A), width: 1)),
+                                            color:  AppTheme.brandColor, width: 1)),
                                     child: Center(
                                       child: Icon(
                                         Icons.check_box,
                                         color: selectedCountryCode?.name==e.name
-                                            ?  Color(0xFF6A1B9A)
+                                            ?  AppTheme.brandColor
                                             : Colors.white,
                                       ),
                                     ),
@@ -387,7 +388,7 @@ emit(RegisterLoaded());
                           e ==  countriesCodesData?.data?.last
                               ? const SizedBox()
                               : const Divider(
-                            color:  Color(0xFF6A1B9A),
+                            color:  AppTheme.brandColor,
                             height: 1,
                             thickness: 1,
                             endIndent: 0,

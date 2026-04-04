@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:alkhadam/core/config/app_theme.dart';
 
 class HomeTapWidget extends StatelessWidget {
   const HomeTapWidget({super.key, required this.title, required this.icon, required this.onTap});
@@ -16,7 +17,7 @@ class HomeTapWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color(0xFF8E24AA), Color(0xFF6A1B9A)],
+            colors: [Color(0xFF8E24AA), AppTheme.brandColor],
           ),
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
