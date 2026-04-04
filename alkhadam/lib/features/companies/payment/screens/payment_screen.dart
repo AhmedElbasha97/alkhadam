@@ -291,7 +291,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     MaterialPageRoute<void>(
                                         builder: (_) =>
                                             WebViewContainer(
-                                                'https://alkhadam.net/qa/ar/page/13/mobile'),
+                                                'https://dohamaid.com/qa/ar/page/13/mobile'),
                                         settings: const RouteSettings(
                                             name: "WebViewContainer")
                                     ),

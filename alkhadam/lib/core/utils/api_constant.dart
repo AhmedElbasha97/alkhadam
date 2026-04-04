@@ -1,5 +1,5 @@
 class ApiConstant {
-  static String baseUrl = "https://api.alkhadam.net/";
+  static String baseUrl = "https://dohamaid.com/api/";
   static String regesteirLink = "register";//post
   static String loginLink = "login";//post
   static String profileLink = "user";//post

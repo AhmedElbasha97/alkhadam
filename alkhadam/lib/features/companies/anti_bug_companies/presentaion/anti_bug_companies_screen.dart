@@ -2,6 +2,7 @@ import 'package:alkhadam/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import '../../../../core/config/app_theme.dart';
 import '../../../../widget/no_data_widget.dart';
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
@@ -81,11 +82,8 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
                 opacity: anim,
                 child: child,
               );
-            },
-          );
 
-        }
-    ),
+            }        ),
         actions:[IconButton(onPressed: (){
     Navigator.maybePop(context);
     }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor))],
