@@ -75,7 +75,7 @@ class ProductImageWidget extends StatelessWidget {
             width:screenWidth(context),
             height:screenHeight(context)*0.4,
             decoration:BoxDecoration(
-              color:  const AppColor.cardSoft,
+              color:   AppColor.cardSoft,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
@@ -101,7 +101,7 @@ class ProductImageWidget extends StatelessWidget {
                 width:screenWidth(context)*0.95,
                 height:screenHeight(context)*0.38,
                 decoration:BoxDecoration(
-                  color:  const AppColor.borderSoft,
+                  color:   AppColor.borderSoft,
                   borderRadius: BorderRadius.circular(15),
 
                 ),

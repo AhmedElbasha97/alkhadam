@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                                           child: Container(
 
                                             decoration: BoxDecoration(
-                                              color: const AppColor.mainColor,
+                                              color:  AppColor.mainColor,
 
                                               borderRadius: BorderRadius.circular(50),
                                               boxShadow: const [
@@ -131,7 +131,7 @@ class WelcomeScreen extends StatelessWidget {
 
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(50),
-                                              color: const AppColor.mainColor,
+                                              color:  AppColor.mainColor,
                                               boxShadow: const [
                                                 BoxShadow(
                                                   color: AppColor.grey,

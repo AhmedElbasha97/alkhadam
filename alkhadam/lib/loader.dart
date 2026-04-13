@@ -14,7 +14,7 @@ final double width;
     return Container(
       height: height==0?MediaQuery.of(context).size.height:height ,
       width: width==0?MediaQuery.of(context).size.width:width ,
-      color:const AppColor.overlayDark,
+      color: AppColor.overlayDark,
       child: Center(
         child: Container(
           height: MediaQuery.of(context).size.height*0.3,
@@ -47,9 +47,9 @@ final double width;
               children: [
                 SizedBox(
                   width: 150,height: 150,
-                  child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
+                  child: Image.asset("assets/logo.png",fit: BoxFit.fitWidth,),
                 ).animate(onPlay: (controller) => controller.repeat())
-                .shimmer(duration: 1200.ms, color:  const AppColor.mainColor)
+                .shimmer(duration: 1200.ms, color:   AppColor.mainColor)
                 .animate() // this wraps the previous Animate in another Animate
                 .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                 .slide(),
@@ -65,7 +65,7 @@ final double width;
                     letterSpacing: -1,
                   ),
                 ) .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(duration: 1200.ms, color: const AppColor.mainColor)
+                    .shimmer(duration: 1200.ms, color:  AppColor.mainColor)
                     .animate() // this wraps the previous Animate in another Animate
                     .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                     .slide(),

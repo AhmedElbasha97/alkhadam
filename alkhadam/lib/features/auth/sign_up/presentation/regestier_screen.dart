@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const AppColor.authBackground,
+      backgroundColor:  AppColor.authBackground,
       body:BlocBuilder<RegisterCubit, RegisterStates>(
 
             builder: (context, state) {
@@ -113,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText:"full_name_label".tr(),
-                                        prefixIcon: const Icon(Icons.person_outline, color: AppColor.mainColor),
+                                        prefixIcon: const Icon(Icons.person_outline, color: AppColor.secondaryColor),
                                         border: OutlineInputBorder(
 
                                           borderRadius: BorderRadius.circular(14),
@@ -168,7 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              const Icon(Icons.warning_amber,color: AppColor.mainColor,),
+                                              const Icon(Icons.warning_amber,color: AppColor.secondaryColor,),
                                               const SizedBox(
                                                 width: 5,
                                               ),
@@ -191,7 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "phone".tr(),
-                                        prefixIcon: const Icon(Icons.phone_outlined, color: AppColor.mainColor),
+                                        prefixIcon: const Icon(Icons.phone_outlined, color: AppColor.secondaryColor),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
@@ -215,7 +215,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "email_label".tr(),
-                                        prefixIcon: const Icon(Icons.email_outlined ,color: AppColor.mainColor),
+                                        prefixIcon: const Icon(Icons.email_outlined ,color: AppColor.secondaryColor),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
@@ -240,12 +240,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "password_label".tr(),
-                                        prefixIcon: const Icon(Icons.lock_outline, color: AppColor.mainColor),
+                                        prefixIcon: const Icon(Icons.lock_outline, color: AppColor.secondaryColor),
                                         suffixIcon: IconButton(
                                           icon: Icon(
                                             cubit.showPassword
                                                 ? Icons.visibility_off:Icons.visibility,
-                                            color: const AppColor.mainColor,
+                                            color: AppColor.secondaryColor,
                                           ),
                                           onPressed: () => cubit.showingPassword(),
                                         ),
@@ -263,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       children: [
                                         Radio(
                                           value: 1,
-                                          fillColor: MaterialStateProperty.all<Color>(const AppColor.mainColor),
+                                          fillColor: MaterialStateProperty.all<Color>( AppColor.mainColor),
 
                                           groupValue: cubit.val,
                                           onChanged: (value) {
@@ -345,7 +345,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         : ElevatedButton(
                                       onPressed: () => cubit.register(context),
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: const AppColor.mainColor,
+                                        backgroundColor:  AppColor.mainColor,
                                         minimumSize: const Size(double.infinity, 55),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(14),

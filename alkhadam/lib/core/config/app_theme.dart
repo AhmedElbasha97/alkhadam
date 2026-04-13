@@ -42,13 +42,13 @@ class AppTheme {
       ).copyWith(
         surface: lightBackground,
         primary: selectedColorLight,
-        secondary: accentColor,
+        secondary: brandColor,
       ),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: lightTextColor),
         bodyMedium: TextStyle(color: lightTextColor),
       ),
-      iconTheme: const IconThemeData(color: accentColor),
+      iconTheme: const IconThemeData(color: brandColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorLight,
         unselectedItemColor: unselectedColorLight,
@@ -82,13 +82,13 @@ class AppTheme {
       ).copyWith(
         surface: darkBackground,
         primary: selectedColorDark,
-        secondary: accentColor,
+        secondary: brandColor,
       ),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: darkTextColor),
         bodyMedium: TextStyle(color: darkTextColor),
       ),
-      iconTheme: const IconThemeData(color: accentColor),
+      iconTheme: const IconThemeData(color: brandColor),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: selectedColorDark,
         unselectedItemColor: unselectedColorDark,

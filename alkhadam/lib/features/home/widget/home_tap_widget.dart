@@ -17,7 +17,7 @@ class HomeTapWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [AppColor.secondaryColor, AppColor.mainColor],
+            colors: [AppColor.mainColor, AppColor.actionGreen],
           ),
           borderRadius: BorderRadius.circular(14),
           boxShadow: [

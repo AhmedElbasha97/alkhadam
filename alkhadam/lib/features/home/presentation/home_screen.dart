@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   PreferredSizeWidget  _buildAppBar() {
     return AppBar(
-      backgroundColor: const AppColor.appBarBackground,
+      backgroundColor:  AppColor.appBarBackground,
       elevation: 3,
       title: Image.asset(
         "assets/logo with out background.png",

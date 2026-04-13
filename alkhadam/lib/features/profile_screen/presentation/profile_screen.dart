@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
       create: (_) => ProfileCubit(AuthServices(ApiService()))..loadProfile(),
       child: Scaffold(
         appBar:AppBar(
-          backgroundColor: const AppColor.appBarBackground,
+          backgroundColor:  AppColor.appBarBackground,
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -154,11 +154,11 @@ Widget _infoRow(IconData icon, String title, String value) {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color:const AppColor.mainColor.withOpacity(0.1),
+            color: AppColor.mainColor.withOpacity(0.1),
 
             borderRadius: BorderRadius.circular(14),
           ),
-          child: Icon(icon, color: const AppColor.mainColor, size: 22),
+          child: Icon(icon, color:  AppColor.mainColor, size: 22),
         ),
         const SizedBox(width: 14),
         Expanded(
@@ -264,7 +264,7 @@ Widget _animatedHeader() {
         borderRadius: BorderRadius.circular(22),
         boxShadow: [
           BoxShadow(
-            color: const AppColor.mainColor.withOpacity(0.25),
+            color:  AppColor.mainColor.withOpacity(0.25),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),

@@ -194,22 +194,23 @@ CountryCodeModel? countriesCodesData;
     // Check if location services are enabled
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      _showLocationServiceDialog(context);
+      isFoundCountry = false;
       return;
     }
 
     // Check location permission
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
+      isFoundCountry = false;
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        _showPermissionDeniedDialog(context);
+        isFoundCountry = false;
         return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      _showPermissionDeniedForeverDialog(context);
+      isFoundCountry = false;
       return;
     }
 

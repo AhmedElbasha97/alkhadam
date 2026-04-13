@@ -71,16 +71,16 @@ class _NoDataWidgetState extends State<NoDataWidget>
                     colors: [
                       isDark
                           ? AppColor.white.withOpacity(0.05)
-                          : const AppColor.mainColor.withOpacity(0.05),
+                          :  AppColor.mainColor.withOpacity(0.05),
                       isDark
                           ? AppColor.white.withOpacity(0.02)
-                          : const AppColor.mainColor.withOpacity(0.02),
+                          :  AppColor.mainColor.withOpacity(0.02),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   border: Border.all(
-                    color: const AppColor.mainColor.withOpacity(0.2),
+                    color:  AppColor.mainColor.withOpacity(0.2),
                     width: 1.2,
                   ),
                 ),

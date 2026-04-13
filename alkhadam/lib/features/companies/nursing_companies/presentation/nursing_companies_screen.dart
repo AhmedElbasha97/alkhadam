@@ -53,7 +53,7 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
     return  Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",

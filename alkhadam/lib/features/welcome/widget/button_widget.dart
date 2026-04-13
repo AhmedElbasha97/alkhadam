@@ -10,7 +10,7 @@ Widget buildButton(BuildContext context,
       height: 60,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: const AppColor.mainColor,
+        color:  AppColor.mainColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(

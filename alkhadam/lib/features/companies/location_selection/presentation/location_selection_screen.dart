@@ -174,7 +174,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                             width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const AppColor.secondaryColor,
+                                backgroundColor:  AppColor.secondaryColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -216,7 +216,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: const AppColor.appBarBackground,
+      backgroundColor:  AppColor.appBarBackground,
       elevation: 3,
       title: Image.asset(
         "assets/logo with out background.png",
@@ -612,7 +612,7 @@ class _UseCurrentLocationButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const AppColor.borderLight),
+            border: Border.all(color:  AppColor.borderLight),
           ),
           child: Row(
             children: [
@@ -796,7 +796,7 @@ class _AddressTextFieldState extends State<_AddressTextField> {
               borderSide: const BorderSide(color: AppColor.secondaryColor),
             ),
             filled: true,
-            fillColor: const AppColor.cardLight,
+            fillColor:  AppColor.cardLight,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           ),
         ),
@@ -831,13 +831,13 @@ class _SavedLocationChip extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected ? const AppColor.secondaryColor : const AppColor.borderLight,
+              color: selected ?  AppColor.secondaryColor :  AppColor.borderLight,
               width: selected ? 2 : 1,
             ),
           ),
           child: Row(
             children: [
-              Icon(icon, color: const AppColor.secondaryColor, size: 24),
+              Icon(icon, color:  AppColor.secondaryColor, size: 24),
               const SizedBox(width: 12),
               Text(
                 label,

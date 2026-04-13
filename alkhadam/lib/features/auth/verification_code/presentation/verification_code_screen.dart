@@ -33,7 +33,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         final cubit = context.read<VerificationCodeCubit>();
         if(state is VerificationCodeInitial){
           return Scaffold(
-            backgroundColor: const AppColor.authBackground,
+            backgroundColor:  AppColor.authBackground,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -56,7 +56,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     const SizedBox(height: 30),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 30, horizontal: 16),
+                          vertical: 30, horizontal: 10),
                       decoration: BoxDecoration(
                         color: AppColor.white,
                         borderRadius: BorderRadius.circular(22),
@@ -142,7 +142,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: cubit.isResendingOTPCode
                                   ? AppColor.grey
-                                  : const AppColor.mainColor,
+                                  :  AppColor.mainColor,
                               minimumSize: const Size(double.infinity, 52),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
@@ -186,7 +186,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: (cubit.remainingSeconds!=0)
                             ? AppColor.grey
-                            : const AppColor.mainColor,
+                            :  AppColor.mainColor,
                         minimumSize: const Size(double.infinity, 52),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -205,7 +205,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                               ),
                             ),SizedBox(width: 10,),Icon(
                               Icons.refresh,
-                              color: AppColor.white,
+                              color: AppColor.secondaryColor,
                             )
                           ],
                         ),

@@ -1,6 +1,8 @@
 import 'package:alkhadam/core/config/app_color.dart';
+import 'package:flutter/material.dart';
 
-part of 'package:alkhadam/features/companies/booking_screens/presentation/booking_screen.dart';
+import '../data/booking_category_model.dart';
+
 class OptionChips extends StatelessWidget {
   const OptionChips({
     super.key,
@@ -19,7 +21,7 @@ class OptionChips extends StatelessWidget {
     return  Padding(
       padding: const EdgeInsets.only(left: 8),
       child: Material(
-        color: selected ?  AppColor.secondaryColor : AppColor.gray100,
+        color: selected ?  AppColor.mainColor : AppColor.gray100,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: () => onSelect(option),

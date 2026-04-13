@@ -22,7 +22,7 @@ class LocationListScreen extends StatelessWidget {
       create: (_) => LocationListCubit()..getBookingList(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const AppColor.appBarBackground,
+          backgroundColor:  AppColor.appBarBackground,
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -59,7 +59,7 @@ class LocationListScreen extends StatelessWidget {
           }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
         ),
         body: Container(
-          color: const AppColor.surfaceLight,
+          color:  AppColor.surfaceLight,
           child: BlocBuilder<LocationListCubit, LocationListState>(
             builder: (context, state) {
               if (state is LocationListLoading) {
@@ -223,7 +223,7 @@ class _LocationMapPreview extends StatelessWidget {
       width: 98,
       height: 98,
       decoration: BoxDecoration(
-        color: const AppColor.locationChipBackground,
+        color:  AppColor.locationChipBackground,
         borderRadius: BorderRadius.circular(12),
       ),
       child: const Icon(Icons.location_on, color: AppColor.locationIcon, size: 32),

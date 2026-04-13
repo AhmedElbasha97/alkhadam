@@ -20,7 +20,7 @@ class CompaniesTapWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const AppColor.secondaryColor, width: 2),
+        border: Border.all(color:  AppColor.secondaryColor, width: 2),
       ),
       child: Row(
         children: [
@@ -53,7 +53,7 @@ class CompaniesTapWidget extends StatelessWidget {
                   height: 110,
                   width: 110,
                   decoration: BoxDecoration(
-                    color: const AppColor.cardSoft,
+                    color:  AppColor.cardSoft,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
@@ -73,7 +73,7 @@ class CompaniesTapWidget extends StatelessWidget {
                       height: 110,
                       width: 110,
                       decoration: BoxDecoration(
-                        color: const AppColor.borderSoft,
+                        color:  AppColor.borderSoft,
                         borderRadius: BorderRadius.circular(15),
                       ),
                     )
@@ -139,7 +139,7 @@ class CompaniesTapWidget extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: const AppColor.secondaryColor,
+                            color:  AppColor.secondaryColor,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child:  Text(

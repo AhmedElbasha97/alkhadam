@@ -28,7 +28,7 @@ class ServiceCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected ?  AppColor.secondaryColor : AppColor.borderLight,
+              color: selected ?  AppColor.mainColor : AppColor.borderLight,
               width: selected ? 2 : 1,
             ),
           ),
@@ -37,7 +37,7 @@ class ServiceCard extends StatelessWidget {
               Checkbox(
                 value: selected,
                 onChanged: (_) => onTap(),
-                activeColor:  AppColor.secondaryColor,
+                activeColor:  AppColor.mainColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -50,7 +50,7 @@ class ServiceCard extends StatelessWidget {
                   label,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    color:AppColor.secondaryColor,
+                    color:AppColor.black,
                   ),
                 ),
               ),

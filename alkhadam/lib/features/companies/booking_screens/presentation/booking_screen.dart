@@ -11,10 +11,10 @@ import '../cubit/booking_state.dart';
 import '../data/booking_category_model.dart';
 import '../../location_selection/presentation/location_selection_screen.dart';
 import '../widget/date_picker_sheet.dart';
+import '../widget/option_chips.dart';
 import '../widget/services_tile.dart';
 import '../widget/time_picker_sheet.dart';
 import 'package:alkhadam/core/config/app_color.dart';
-part'../widget/option_chips.dart';
 class BookingScreen extends StatefulWidget {
    const BookingScreen({super.key, required this.servicesId});
  final  String servicesId;
@@ -47,7 +47,7 @@ class _BookingView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar:AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -204,7 +204,7 @@ class _BookingView extends StatelessWidget {
                               borderSide: BorderSide(color: AppColor.secondaryColor)
                           ),
                           filled: true,
-                          fillColor: const AppColor.cardLight,
+                          fillColor:  AppColor.cardLight,
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 14),
                         ),
@@ -328,7 +328,7 @@ class _DateField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.borderLight),
+            border: Border.all(color: AppColor.mainColor),
           ),
           child: Row(
             children: [
@@ -368,7 +368,7 @@ class _TimeField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.borderLight),
+            border: Border.all(color: AppColor.mainColor),
           ),
           child: Row(
             children: [
@@ -456,7 +456,7 @@ class _BottomBar extends StatelessWidget {
               )
                   :ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const AppColor.secondaryColor,
+                  backgroundColor:  AppColor.secondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

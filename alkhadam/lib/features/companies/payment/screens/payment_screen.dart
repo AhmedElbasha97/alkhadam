@@ -66,7 +66,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar:AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -337,7 +337,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const AppColor.secondaryColor,
+                            backgroundColor:  AppColor.secondaryColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -451,8 +451,8 @@ class _PaymentOption extends StatelessWidget {
                   height: 22,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: AppColor.secondaryColor),
-                    color: selected ? AppColor.secondaryColor : AppColor.transparent,
+                    border: Border.all(color: AppColor.mainColor),
+                    color: selected ? AppColor.mainColor : AppColor.transparent,
                   ),
                   child: selected
                       ? const Icon(Icons.check, size: 16, color: AppColor.white)

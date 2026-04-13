@@ -17,7 +17,7 @@ class CancellationPolicyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar:AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",

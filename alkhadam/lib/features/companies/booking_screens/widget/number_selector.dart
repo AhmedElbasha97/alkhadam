@@ -14,7 +14,7 @@ Widget optionButton({
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-        color: selected ? const  AppColor.secondaryColor: AppColor.grey.shade100,
+        color: selected ?   AppColor.secondaryColor: AppColor.grey.shade100,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: AppColor.grey.shade300),
       ),

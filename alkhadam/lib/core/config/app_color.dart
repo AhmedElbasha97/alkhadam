@@ -30,7 +30,7 @@ class AppColor {
   static const selectedLight = Color(0xFF3949AB);
   static const selectedDark = Color(0xFF90CAF9);
 
-  static const authBackground = Color(0xFFF8F1FA);
+  static const authBackground = Color(0xFF9ECFCD  );
   static const appBarBackground = Color(0xFFDCDBDB);
   static const surfaceLight = Color(0xFFE9EDF2);
   static const locationChipBackground = Color(0xFFE8EBF0);

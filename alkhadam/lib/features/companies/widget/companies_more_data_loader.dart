@@ -13,7 +13,7 @@ class CompaniesMoreDataLoader extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const AppColor.secondaryColor, width: 2),
+        border: Border.all(color:  AppColor.secondaryColor, width: 2),
       ),
       child: Center(
         child: Container(
@@ -50,7 +50,7 @@ class CompaniesMoreDataLoader extends StatelessWidget {
                   width: 150,height: 150,
                   child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
                 ).animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(duration: 1200.ms, color:  const AppColor.mainColor)
+                    .shimmer(duration: 1200.ms, color:   AppColor.mainColor)
                     .animate() // this wraps the previous Animate in another Animate
                     .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                     .slide(),
@@ -66,7 +66,7 @@ class CompaniesMoreDataLoader extends StatelessWidget {
                     letterSpacing: -1,
                   ),
                 ) .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(duration: 1200.ms, color: const AppColor.mainColor)
+                    .shimmer(duration: 1200.ms, color:  AppColor.mainColor)
                     .animate() // this wraps the previous Animate in another Animate
                     .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                     .slide(),

@@ -54,7 +54,7 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
     return  Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -83,10 +83,10 @@ class _AntiBugCompaniesScreenState extends State<AntiBugCompaniesScreen>
                 child: child,
               );
 
-            }        ),
+            }       );},),
         actions:[IconButton(onPressed: (){
     Navigator.maybePop(context);
-    }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor))],
+    }, icon:  Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor))]
       ),
 
       body: BlocBuilder<AntiBugCompaniesCubit, AntiBugCompaniesState>(

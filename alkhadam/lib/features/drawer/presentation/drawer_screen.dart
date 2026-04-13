@@ -60,7 +60,7 @@ class CustomDrawer extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            icon: const Icon(Icons.close, color: AppColor.black54),
+                            icon: const Icon(Icons.close, color: AppColor.secondaryColor),
                             onPressed: () => Navigator.of(context).pop(),
                           ),
                         ),
@@ -142,10 +142,10 @@ class CustomDrawer extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: const AppColor.tintSoft,
+                    color:  AppColor.borderExtraSoft,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(it.icon, color: const AppColor.mainColor),
+                  child: Icon(it.icon, color:  AppColor.secondaryColor),
                 ),
 
                 // center: title
@@ -201,10 +201,10 @@ class CustomDrawer extends StatelessWidget {
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: const AppColor.tintSoft,
+                          color:  AppColor.borderExtraSoft,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(c.icon, color: const AppColor.mainColor, size: 18),
+                        child: Icon(c.icon, color:  AppColor.mainColor, size: 18),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -233,14 +233,14 @@ Widget _themeSwitcher(BuildContext context) {
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: const AppColor.tintSoft,
+          color:  AppColor.borderExtraSoft,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           children: [
             Icon(
               isDark ? Icons.dark_mode : Icons.light_mode,
-              color: const AppColor.mainColor,
+              color:  AppColor.secondaryColor,
             ),
             const SizedBox(width: 12),
 
@@ -256,14 +256,14 @@ Widget _themeSwitcher(BuildContext context) {
             ),
 
             ColoredBox(
-              color: isDark ? const AppColor.tintSoft: const AppColor.tintSoft  ,
+              color: isDark ?  AppColor.tintSoft:  AppColor.tintSoft  ,
 
               child: Switch(
                 value: isDark,
-                inactiveThumbColor:  const AppColor.mainColor,
-                inactiveTrackColor:const AppColor.tintSoft,
-                activeTrackColor: const AppColor.mainColor,
-                activeThumbColor: const AppColor.tintSoft,
+                inactiveThumbColor:   AppColor.mainColor,
+                inactiveTrackColor: AppColor.tintSoft,
+                activeTrackColor:  AppColor.mainColor,
+                activeThumbColor:  AppColor.tintSoft,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 onChanged: (_) {
                   Navigator.of(context).pop();

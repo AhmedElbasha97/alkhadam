@@ -44,7 +44,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const AppColor.appBarBackground,
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -338,7 +338,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           ),
           boxShadow: [
             BoxShadow(
-              color: const AppColor.actionBlue.withOpacity(0.4),
+              color:  AppColor.actionBlue.withOpacity(0.4),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),
@@ -432,7 +432,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           ),
           boxShadow: [
             BoxShadow(
-              color: const AppColor.actionWhatsapp.withOpacity(0.4),
+              color:  AppColor.actionWhatsapp.withOpacity(0.4),
               blurRadius: 12,
               offset: const Offset(0, 6),
             )

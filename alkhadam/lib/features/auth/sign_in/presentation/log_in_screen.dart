@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
           final cubit = LoginCubit.get(context);
 
           return Scaffold(
-            backgroundColor: const AppColor.authBackground,
+            backgroundColor:  AppColor.authBackground,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -133,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 labelText: "email_label".tr(),
-                                prefixIcon: const Icon(Icons.email_outlined, color: AppColor.mainColor),
+                                prefixIcon: const Icon(Icons.email_outlined, color: AppColor.secondaryColor),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(14),
                                   borderSide: const BorderSide(
@@ -160,12 +160,12 @@ class LoginScreen extends StatelessWidget {
                                 errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                 labelText: "password_label".tr(),
-                                prefixIcon: const Icon(Icons.lock_outline, color: AppColor.mainColor),
+                                prefixIcon: const Icon(Icons.lock_outline, color: AppColor.secondaryColor),
                                 suffixIcon:IconButton(
                                   icon: Icon(
                                     cubit.showPassword
                                         ? Icons.visibility_off:Icons.visibility,
-                                    color: const AppColor.mainColor,
+                                    color:  AppColor.secondaryColor,
                                   ),
                                   onPressed: () => cubit.showingPassword(),
                                 ),
@@ -191,7 +191,7 @@ class LoginScreen extends StatelessWidget {
                                 : ElevatedButton(
                               onPressed: () => cubit.login(context),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const AppColor.mainColor,
+                                backgroundColor:  AppColor.mainColor,
                                 minimumSize: const Size(double.infinity, 55),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14),
