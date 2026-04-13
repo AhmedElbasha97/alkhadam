@@ -10,7 +10,6 @@ import '../../../../core/services/auth_services.dart';
 import '../../data/auth_model.dart';
 import '../../data/otp_model.dart';
 import 'verification_code_state.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class VerificationCodeCubit extends Cubit<VerificationCodeState> {
   VerificationCodeCubit() : super(VerificationCodeInitial());
@@ -60,16 +59,16 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
       if (data?.success == true) {
         final snackBar = SnackBar(content:
         Row(children: [
-          const Icon(Icons.check, color: AppColor.white,),
+          const Icon(Icons.check, color: Colors.white,),
           const SizedBox(width: 10,),
           Text(context.locale.languageCode == 'en'  ? 'The OTP Code has been sent successfully'
               : 'تم إرسال رمز التحقق بنجاح', style: const TextStyle(
-              color: AppColor.white,
+              color: Colors.white,
               fontWeight: FontWeight.bold
           ),
           ),
         ],),
-            backgroundColor: AppColor.green
+            backgroundColor: Colors.green
         );
         emit(VerificationCodeInitial());
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -80,16 +79,16 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
       else {
         final snackBar = SnackBar(content:
         Row(children: [
-          const Icon(Icons.close, color: AppColor.white,),
+          const Icon(Icons.close, color: Colors.white,),
           const SizedBox(width: 10,),
           Text(context.locale.languageCode == 'en'  ? 'An error occurred while Resending the otp code'
               : 'حدث خطأ أثناء إعادة إرسال رمز التحقق', style: const TextStyle(
-              color: AppColor.white,
+              color: Colors.white,
               fontWeight: FontWeight.bold
           ),
           ),
         ],),
-            backgroundColor: AppColor.red
+            backgroundColor: Colors.red
         );
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -113,18 +112,18 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
               SnackBar(
                 content: Row(
                   children: [
-                    const Icon(Icons.error_outline, color: AppColor.white),
+                    const Icon(Icons.error_outline, color: Colors.white),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         (authData?.data?.error?.isEmpty??true)||(authData?.data?.error=="")?  ((context.locale.languageCode == 'en' ) ? 'An error occurred when checking the otp code'
                             : 'حدث خطأ أثناء التحقق رمز التحقق'):(authData?.data?.error??""),
-                        style: const TextStyle(color: AppColor.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ],
                 ),
-                backgroundColor: AppColor.errorShade, // Error color
+                backgroundColor: Colors.red.shade600, // Error color
                 duration: const Duration(seconds: 3),
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
@@ -142,17 +141,17 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
               SnackBar(
                 content: Row(
                   children: [
-                    const Icon(Icons.check_circle_outline, color: AppColor.white),
+                    const Icon(Icons.check_circle_outline, color: Colors.white),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         "register_success".tr(),
-                        style: const TextStyle(color: AppColor.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ],
                 ),
-                backgroundColor: AppColor.successShade, // Success color
+                backgroundColor: Colors.green.shade600, // Success color
                 duration: const Duration(milliseconds: 1500),
                 behavior: SnackBarBehavior.floating, // For a cleaner look
                 shape: RoundedRectangleBorder(
@@ -179,17 +178,17 @@ class VerificationCodeCubit extends Cubit<VerificationCodeState> {
             SnackBar(
               content: Row(
                 children: [
-                  const Icon(Icons.error_outline, color: AppColor.white),
+                  const Icon(Icons.error_outline, color: Colors.white),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       e.toString(),
-                      style: const TextStyle(color: AppColor.white, fontSize: 16),
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ],
               ),
-              backgroundColor: AppColor.errorShade, // Error color
+              backgroundColor: Colors.red.shade600, // Error color
               duration: const Duration(seconds: 3),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(

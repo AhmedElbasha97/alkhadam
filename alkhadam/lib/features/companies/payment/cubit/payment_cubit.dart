@@ -9,7 +9,6 @@ import '../../../../core/services/booking_services.dart';
 import '../../../home/presentation/home_screen.dart';
 import '../../booking_screens/data/booking_category_model.dart';
 import '../../location_selection/data/address_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 
@@ -51,17 +50,17 @@ class PaymentCubit extends Cubit<PaymentState> {
         SnackBar(
           content: Row(
             children: [
-              const Icon(Icons.error_outline, color: AppColor.white),
+              const Icon(Icons.error_outline, color: Colors.white),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   "policy_alert".tr(),
-                  style: const TextStyle(color: AppColor.white, fontSize: 16),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],
           ),
-          backgroundColor: AppColor.errorShade,
+          backgroundColor: Colors.red.shade600,
           duration: const Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -96,17 +95,17 @@ class PaymentCubit extends Cubit<PaymentState> {
          SnackBar(
            content: Row(
              children: [
-               const Icon(Icons.check_circle_outline, color: AppColor.white),
+               const Icon(Icons.check_circle_outline, color: Colors.white),
                const SizedBox(width: 12),
                Expanded(
                  child: Text(
                    "reservation_success_alert".tr(),
-                   style: const TextStyle(color: AppColor.white, fontSize: 16),
+                   style: const TextStyle(color: Colors.white, fontSize: 16),
                  ),
                ),
              ],
            ),
-           backgroundColor: AppColor.successShade, // Success color
+           backgroundColor: Colors.green.shade600, // Success color
            duration: const Duration(milliseconds: 1500),
            behavior: SnackBarBehavior.floating, // For a cleaner look
            shape: RoundedRectangleBorder(
@@ -134,19 +133,19 @@ class PaymentCubit extends Cubit<PaymentState> {
          SnackBar(
            content: Row(
              children: [
-               const Icon(Icons.error_outline, color: AppColor.white),
+               const Icon(Icons.error_outline, color: Colors.white),
                const SizedBox(width: 12),
                Expanded(
                  child: Text(
                    "reservation_error_alert".tr(),
                    maxLines: 3,
                    overflow: TextOverflow.ellipsis,
-                   style: const TextStyle(color: AppColor.white, fontSize: 16),
+                   style: const TextStyle(color: Colors.white, fontSize: 16),
                  ),
                ),
              ],
            ),
-           backgroundColor: AppColor.errorShade,
+           backgroundColor: Colors.red.shade600,
            // Error color
            duration: const Duration(seconds: 3),
            behavior: SnackBarBehavior.floating,
@@ -163,19 +162,19 @@ class PaymentCubit extends Cubit<PaymentState> {
          SnackBar(
            content: Row(
              children: [
-               const Icon(Icons.error_outline, color: AppColor.white),
+               const Icon(Icons.error_outline, color: Colors.white),
                const SizedBox(width: 12),
                Expanded(
                  child: Text(
                    e.toString(),
-                   style: const TextStyle(color: AppColor.white, fontSize: 16),
+                   style: const TextStyle(color: Colors.white, fontSize: 16),
                    maxLines: 3,
                    overflow: TextOverflow.ellipsis,
                  ),
                ),
              ],
            ),
-           backgroundColor: AppColor.errorShade, // Error color
+           backgroundColor: Colors.red.shade600, // Error color
            duration: const Duration(seconds: 3),
            behavior: SnackBarBehavior.floating,
            shape: RoundedRectangleBorder(

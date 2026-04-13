@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 Widget optionButton({
   required bool selected,
@@ -14,14 +13,14 @@ Widget optionButton({
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-        color: selected ?   AppColor.secondaryColor: AppColor.grey.shade100,
+        color: selected ? const  Color(0xFF8E2393): Colors.grey.shade100,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColor.grey.shade300),
+        border: Border.all(color: Colors.grey.shade300),
       ),
       child: Text(
         label,
         style: TextStyle(
-          color: selected ? AppColor.white : AppColor.black87,
+          color: selected ? Colors.white : Colors.black87,
           fontWeight: FontWeight.w700,
           fontSize: 16,
         ),

@@ -11,10 +11,9 @@ import '../cubit/booking_state.dart';
 import '../data/booking_category_model.dart';
 import '../../location_selection/presentation/location_selection_screen.dart';
 import '../widget/date_picker_sheet.dart';
-import '../widget/option_chips.dart';
 import '../widget/services_tile.dart';
 import '../widget/time_picker_sheet.dart';
-import 'package:alkhadam/core/config/app_color.dart';
+part'../widget/option_chips.dart';
 class BookingScreen extends StatefulWidget {
    const BookingScreen({super.key, required this.servicesId});
  final  String servicesId;
@@ -45,9 +44,9 @@ class _BookingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      backgroundColor: Colors.white,
       appBar:AppBar(
-        backgroundColor:  AppColor.appBarBackground,
+        backgroundColor: const Color(0xFFdcdbdb),
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -55,7 +54,7 @@ class _BookingView extends StatelessWidget {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -81,7 +80,7 @@ class _BookingView extends StatelessWidget {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
       ),
       body: BlocBuilder<BookingCubit, BookingStates>(
         builder: (context, state) {
@@ -194,17 +193,17 @@ class _BookingView extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: "yourNotes".tr(),
 
-                          hintStyle: const TextStyle(color: AppColor.textSecondaryDark),
+                          hintStyle: const TextStyle(color: Color(0xFF757575)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: AppColor.secondaryColor)
+                              borderSide: BorderSide(color: Color(0xFF8E2393))
                           ),
                           filled: true,
-                          fillColor:  AppColor.cardLight,
+                          fillColor: const Color(0xFFF2F2F2),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 14),
                         ),
@@ -255,7 +254,7 @@ class _BookingView extends StatelessWidget {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColor.transparent,
+      backgroundColor: Colors.transparent,
       builder: (_) => DatePickerSheet(
         selectedDate: cubit.selectedDate,
         onDateSelected: (d) {
@@ -273,7 +272,7 @@ class _BookingView extends StatelessWidget {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColor.transparent,
+      backgroundColor: Colors.transparent,
       builder: (_) => TimePickerSheet(
         timeSlots:cubit.bookingTimes?.data,
         onTimeSelected: (t) {
@@ -301,7 +300,7 @@ class _SectionLabel extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: AppColor.textPrimaryDark,
+            color: Color(0xFF424242),
           ),
         ),
         const SizedBox(width: 6),
@@ -319,7 +318,7 @@ class _DateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColor.white,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -328,17 +327,17 @@ class _DateField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.mainColor),
+            border: Border.all(color: Color(0xFFE0E0E0)),
           ),
           child: Row(
             children: [
-              const Icon(Icons.calendar_today, color:  AppColor.secondaryColor, size: 24),
+              const Icon(Icons.calendar_today, color:  Color(0xFF8E2393), size: 24),
               const SizedBox(width: 12),
               Text(
                 formatted,
                 style: const TextStyle(
                   fontSize: 16,
-                  color: AppColor.textPrimaryDark,
+                  color: Color(0xFF424242),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -359,7 +358,7 @@ class _TimeField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColor.white,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -368,11 +367,11 @@ class _TimeField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.mainColor),
+            border: Border.all(color: Color(0xFFE0E0E0)),
           ),
           child: Row(
             children: [
-              const Icon(Icons.access_time, color: AppColor.secondaryColor, size: 24),
+              const Icon(Icons.access_time, color: Color(0xFF8E2393), size: 24),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -380,8 +379,8 @@ class _TimeField extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     color: (value?.name?.contains('Select')??true) || (value?.name?.contains('اختر')??true)
-                        ? AppColor.textSecondaryDark
-                        :AppColor.textPrimaryDark,
+                        ? Color(0xFF757575)
+                        :Color(0xFF424242),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -403,10 +402,10 @@ class _BottomBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: AppColor.black.withValues(alpha: 0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 10,
             offset: const Offset(0, -4),
           ),
@@ -424,7 +423,7 @@ class _BottomBar extends StatelessWidget {
                     "total".tr(),
                     style: const TextStyle(
                       fontSize: 14,
-                      color: AppColor.textSecondaryDark,
+                      color: Color(0xFF757575),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -436,7 +435,7 @@ class _BottomBar extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color:  AppColor.textPrimaryDark,
+                          color:  Color(0xFF424242),
                         ),
                       );
                     },
@@ -450,13 +449,13 @@ class _BottomBar extends StatelessWidget {
               child:  cubit.checkingThePrice?  Container(
                   width:screenWidth(context)*0.24,
                   height:screenHeight(context)*0.07,
-                  decoration: const BoxDecoration( color:  AppColor.mainColor, shape: BoxShape.circle ),
+                  decoration: const BoxDecoration( color:  Color(0xFF7E2670), shape: BoxShape.circle ),
                   child: const Padding( padding: EdgeInsets.all(8.0),
-                    child: Center( child: CircularProgressIndicator(color: AppColor.white, ), ),)
+                    child: Center( child: CircularProgressIndicator(color: Colors.white, ), ),)
               )
                   :ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:  AppColor.secondaryColor,
+                  backgroundColor: const Color(0xFF8E2393),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -468,7 +467,7 @@ class _BottomBar extends StatelessWidget {
 
 
                 },
-                child: Text("next".tr(), style: const TextStyle(color: AppColor.white),
+                child: Text("next".tr(), style: const TextStyle(color: Colors.white),
               ),
               ),
             ),

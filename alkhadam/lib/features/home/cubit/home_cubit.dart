@@ -19,11 +19,11 @@ class HomeCubit extends Cubit<HomeState> {
    List<String> titles = [];
 
   final List<String> icons = [
-    "assets/icons/1.png",
-    "assets/icons/2.png",
-    "assets/icons/2.png",
-    "assets/icons/5.png",
-    "assets/icons/6.png",
+    "assets/icons/111.png",
+    "assets/icons/111.png",
+    "assets/icons/111.png",
+    "assets/icons/111.png",
+    "assets/icons/111.png",
     "assets/icons/1.png",
     "assets/icons/2.png",
     "assets/icons/3.png",

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../drawer/cubit/drawer_cubit.dart';
 import '../../../drawer/presentation/drawer_screen.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class CancellationPolicyScreen extends StatelessWidget {
   const CancellationPolicyScreen({super.key, this.onAgree});
@@ -15,9 +14,9 @@ class CancellationPolicyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: AppColor.white,
+      backgroundColor: Colors.white,
       appBar:AppBar(
-        backgroundColor:  AppColor.appBarBackground,
+        backgroundColor: const Color(0xFFdcdbdb),
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -25,7 +24,7 @@ class CancellationPolicyScreen extends StatelessWidget {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -51,7 +50,7 @@ class CancellationPolicyScreen extends StatelessWidget {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -63,7 +62,7 @@ class CancellationPolicyScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppColor.secondaryColor,
+                color: Color(0xFF8E2393),
               ),
             ),
             const SizedBox(height: 4),
@@ -72,7 +71,7 @@ class CancellationPolicyScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: AppColor.textPrimaryDark,
+                color: Color(0xFF424242),
               ),
             ),
             const SizedBox(height: 24),
@@ -111,11 +110,11 @@ class _Bullet extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('• ', style: TextStyle(fontSize: 16, color: AppColor.textPrimaryDark)),
+        const Text('• ', style: TextStyle(fontSize: 16, color: Color(0xFF424242))),
         Expanded(
           child: Text(
             text,
-            style: const TextStyle(fontSize: 15, color: AppColor.textPrimaryDark, height: 1.5),
+            style: const TextStyle(fontSize: 15, color: Color(0xFF424242), height: 1.5),
           ),
         ),
       ],

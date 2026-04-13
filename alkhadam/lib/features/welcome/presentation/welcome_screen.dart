@@ -10,7 +10,6 @@ import '../../home/presentation/home_screen.dart';
 import '../cubit/welcome_cuibit.dart';
 import '../cubit/welcome_state.dart';
 import '../widget/button_widget.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -61,12 +60,12 @@ class WelcomeScreen extends StatelessWidget {
                                           child: Container(
 
                                             decoration: BoxDecoration(
-                                              color:  AppColor.mainColor,
+                                              color: const Color(0xFF7E2670),
 
                                               borderRadius: BorderRadius.circular(50),
                                               boxShadow: const [
                                                 BoxShadow(
-                                                  color: AppColor.grey,
+                                                  color: Colors.grey,
                                                   blurRadius: 2,
                                                   offset: Offset(1, 1), // Shadow position
                                                 ),
@@ -75,7 +74,7 @@ class WelcomeScreen extends StatelessWidget {
                                             child: const Center(
                                                 child: Padding(
                                                   padding: EdgeInsets.all(4.0),
-                                                  child: Icon(Icons.home,color: AppColor.white,size: 15,),
+                                                  child: Icon(Icons.home,color: Colors.white,size: 15,),
                                                 )
                                             ),
                                           ),
@@ -87,7 +86,7 @@ class WelcomeScreen extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style:  const TextStyle(
 
-                               color: AppColor.mainColor,
+                               color: Color(0xFF7E2670),
 
                                           fontWeight: FontWeight.w800,
                                           fontSize: 13),),
@@ -114,7 +113,7 @@ class WelcomeScreen extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style:  const TextStyle(
 
-                                          color: AppColor.mainColor,
+                                          color: Color(0xFF7E2670),
                                           fontWeight: FontWeight.w800,
                                           fontSize: 15),),
                                     const SizedBox(width: 10,),
@@ -131,10 +130,10 @@ class WelcomeScreen extends StatelessWidget {
 
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(50),
-                                              color:  AppColor.mainColor,
+                                              color: const Color(0xFF7E2670),
                                               boxShadow: const [
                                                 BoxShadow(
-                                                  color: AppColor.grey,
+                                                  color: Colors.grey,
                                                   blurRadius: 2,
                                                   offset: Offset(1, 1), // Shadow position
                                                 ),
@@ -143,7 +142,7 @@ class WelcomeScreen extends StatelessWidget {
                                             child: const Center(
                                                 child: Padding(
                                                   padding: EdgeInsets.all(4.0),
-                                                  child: Icon(Icons.translate,color: AppColor.white,size: 15,),
+                                                  child: Icon(Icons.translate,color: Colors.white,size: 15,),
                                                 )
                                             ),
                                           ),
@@ -181,7 +180,7 @@ class WelcomeScreen extends StatelessWidget {
 
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color: AppColor.black,
+                                  color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),

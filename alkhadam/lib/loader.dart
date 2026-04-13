@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 
@@ -14,7 +13,7 @@ final double width;
     return Container(
       height: height==0?MediaQuery.of(context).size.height:height ,
       width: width==0?MediaQuery.of(context).size.width:width ,
-      color: AppColor.overlayDark,
+      color:const Color(0x80000000),
       child: Center(
         child: Container(
           height: MediaQuery.of(context).size.height*0.3,
@@ -24,12 +23,12 @@ final double width;
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [AppColor.white,AppColor.mainColor],
+                colors: [Colors.white,Color(0xFF7e2670)],
               ),
-            border: Border.all(width: 1, color: AppColor.white),
+            border: Border.all(width: 1, color: Colors.white),
             boxShadow: const [
               BoxShadow(
-                color: AppColor.grey,
+                color: Colors.grey,
                 blurRadius: 5, //soften the shadow
                 spreadRadius: 0, //extend the shadow
                 offset: Offset(
@@ -47,9 +46,9 @@ final double width;
               children: [
                 SizedBox(
                   width: 150,height: 150,
-                  child: Image.asset("assets/logo.png",fit: BoxFit.fitWidth,),
+                  child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
                 ).animate(onPlay: (controller) => controller.repeat())
-                .shimmer(duration: 1200.ms, color:   AppColor.mainColor)
+                .shimmer(duration: 1200.ms, color:  const Color(0xFF7e2670))
                 .animate() // this wraps the previous Animate in another Animate
                 .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                 .slide(),
@@ -57,7 +56,7 @@ final double width;
                   Text(
                    "loading".tr(),
                   style:  const TextStyle(
-                    color: AppColor.white,
+                    color: Colors.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 15,
 
@@ -65,7 +64,7 @@ final double width;
                     letterSpacing: -1,
                   ),
                 ) .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(duration: 1200.ms, color:  AppColor.mainColor)
+                    .shimmer(duration: 1200.ms, color: const Color(0xFF7e2670))
                     .animate() // this wraps the previous Animate in another Animate
                     .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                     .slide(),

@@ -12,7 +12,6 @@ import '../../../webview/web_view.dart';
 import '../../sign_in/presentation/log_in_screen.dart';
 import '../cubit/regestier_cubit.dart';
 import '../cubit/regestier_state.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -36,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  AppColor.authBackground,
+      backgroundColor: const Color(0xFFF8F1FA),
       body:BlocBuilder<RegisterCubit, RegisterStates>(
 
             builder: (context, state) {
@@ -46,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               }
 
               if (state is RegisterError) {
-                return Center(child: Text(state.message,style: const TextStyle(color: AppColor.red),));
+                return Center(child: Text(state.message,style: const TextStyle(color: Colors.red),));
               }
 
               if (state is RegisterLoaded ) {
@@ -76,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
-                                color: AppColor.mainColor,
+                                color: Color(0xFF7E2670),
                               ),
                             ),
 
@@ -86,11 +85,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Container(
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                color: AppColor.white,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(22),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AppColor.black.withOpacity(0.08),
+                                    color: Colors.black.withOpacity(0.08),
                                     blurRadius: 10,
                                     offset: const Offset(0, 4),
                                   )
@@ -113,12 +112,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText:"full_name_label".tr(),
-                                        prefixIcon: const Icon(Icons.person_outline, color: AppColor.secondaryColor),
+                                        prefixIcon: const Icon(Icons.person_outline, color: Color(0xFF7E2670)),
                                         border: OutlineInputBorder(
 
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
-                                            color: AppColor.mainColor,
+                                            color: Color(0xFF7E2670),
                                           ),
                                         ),
                                       ),
@@ -151,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 style: TextStyle(
                                                   fontSize: 15.0,
 
-                                                  color:AppColor.mainColor,
+                                                  color:Color(0xFF7E2670),
                                                 ),
                                               ),
 
@@ -168,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              const Icon(Icons.warning_amber,color: AppColor.secondaryColor,),
+                                              const Icon(Icons.warning_amber,color: Color(0xFF7E2670),),
                                               const SizedBox(
                                                 width: 5,
                                               ),
@@ -178,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 style: TextStyle(
                                                   fontSize: 15.0,
 
-                                                  color: AppColor.mainColor,
+                                                  color: Color(0xFF7E2670),
                                                 ),
                                               ),
 
@@ -191,11 +190,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "phone".tr(),
-                                        prefixIcon: const Icon(Icons.phone_outlined, color: AppColor.secondaryColor),
+                                        prefixIcon: const Icon(Icons.phone_outlined, color: Color(0xFF7E2670)),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
-                                            color: AppColor.mainColor,
+                                            color: Color(0xFF7E2670),
                                           ),
                                         ),
                                       ),
@@ -215,11 +214,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "email_label".tr(),
-                                        prefixIcon: const Icon(Icons.email_outlined ,color: AppColor.secondaryColor),
+                                        prefixIcon: const Icon(Icons.email_outlined ,color: Color(0xFF7E2670)),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
-                                            color: AppColor.mainColor,
+                                            color: Color(0xFF7E2670),
                                           ),
                                         ),
                                       ),
@@ -240,19 +239,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         errorMaxLines: 3, // <-- Allow multiple lines for errors
 
                                         labelText: "password_label".tr(),
-                                        prefixIcon: const Icon(Icons.lock_outline, color: AppColor.secondaryColor),
+                                        prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF7E2670)),
                                         suffixIcon: IconButton(
                                           icon: Icon(
                                             cubit.showPassword
                                                 ? Icons.visibility_off:Icons.visibility,
-                                            color: AppColor.secondaryColor,
+                                            color: const Color(0xFF7E2670),
                                           ),
                                           onPressed: () => cubit.showingPassword(),
                                         ),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(14),
                                           borderSide: const BorderSide(
-                                            color: AppColor.mainColor,
+                                            color: Color(0xFF7E2670),
                                           ),
                                         ),
                                       ),
@@ -263,7 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       children: [
                                         Radio(
                                           value: 1,
-                                          fillColor: MaterialStateProperty.all<Color>( AppColor.mainColor),
+                                          fillColor: MaterialStateProperty.all<Color>(const Color(0xFF7E2670)),
 
                                           groupValue: cubit.val,
                                           onChanged: (value) {
@@ -277,7 +276,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             Text(
                                               "readAppPolicyAndTerms".tr(),  style:  const TextStyle(
 
-                                                color: AppColor.black,
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 15),),
                                             Row(
@@ -287,7 +286,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/3/mobile"),
+                                                        builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/3/mobile"),
                                                         settings: const RouteSettings(name: "webView"),
                                                       ),
                                                     );
@@ -296,7 +295,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                     "privacyPolicy".tr(),
                                                     style:  const TextStyle(
 
-                                                        color: AppColor.mainColor,
+                                                        color: Color(0xFF7E2670),
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 15),
                                                   ),
@@ -304,7 +303,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 Text(
                                                   "and".tr(),  style:  const TextStyle(
 
-                                                    color: AppColor.black,
+                                                    color: Colors.black,
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 15),),
 
@@ -315,7 +314,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/10/mobile"),
+                                                    builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/10/mobile"),
                                                     settings: const RouteSettings(name: "webView"),
                                                   ),
                                                 );
@@ -324,7 +323,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 "termsAndCondition".tr(),
                                                 style:  const TextStyle(
 
-                                                    color: AppColor.mainColor,
+                                                    color: Color(0xFF7E2670),
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 15),
                                               ),
@@ -338,14 +337,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                     state is RegisterLoading
                                         ? Container(
-                                        decoration: const BoxDecoration( color:  AppColor.mainColor, shape: BoxShape.circle ),
+                                        decoration: const BoxDecoration( color:  Color(0xFF7E2670), shape: BoxShape.circle ),
                                         child: const Padding( padding: EdgeInsets.all(8.0),
-                                          child: Center( child: CircularProgressIndicator(color: AppColor.white, ), ),)
+                                          child: Center( child: CircularProgressIndicator(color: Colors.white, ), ),)
                                     )
                                         : ElevatedButton(
                                       onPressed: () => cubit.register(context),
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor:  AppColor.mainColor,
+                                        backgroundColor: const Color(0xFF7E2670),
                                         minimumSize: const Size(double.infinity, 55),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(14),
@@ -353,7 +352,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                       child:  Text(
                                         "register_title".tr(),
-                                        style: const TextStyle(fontSize: 18, color: AppColor.white),
+                                        style: const TextStyle(fontSize: 18, color: Colors.white),
                                       ),
                                     ),
                                   ],
@@ -380,7 +379,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   child:  Text(
                                     "login_title".tr(),
                                     style: const TextStyle(
-                                      color: AppColor.mainColor,
+                                      color: Color(0xFF7E2670),
                                       fontSize: 16,
                                     ),
                                   ),

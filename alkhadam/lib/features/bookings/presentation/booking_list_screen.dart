@@ -11,7 +11,6 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/booking_list_cubit.dart';
 import '../cubit/booking_list_state.dart';
 import '../data/booking_list_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class BookingListScreen extends StatelessWidget {
   const BookingListScreen({super.key});
@@ -22,7 +21,7 @@ class BookingListScreen extends StatelessWidget {
       create: (_) => BookingListCubit()..getBookingList(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:  AppColor.appBarBackground,
+          backgroundColor: const Color(0xFFdcdbdb),
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -30,7 +29,7 @@ class BookingListScreen extends StatelessWidget {
           ),
           centerTitle: true,
           leading:IconButton(
-              icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -56,10 +55,10 @@ class BookingListScreen extends StatelessWidget {
               }        ),
           actions:[IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
+          }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
         ),
         body: Container(
-          color:  AppColor.surfaceLight,
+          color: const Color(0xFFE9EDF2),
           child: BlocBuilder<BookingListCubit, BookingListState>(
             builder: (context, state) {
               if (state is BookingListLoading) {
@@ -121,11 +120,11 @@ class _BookingCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: AppColor.black.withOpacity(0.08),
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 14,
             offset: const Offset(0, 8),
           ),
@@ -142,7 +141,7 @@ class _BookingCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.work, color: AppColor.locationIcon, size: 21),
+                  const Icon(Icons.work, color: Color(0xFF6F4AD7), size: 21),
                   const SizedBox(width: 8),
                   Text(
                     '${'booking_id'.tr()} #${item.id}',
@@ -163,7 +162,7 @@ class _BookingCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
@@ -173,7 +172,7 @@ class _BookingCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 13,
                 ),
@@ -184,7 +183,7 @@ class _BookingCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
@@ -197,7 +196,7 @@ class _BookingCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
@@ -206,7 +205,7 @@ class _BookingCard extends StatelessWidget {
               Text(
                 '${'status'.tr()}: ${item.status} • ${item.date}',
                 style: const TextStyle(
-                  color: AppColor.black45,
+                  color: Colors.black45,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -266,10 +265,10 @@ class _BookingMapPreview extends StatelessWidget {
       width: 98,
       height: 98,
       decoration: BoxDecoration(
-        color:  AppColor.locationChipBackground,
+        color: const Color(0xFFE8EBF0),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Icon(Icons.location_on, color: AppColor.locationIcon, size: 32),
+      child: const Icon(Icons.location_on, color: Color(0xFF6F4AD7), size: 32),
     );
   }
 }

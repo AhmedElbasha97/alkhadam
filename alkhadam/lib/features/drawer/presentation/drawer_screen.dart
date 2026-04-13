@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/presentation/cubit/theme_cubit.dart';
 import '../cubit/drawer_cubit.dart';
 import '../data/drawer_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key, });
@@ -27,14 +26,14 @@ class CustomDrawer extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: drawerWidth),
             child: Material(
-              color: AppColor.transparent,
+              color: Colors.transparent,
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColor.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(14),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColor.black.withOpacity(0.12),
+                      color: Colors.black.withOpacity(0.12),
                       blurRadius: 18,
                       offset: const Offset(0, 6),
                     )
@@ -60,7 +59,7 @@ class CustomDrawer extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            icon: const Icon(Icons.close, color: AppColor.secondaryColor),
+                            icon: const Icon(Icons.close, color: Colors.black54),
                             onPressed: () => Navigator.of(context).pop(),
                           ),
                         ),
@@ -88,7 +87,7 @@ class CustomDrawer extends StatelessWidget {
                                         height: 64,
                                       ),
                                       const SizedBox(height: 8),
-                                      const Text("Since 2014 منذ", style: TextStyle(color: AppColor.black54)),
+                                      const Text("Since 2014 منذ", style: TextStyle(color: Colors.black54)),
                                       const SizedBox(height: 12),
                                     ],
                                   ),
@@ -131,7 +130,7 @@ class CustomDrawer extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: const BoxDecoration(
               border: Border(
-                top: BorderSide(color: AppColor.borderExtraSoft, width: 1),
+                top: BorderSide(color: Color(0xFFEFEAEA), width: 1),
               ),
             ),
             child: Row(
@@ -142,10 +141,10 @@ class CustomDrawer extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color:  AppColor.borderExtraSoft,
+                    color: const Color(0xFFF7EDF7),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(it.icon, color:  AppColor.secondaryColor),
+                  child: Icon(it.icon, color: const Color(0xFF7E2670)),
                 ),
 
                 // center: title
@@ -155,7 +154,7 @@ class CustomDrawer extends StatelessWidget {
                     child: Text(
                       it.title,
                       style: const TextStyle(
-                        color: AppColor.mainColor,
+                        color: Color(0xFF7E2670),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -167,7 +166,7 @@ class CustomDrawer extends StatelessWidget {
                 hasChildren
                     ? Transform.rotate(
                   angle: expanded ? 3.14 / 2 : 0,
-                  child:  Icon((context.locale.languageCode == 'en' ) ?  Icons.keyboard_arrow_right: Icons.keyboard_arrow_left, color: AppColor.black54),
+                  child:  Icon((context.locale.languageCode == 'en' ) ?  Icons.keyboard_arrow_right: Icons.keyboard_arrow_left, color: Colors.black54),
                 )
                     : const SizedBox(width: 24),
               ],
@@ -192,7 +191,7 @@ class CustomDrawer extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   decoration: const BoxDecoration(
                     border: Border(
-                      top: BorderSide(color: AppColor.gray100, width: 1),
+                      top: BorderSide(color: Color(0xFFF5F5F5), width: 1),
                     ),
                   ),
                   child: Row(
@@ -201,17 +200,17 @@ class CustomDrawer extends StatelessWidget {
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color:  AppColor.borderExtraSoft,
+                          color: const Color(0xFFF7EDF7),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(c.icon, color:  AppColor.mainColor, size: 18),
+                        child: Icon(c.icon, color: const Color(0xFF7E2670), size: 18),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           c.title,
                           textAlign: TextAlign.right,
-                          style: const TextStyle(color: AppColor.black87, fontSize: 14),
+                          style: const TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                       ),
                     ],
@@ -233,14 +232,14 @@ Widget _themeSwitcher(BuildContext context) {
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color:  AppColor.borderExtraSoft,
+          color: const Color(0xFFF7EDF7),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           children: [
             Icon(
               isDark ? Icons.dark_mode : Icons.light_mode,
-              color:  AppColor.secondaryColor,
+              color: const Color(0xFF7E2670),
             ),
             const SizedBox(width: 12),
 
@@ -250,20 +249,20 @@ Widget _themeSwitcher(BuildContext context) {
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.mainColor,
+                  color: Color(0xFF7E2670),
                 ),
               ),
             ),
 
             ColoredBox(
-              color: isDark ?  AppColor.tintSoft:  AppColor.tintSoft  ,
+              color: isDark ? const Color(0xFFF7EDF7): const Color(0xFFF7EDF7)  ,
 
               child: Switch(
                 value: isDark,
-                inactiveThumbColor:   AppColor.mainColor,
-                inactiveTrackColor: AppColor.tintSoft,
-                activeTrackColor:  AppColor.mainColor,
-                activeThumbColor:  AppColor.tintSoft,
+                inactiveThumbColor:  const Color(0xFF7E2670),
+                inactiveTrackColor:const Color(0xFFF7EDF7),
+                activeTrackColor: const Color(0xFF7E2670),
+                activeThumbColor: const Color(0xFFF7EDF7),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 onChanged: (_) {
                   Navigator.of(context).pop();

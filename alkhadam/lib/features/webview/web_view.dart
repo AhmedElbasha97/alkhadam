@@ -7,7 +7,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 class WebViewContainer extends StatefulWidget {
@@ -43,13 +42,13 @@ class _WebViewContainerState extends State<WebViewContainer> {
   Widget build(BuildContext context) {
     return  AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: AppColor.mainColor, // نفس لون الخلفية
+        statusBarColor: Color(0xFF7e2670), // نفس لون الخلفية
         statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: AppColor.mainColor,
+        systemNavigationBarColor: Color(0xFF7e2670),
         systemNavigationBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
-        backgroundColor:  AppColor.mainColor,
+        backgroundColor: const Color(0xFF7e2670),
 
         body: SafeArea(
           child: WillPopScope(
@@ -125,7 +124,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                   Container(
                     height: MediaQuery.of(context).size.height ,
                     width: MediaQuery.of(context).size.width ,
-                    color: AppColor.overlayDark,
+                    color:const Color(0x80000000),
                     child: Center(
                       child: Container(
                         height: MediaQuery.of(context).size.height*0.3,
@@ -135,12 +134,12 @@ class _WebViewContainerState extends State<WebViewContainer> {
                           gradient: const LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [AppColor.white,AppColor.mainColor],
+                            colors: [Colors.white,Color(0xFF7e2670)],
                           ),
-                          border: Border.all(width: 1, color: AppColor.white),
+                          border: Border.all(width: 1, color: Colors.white),
                           boxShadow: const [
                             BoxShadow(
-                              color: AppColor.grey,
+                              color: Colors.grey,
                               blurRadius: 5, //soften the shadow
                               spreadRadius: 0, //extend the shadow
                               offset: Offset(
@@ -160,7 +159,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                                 width: 150,height: 150,
                                 child: Image.asset("assets/logo with out background.png",fit: BoxFit.fitWidth,),
                               ).animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1200.ms, color:   AppColor.mainColor)
+                                  .shimmer(duration: 1200.ms, color:  const Color(0xFF7e2670))
                                   .animate() // this wraps the previous Animate in another Animate
                                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                                   .slide(),
@@ -168,7 +167,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                               const Text(
                                 "جار التحميل...",
                                 style:  TextStyle(
-                                  color: AppColor.white,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15,
 
@@ -176,7 +175,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                                   letterSpacing: -1,
                                 ),
                               ) .animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1200.ms, color:  AppColor.mainColor)
+                                  .shimmer(duration: 1200.ms, color: const Color(0xFF7e2670))
                                   .animate() // this wraps the previous Animate in another Animate
                                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                                   .slide(),

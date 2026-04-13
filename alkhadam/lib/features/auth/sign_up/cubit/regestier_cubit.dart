@@ -16,7 +16,6 @@ import '../../../webview/web_view.dart';
 import '../../data/auth_model.dart';
 import '../../verification_code/presentation/verification_code_screen.dart';
 import '../data/country_code_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 class RegisterCubit extends Cubit<RegisterStates> {
@@ -79,7 +78,7 @@ CountryCodeModel? countriesCodesData;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/3/mobile"),
+                  builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/3/mobile"),
                   settings: const RouteSettings(name: "webView"),
                 ),
               );
@@ -87,7 +86,7 @@ CountryCodeModel? countriesCodesData;
             child: Text(
               "privacy_policy".tr(),
               style: const TextStyle(
-                color: AppColor.mainColor,
+                color: Color(0xFF7E2670),
                 fontSize: 16,
                 decoration: TextDecoration.underline,
               ),
@@ -102,7 +101,7 @@ CountryCodeModel? countriesCodesData;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) =>  const WebViewContainer( "https://dohamaid.com/qa/ar/page/10/mobile"),
+                  builder: (_) =>  const WebViewContainer( "https://alkhadam.net/qa/ar/page/10/mobile"),
                   settings: const RouteSettings(name: "webView"),
                 ),
               );
@@ -110,7 +109,7 @@ CountryCodeModel? countriesCodesData;
             child: Text(
               "terms_conditions".tr(),
               style: const TextStyle(
-                color: AppColor.mainColor,
+                color: Color(0xFF7E2670),
                 fontSize: 16,
                 decoration: TextDecoration.underline,
               ),
@@ -161,17 +160,17 @@ CountryCodeModel? countriesCodesData;
         SnackBar(
           content: Row(
             children: [
-              const Icon(Icons.error_outline, color: AppColor.white),
+              const Icon(Icons.error_outline, color: Colors.white),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   e.toString(),
-                  style: const TextStyle(color: AppColor.white, fontSize: 16),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],
           ),
-          backgroundColor: AppColor.errorShade, // Error color
+          backgroundColor: Colors.red.shade600, // Error color
           duration: const Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -340,23 +339,23 @@ emit(RegisterLoaded());
                                     height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
-                                        color: AppColor.white,
+                                        color: Colors.white,
                                         boxShadow: const [
                                           BoxShadow(
-                                            color: AppColor.grey,
+                                            color: Colors.grey,
                                             blurRadius: 2,
                                             offset:
                                             Offset(1, 1), // Shadow position
                                           ),
                                         ],
                                         border: Border.all(
-                                            color:  AppColor.mainColor, width: 1)),
+                                            color:  Color(0xFF6A1B9A), width: 1)),
                                     child: Center(
                                       child: Icon(
                                         Icons.check_box,
                                         color: selectedCountryCode?.name==e.name
-                                            ?  AppColor.mainColor
-                                            : AppColor.white,
+                                            ?  Color(0xFF6A1B9A)
+                                            : Colors.white,
                                       ),
                                     ),
                                   ),
@@ -369,7 +368,7 @@ emit(RegisterLoaded());
                                     style: TextStyle(
                                       fontSize: 15.0,
 
-                                      color: AppColor.black,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],
@@ -378,7 +377,7 @@ emit(RegisterLoaded());
                                 "   ${e.code}    ",
                                 style: TextStyle(
                                   fontSize: 15.0,
-                                  color: AppColor.black,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -389,7 +388,7 @@ emit(RegisterLoaded());
                           e ==  countriesCodesData?.data?.last
                               ? const SizedBox()
                               : const Divider(
-                            color:  AppColor.mainColor,
+                            color:  Color(0xFF6A1B9A),
                             height: 1,
                             thickness: 1,
                             endIndent: 0,
@@ -437,17 +436,17 @@ emit(RegisterLoaded());
           SnackBar(
             content: Row(
               children: [
-                const Icon(Icons.error_outline, color: AppColor.white),
+                const Icon(Icons.error_outline, color: Colors.white),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                       authData?.data??"",
-                    style: const TextStyle(color: AppColor.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
             ),
-            backgroundColor: AppColor.errorShade, // Error color
+            backgroundColor: Colors.red.shade600, // Error color
             duration: const Duration(seconds: 3),
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
@@ -465,17 +464,17 @@ emit(RegisterLoaded());
           SnackBar(
             content: Row(
               children: [
-                const Icon(Icons.check_circle_outline, color: AppColor.white),
+                const Icon(Icons.check_circle_outline, color: Colors.white),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     "register_success".tr(),
-                    style: const TextStyle(color: AppColor.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ],
             ),
-            backgroundColor: AppColor.successShade, // Success color
+            backgroundColor: Colors.green.shade600, // Success color
             duration: const Duration(milliseconds: 1500),
             behavior: SnackBarBehavior.floating, // For a cleaner look
             shape: RoundedRectangleBorder(
@@ -502,17 +501,17 @@ emit(RegisterLoaded());
         SnackBar(
           content: Row(
             children: [
-              const Icon(Icons.error_outline, color: AppColor.white),
+              const Icon(Icons.error_outline, color: Colors.white),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   e.toString(),
-                  style: const TextStyle(color: AppColor.white, fontSize: 16),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],
           ),
-          backgroundColor: AppColor.errorShade, // Error color
+          backgroundColor: Colors.red.shade600, // Error color
           duration: const Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(

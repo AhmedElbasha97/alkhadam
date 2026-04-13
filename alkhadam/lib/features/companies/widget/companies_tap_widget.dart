@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../worker_companies/data/worker_companies_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class CompaniesTapWidget extends StatelessWidget {
   const CompaniesTapWidget({super.key, required this.company, required this.onTap,});
@@ -20,7 +19,7 @@ class CompaniesTapWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color:  AppColor.secondaryColor, width: 2),
+        border: Border.all(color: const Color(0xFF8E2393), width: 2),
       ),
       child: Row(
         children: [
@@ -53,17 +52,17 @@ class CompaniesTapWidget extends StatelessWidget {
                   height: 110,
                   width: 110,
                   decoration: BoxDecoration(
-                    color:  AppColor.cardSoft,
+                    color: const Color(0xFFF2F0F3),
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColor.black.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.1),
                         offset: const Offset(0.0, 0.0),
                         blurRadius: 13.0,
                         spreadRadius: 2.0,
                       ),
                       BoxShadow(
-                        color: AppColor.white.withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.2),
                         offset: const Offset(0.0, 0.0),
                       ),
                     ],
@@ -73,7 +72,7 @@ class CompaniesTapWidget extends StatelessWidget {
                       height: 110,
                       width: 110,
                       decoration: BoxDecoration(
-                        color:  AppColor.borderSoft,
+                        color: const Color(0xFFDFDDDF),
                         borderRadius: BorderRadius.circular(15),
                       ),
                     )
@@ -112,7 +111,7 @@ class CompaniesTapWidget extends StatelessWidget {
                   company?.name??"",
                   style: const TextStyle(
                     fontSize: 18,
-                    color: AppColor.secondaryColor,
+                    color: Color(0xFF8E2393),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -121,7 +120,7 @@ class CompaniesTapWidget extends StatelessWidget {
                   "${company?.workers} ${"worker_suffix".tr()}",
                   style: const TextStyle(
                     fontSize: 14,
-                    color: AppColor.black87,
+                    color: Colors.black87,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -139,13 +138,13 @@ class CompaniesTapWidget extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color:  AppColor.secondaryColor,
+                            color: const Color(0xFF8E2393),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child:  Text(
                             "more_button".tr(),
                             style: const TextStyle(
-                              color: AppColor.white,
+                              color: Colors.white,
                               fontSize: 14,
                             ),
                           ),

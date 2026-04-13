@@ -34,7 +34,7 @@
         tools:ignore="ScopedStorage" />
 
     <application
-        android:label="Doha Maid"
+        android:label="alkhadam"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"

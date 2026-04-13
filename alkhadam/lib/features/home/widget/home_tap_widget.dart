@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class HomeTapWidget extends StatelessWidget {
   const HomeTapWidget({super.key, required this.title, required this.icon, required this.onTap});
@@ -17,12 +16,12 @@ class HomeTapWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [AppColor.mainColor, AppColor.actionGreen],
+            colors: [Color(0xFF8E24AA), Color(0xFF6A1B9A)],
           ),
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: AppColor.purple.withOpacity(0.2),
+              color: Colors.purple.withOpacity(0.2),
               blurRadius: 6,
               offset: const Offset(0, 2),
             )
@@ -31,7 +30,7 @@ class HomeTapWidget extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: AppColor.white.withOpacity(0.2),
+              backgroundColor: Colors.white.withOpacity(0.2),
               radius: 22,
               child: Image.asset(icon, ),
             ),
@@ -40,14 +39,14 @@ class HomeTapWidget extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  color: AppColor.white,
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
             const SizedBox(width: 12),
-            const Icon(Icons.arrow_forward_ios, color: AppColor.white, size: 20),
+            const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 20),
           ],
         ),
       ),

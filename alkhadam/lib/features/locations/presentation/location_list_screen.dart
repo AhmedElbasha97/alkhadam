@@ -11,7 +11,6 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/location_list_cubit.dart';
 import '../cubit/booking_list_state.dart';
 import '../data/location_list_model.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 class LocationListScreen extends StatelessWidget {
   const LocationListScreen({super.key});
@@ -22,7 +21,7 @@ class LocationListScreen extends StatelessWidget {
       create: (_) => LocationListCubit()..getBookingList(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:  AppColor.appBarBackground,
+          backgroundColor: const Color(0xFFdcdbdb),
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -30,7 +29,7 @@ class LocationListScreen extends StatelessWidget {
           ),
           centerTitle: true,
           leading:IconButton(
-              icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -56,10 +55,10 @@ class LocationListScreen extends StatelessWidget {
               }        ),
           actions:[IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
+          }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
         ),
         body: Container(
-          color:  AppColor.surfaceLight,
+          color: const Color(0xFFE9EDF2),
           child: BlocBuilder<LocationListCubit, LocationListState>(
             builder: (context, state) {
               if (state is LocationListLoading) {
@@ -121,11 +120,11 @@ class _LocationCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: AppColor.black.withOpacity(0.08),
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 14,
             offset: const Offset(0, 8),
           ),
@@ -147,7 +146,7 @@ class _LocationCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
@@ -160,7 +159,7 @@ class _LocationCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColor.black54,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
@@ -223,10 +222,10 @@ class _LocationMapPreview extends StatelessWidget {
       width: 98,
       height: 98,
       decoration: BoxDecoration(
-        color:  AppColor.locationChipBackground,
+        color: const Color(0xFFE8EBF0),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Icon(Icons.location_on, color: AppColor.locationIcon, size: 32),
+      child: const Icon(Icons.location_on, color: Color(0xFF6F4AD7), size: 32),
     );
   }
 }

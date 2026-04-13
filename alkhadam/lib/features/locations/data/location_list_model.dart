@@ -106,9 +106,9 @@ bool get hasValidCoordinates => latitude != null && longitude != null;
 
 double? _parseCoordinate({required int index}) {
   final parts = location?.split(',');
-  if ((parts?.length??0) < 2) return null;
+  if (parts!.length < 2) return null;
 
-  return double.tryParse(parts?[index]?.trim() ?? '');
+  return double.tryParse(parts[index].trim());
 }
 
 static List<int> _parseServices(dynamic raw) {

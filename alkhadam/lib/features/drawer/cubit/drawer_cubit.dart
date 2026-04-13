@@ -142,7 +142,7 @@ class DrawerCubit extends Cubit<DrawerState> {
       case "about_us":
         _navigateIfNotOpen(
           context,
-          screen: const WebViewContainer( "https://dohamaid.com/qa/ar/page/11/mobile"),
+          screen: const WebViewContainer( "https://alkhadam.net/qa/ar/page/11/mobile"),
           routeName: "WebViewContainer",
         );
         break;
@@ -150,7 +150,7 @@ class DrawerCubit extends Cubit<DrawerState> {
       case "team":
         _navigateIfNotOpen(
           context,
-          screen: const WebViewContainer( "https://dohamaid.com/qa/ar/page/4/mobile"),
+          screen: const WebViewContainer( "https://alkhadam.net/qa/ar/page/4/mobile"),
           routeName: "WebViewContainer",
         );
         break;
@@ -219,14 +219,14 @@ class DrawerCubit extends Cubit<DrawerState> {
         case "termsAndCondition":
         _navigateIfNotOpen(
           context,
-          screen: const WebViewContainer( "https://dohamaid.com/qa/ar/page/10/mobile"),
+          screen: const WebViewContainer( "https://alkhadam.net/qa/ar/page/10/mobile"),
           routeName: "WebViewContainer",
         );
         break;
         case "privacyPolicy":
           _navigateIfNotOpen(
             context,
-            screen: const WebViewContainer( "https://dohamaid.com/qa/ar/page/3/mobile"),
+            screen: const WebViewContainer( "https://alkhadam.net/qa/ar/page/3/mobile"),
             routeName: "WebViewContainer",
           );
         break;
@@ -235,7 +235,7 @@ class DrawerCubit extends Cubit<DrawerState> {
       case "news":
         _navigateIfNotOpen(
           context,
-          screen: const WebViewContainer( "https://dohamaid.com/qa/ar/news"),
+          screen: const WebViewContainer( "https://alkhadam.net/qa/ar/news"),
           routeName: "WebViewContainer",
         );
         break;
@@ -244,7 +244,7 @@ class DrawerCubit extends Cubit<DrawerState> {
       case "contact":
         _navigateIfNotOpen(
           context,
-          screen: const WebViewContainer( "https://dohamaid.com/qa/ar/contact/mobile"),
+          screen: const WebViewContainer( "https://alkhadam.net/qa/ar/contact/mobile"),
           routeName: "WebViewContainer",
         );
         break;

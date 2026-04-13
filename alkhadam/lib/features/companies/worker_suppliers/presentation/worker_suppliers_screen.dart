@@ -11,7 +11,6 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/worker_suppliers_cubit.dart';
 import '../cubit/worker_suppliers_state.dart';
-import 'package:alkhadam/core/config/app_color.dart';
 
 
 
@@ -53,7 +52,7 @@ class _WorkerSuppliersScreenState extends State<WorkerSuppliersScreen>
     return  Scaffold(
 
       appBar:AppBar(
-        backgroundColor:  AppColor.appBarBackground,
+        backgroundColor: const Color(0xFFdcdbdb),
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -61,7 +60,7 @@ class _WorkerSuppliersScreenState extends State<WorkerSuppliersScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -87,7 +86,7 @@ class _WorkerSuppliersScreenState extends State<WorkerSuppliersScreen>
             }        ),
         actions:[ IconButton(onPressed: (){
     Navigator.maybePop(context);
-    }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor))],
+    }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A)))],
       ),
 
       body: BlocBuilder<WorkerSuppliersCubit, WorkerSuppliersState>(
