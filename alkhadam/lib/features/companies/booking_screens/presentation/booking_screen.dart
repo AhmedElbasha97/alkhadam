@@ -11,9 +11,10 @@ import '../cubit/booking_state.dart';
 import '../data/booking_category_model.dart';
 import '../../location_selection/presentation/location_selection_screen.dart';
 import '../widget/date_picker_sheet.dart';
+import '../widget/option_chips.dart';
 import '../widget/services_tile.dart';
 import '../widget/time_picker_sheet.dart';
-part'../widget/option_chips.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 class BookingScreen extends StatefulWidget {
    const BookingScreen({super.key, required this.servicesId});
  final  String servicesId;
@@ -28,7 +29,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
 
     final cubit = context.read<BookingCubit>();
-;
+
    cubit.initDefaultDate(widget.servicesId);
   }
 
@@ -44,9 +45,9 @@ class _BookingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.white,
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -54,7 +55,7 @@ class _BookingView extends StatelessWidget {
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -80,7 +81,7 @@ class _BookingView extends StatelessWidget {
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
       ),
       body: BlocBuilder<BookingCubit, BookingStates>(
         builder: (context, state) {
@@ -94,7 +95,7 @@ class _BookingView extends StatelessWidget {
 
           if (state is BookingLoadedState ) {
             final cubit = context.read<BookingCubit>();
-;
+
             if ((cubit.bookingWorkers?.data?.isEmpty??true) ||
                 (cubit.bookingHours?.data?.isEmpty??true) ||
                 (cubit.bookingServices?.data?.isEmpty??true) ||
@@ -103,113 +104,140 @@ class _BookingView extends StatelessWidget {
               return const NoDataWidget();
             } else {
               final cubit = context.read<BookingCubit>();
-              return SafeArea(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _DateField(
-                        formatted: cubit.formattedDate.isEmpty
-                            ? 'Fri, 23 Jan 26'
-                            : cubit.formattedDate,
-                        onTap: () => _showDatePicker(context, state,cubit),
-                      ),
-                      const SizedBox(height: 24),
-                      _SectionLabel(label: "numberOfProviders".tr()),
-                      const SizedBox(height: 8),
-                  Row(
-                    children: cubit.bookingWorkers?.data?.map((v) {
-                      return OptionChips(
-                        option: v,
-                        selected: cubit.selectedWorkers == v,
-                        onSelect: (v) {
-                            cubit
-                                .setProviderCount(v);
+              return GestureDetector(
 
-                            },
-                      );
-                    }).toList()??[SizedBox()],
+                    onTap: () => context.read<BookingCubit>().unFocusText(),
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _DateField(
+                          formatted: cubit.formattedDate.isEmpty
+                              ? 'Fri, 23 Jan 26'
+                              : cubit.formattedDate,
+                          onTap: () => _showDatePicker(context, state,cubit),
+                        ),
+                        const SizedBox(height: 24),
+                        _SectionLabel(label: "numberOfProviders".tr()),
+                        const SizedBox(height: 8),
+                    Row(
+                      children: cubit.bookingWorkers?.data?.map((v) {
+                        return OptionChips(
+                          option: v,
+                          selected: cubit.selectedWorkers == v,
+                          onSelect: (v) {
+                              cubit
+                                  .setProviderCount(v);
 
-                      ),
-                      const SizedBox(height: 20),
-                      _SectionLabel(label: "cleaningHours".tr()),
-                      const SizedBox(height: 8),
-                  Row(
-                    children:  cubit.bookingHours?.data?.map((v) {
-                     return OptionChips(
-                        option: v,
-                        selected: cubit.selectedHours == v,
-                        onSelect: (v) =>
-                            cubit
-                                .setCleaningHours(v),
-                      )
-                      ;
-                    }).toList()??[SizedBox()],
+                              },
+                        );
+                      }).toList()??[SizedBox()],
 
-
-                      ),
-                      const SizedBox(height: 20),
-                      _SectionLabel(label: "arrivalTime".tr()),
-                      const SizedBox(height: 8),
-                      _TimeField(
-                        value: cubit.arrivalTime ??
-                            Datum(name: "selectStartTime".tr(), id: 0),
-                        onTap: () => _showTimePicker(context,cubit),
-                      ),
-                      const SizedBox(height: 24),
-                      _SectionLabel(label: "services".tr()),
-                      const SizedBox(height: 12),
-                      GridView.count(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 1.6,
-                        children:
-                          cubit.bookingServices?.data?.map((e){
-                            return ServiceCard(
-                              label:e.name??"",
-                              icon: Icons.cleaning_services,
-                              selected: (cubit.selectedServices
-                                  .contains(e)),
-                              onTap: () =>
-                                  context
-                                      .read<BookingCubit>()
-                                      .toggleService(e),
-                            );
-                          }).toList()??[],
+                        ),
+                        const SizedBox(height: 20),
+                        _SectionLabel(label: "cleaningHours".tr()),
+                        const SizedBox(height: 8),
+                    Row(
+                      children:  cubit.bookingHours?.data?.map((v) {
+                       return OptionChips(
+                          option: v,
+                          selected: cubit.selectedHours == v,
+                          onSelect: (v) =>
+                              cubit
+                                  .setCleaningHours(v),
+                        )
+                        ;
+                      }).toList()??[SizedBox()],
 
 
-                      ),
+                        ),
+                        const SizedBox(height: 20),
+                        _SectionLabel(label: "arrivalTime".tr()),
+                        const SizedBox(height: 8),
+                        _TimeField(
+                          value: cubit.arrivalTime ??
+                              Datum(name: "selectStartTime".tr(), id: 0),
+                          onTap: () => _showTimePicker(context,cubit),
+                        ),
+                        const SizedBox(height: 24),
+                        _SectionLabel(label: "services".tr()),
+                        const SizedBox(height: 12),
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          childAspectRatio: 1.6,
+                          children:
+                            cubit.bookingServices?.data?.map((e){
+                              return ServiceCard(
+                                label:e.name??"",
+                                icon: Icons.cleaning_services,
+                                selected: (cubit.selectedServices
+                                    .contains(e)),
+                                onTap: () =>
+                                    context
+                                        .read<BookingCubit>()
+                                        .toggleService(e),
+                              );
+                            }).toList()??[],
 
-                      const SizedBox(height: 20),
-                      _SectionLabel(label: "yourNotes".tr()),
-                      const SizedBox(height: 8),
-                      TextField(
-                        maxLines: 4,
-                        controller: cubit.notes,
-                        decoration: InputDecoration(
-                          hintText: "yourNotes".tr(),
 
-                          hintStyle: const TextStyle(color: Color(0xFF757575)),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Color(0xFF8E2393))
-                          ),
-                          filled: true,
-                          fillColor: const Color(0xFFF2F2F2),
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 14),
                         ),
 
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _SectionLabel(label: "yourNotes".tr()),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:  AppColor.secondaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: () {
+
+
+                                context.read<BookingCubit>().unFocusText();
+
+
+                              },
+                              child: Text("done".tr(), style: const TextStyle(color: AppColor.white),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        TextField(
+                          focusNode: context.read<BookingCubit>().textFocusNode,
+                          maxLines: 4,
+                          controller: cubit.notes,
+                          decoration: InputDecoration(
+                            hintText: "yourNotes".tr(),
+
+                            hintStyle: const TextStyle(color: AppColor.textSecondaryDark),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.secondaryColor)
+                            ),
+                            filled: true,
+                            fillColor:  AppColor.cardLight,
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 14),
+                          ),
+
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -254,7 +282,7 @@ class _BookingView extends StatelessWidget {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColor.transparent,
       builder: (_) => DatePickerSheet(
         selectedDate: cubit.selectedDate,
         onDateSelected: (d) {
@@ -272,7 +300,7 @@ class _BookingView extends StatelessWidget {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColor.transparent,
       builder: (_) => TimePickerSheet(
         timeSlots:cubit.bookingTimes?.data,
         onTimeSelected: (t) {
@@ -300,7 +328,7 @@ class _SectionLabel extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF424242),
+            color: AppColor.textPrimaryDark,
           ),
         ),
         const SizedBox(width: 6),
@@ -318,7 +346,7 @@ class _DateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColor.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -327,17 +355,17 @@ class _DateField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Color(0xFFE0E0E0)),
+            border: Border.all(color: AppColor.mainColor),
           ),
           child: Row(
             children: [
-              const Icon(Icons.calendar_today, color:  Color(0xFF8E2393), size: 24),
+              const Icon(Icons.calendar_today, color:  AppColor.secondaryColor, size: 24),
               const SizedBox(width: 12),
               Text(
                 formatted,
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF424242),
+                  color: AppColor.textPrimaryDark,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -358,7 +386,7 @@ class _TimeField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: AppColor.white,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -367,11 +395,11 @@ class _TimeField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Color(0xFFE0E0E0)),
+            border: Border.all(color: AppColor.mainColor),
           ),
           child: Row(
             children: [
-              const Icon(Icons.access_time, color: Color(0xFF8E2393), size: 24),
+              const Icon(Icons.access_time, color: AppColor.secondaryColor, size: 24),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -379,8 +407,8 @@ class _TimeField extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     color: (value?.name?.contains('Select')??true) || (value?.name?.contains('اختر')??true)
-                        ? Color(0xFF757575)
-                        :Color(0xFF424242),
+                        ? AppColor.textSecondaryDark
+                        :AppColor.textPrimaryDark,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -402,10 +430,10 @@ class _BottomBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
+            color: AppColor.black.withValues(alpha: 0.06),
             blurRadius: 10,
             offset: const Offset(0, -4),
           ),
@@ -423,19 +451,19 @@ class _BottomBar extends StatelessWidget {
                     "total".tr(),
                     style: const TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF757575),
+                      color: AppColor.textSecondaryDark,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   BlocBuilder<BookingCubit, BookingStates>(
-                    buildWhen: (a, b) => cubit.totalPrice != cubit.totalPrice,
+                    buildWhen: (_, __) => true, // BUG FIX 11: was `cubit.totalPrice != cubit.totalPrice` (always false — same ref). Price display never updated.
                     builder: (context, state) {
                       return Text(
                         '${cubit.totalPrice} ${"currencyQAR".tr()}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color:  Color(0xFF424242),
+                          color:  AppColor.textPrimaryDark,
                         ),
                       );
                     },
@@ -449,13 +477,13 @@ class _BottomBar extends StatelessWidget {
               child:  cubit.checkingThePrice?  Container(
                   width:screenWidth(context)*0.24,
                   height:screenHeight(context)*0.07,
-                  decoration: const BoxDecoration( color:  Color(0xFF7E2670), shape: BoxShape.circle ),
+                  decoration: const BoxDecoration( color:  AppColor.mainColor, shape: BoxShape.circle ),
                   child: const Padding( padding: EdgeInsets.all(8.0),
-                    child: Center( child: CircularProgressIndicator(color: Colors.white, ), ),)
+                    child: Center( child: CircularProgressIndicator(color: AppColor.white, ), ),)
               )
                   :ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8E2393),
+                  backgroundColor:  AppColor.secondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -467,7 +495,7 @@ class _BottomBar extends StatelessWidget {
 
 
                 },
-                child: Text("next".tr(), style: const TextStyle(color: Colors.white),
+                child: Text("next".tr(), style: const TextStyle(color: AppColor.white),
               ),
               ),
             ),

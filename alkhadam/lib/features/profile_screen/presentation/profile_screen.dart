@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/data/datasources/api_service.dart';
+import '../../../core/presentation/cubit/localization_cubit.dart';
 import '../../../core/services/auth_services.dart';
 import '../../drawer/cubit/drawer_cubit.dart';
 import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
 import '../data/profile_model.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -25,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
       create: (_) => ProfileCubit(AuthServices(ApiService()))..loadProfile(),
       child: Scaffold(
         appBar:AppBar(
-          backgroundColor: const Color(0xFFdcdbdb),
+          backgroundColor:  AppColor.appBarBackground,
           elevation: 3,
           title: Image.asset(
             "assets/logo with out background.png",
@@ -34,9 +36,9 @@ class ProfileScreen extends StatelessWidget {
           centerTitle: true,
           leading:IconButton(onPressed: (){
             Navigator.maybePop(context);
-          }, icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFF6A1B9A))),
+          }, icon: const Icon(Icons.arrow_back_ios, color:  AppColor.mainColor)),
           actions:[ IconButton(
-              icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+              icon: const Icon(Icons.menu, color:  AppColor.mainColor),
               onPressed: (){
                 // inside any widget with context:
                 showGeneralDialog(
@@ -91,15 +93,16 @@ class ProfileScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          _animatedHeader(),
+          _animatedHeader(context),
           const SizedBox(height: 24),
 
 
           _glassCard(children: [
-            _infoRow(Icons.person, "name".tr(), profile?.name ?? ""),
-            _infoRow(Icons.email_outlined, "email".tr(), profile?.email ?? ""),
-            _infoRow(Icons.phone, "phone".tr(), profile?.mobile ?? "not_available".tr()),
-            _infoRow(Icons.calendar_today, "created_at".tr(), profile?.createdAt ?? ""),
+            _infoRow(Icons.person, "name".tr(), profile?.name ?? "",context),
+            _infoRow(Icons.email_outlined, "email".tr(), profile?.email ?? "",context),
+            _infoRow(Icons.phone, "phone".tr(), profile?.mobile ?? "not_available".tr(),context),
+            _infoRow(Icons.calendar_today, "created_at".tr(), context.read<ProfileCubit>().getYearFromIsoString(profile?.createdAt ?? ""),context),
+            _infoRow(Icons.monetization_on, "credit".tr(),"${profile?.credit ?? ""} ${"currency".tr()}",context),
           ]),
           const SizedBox(height: 30),
 
@@ -126,12 +129,12 @@ Widget _glassCard({required List<Widget> children}) {
         width: double.infinity,
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(25),
-          border: Border.all(color: Colors.white.withOpacity(0.3)),
+          border: Border.all(color: AppColor.white.withOpacity(0.3)),
           boxShadow: const [
             BoxShadow(
-              color: Colors.black12,
+              color: AppColor.black12,
               blurRadius: 12,
               offset: Offset(0, 4),
             )
@@ -145,7 +148,7 @@ Widget _glassCard({required List<Widget> children}) {
 
 
 // ========== Info Row ==========
-Widget _infoRow(IconData icon, String title, String value) {
+Widget _infoRow(IconData icon, String title, String value,BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10),
     child: Row(
@@ -153,19 +156,24 @@ Widget _infoRow(IconData icon, String title, String value) {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color:const Color(0xFF7E2670).withOpacity(0.1),
+            color: AppColor.mainColor.withOpacity(0.1),
 
             borderRadius: BorderRadius.circular(14),
           ),
-          child: Icon(icon, color: const Color(0xFF7E2670), size: 22),
+          child: Icon(icon, color:  AppColor.mainColor, size: 22),
         ),
         const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: const TextStyle(fontSize: 13, color: Colors.black54)),
-              Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              Text(title, style:  TextStyle(
+                fontSize: 13,
+                color: AppColor.black54,
+                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+              )),
+              Text(value, style:  TextStyle(fontSize: 16, fontWeight: FontWeight.w600,
+                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",)),
             ],
           ),
         ),
@@ -180,7 +188,7 @@ Widget _logoutButton(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-      backgroundColor: Colors.redAccent,
+      backgroundColor: AppColor.redAccent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       elevation: 4,
     ),
@@ -195,12 +203,12 @@ Widget _logoutButton(BuildContext context) {
     child:  Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.logout, color: Colors.white),
+        const Icon(Icons.logout, color: AppColor.white),
         const SizedBox(width: 10),
         Text(
             "logout".tr()
           ,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
         ),
       ],
     ),
@@ -212,7 +220,7 @@ Widget _deleteButton(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-      backgroundColor: Colors.redAccent,
+      backgroundColor: AppColor.redAccent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       elevation: 4,
     ),
@@ -228,19 +236,19 @@ Widget _deleteButton(BuildContext context) {
     child:  Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.delete, color: Colors.white),
+        const Icon(Icons.delete, color: AppColor.white),
         const SizedBox(width: 10),
         Text(
             "delete_title".tr()
           ,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
         ),
       ],
     ),
   );
 }
 // ========== Animated Header with Gradient ==========
-Widget _animatedHeader() {
+Widget _animatedHeader(BuildContext context) {
   return TweenAnimationBuilder(
     tween: Tween<double>(begin: 0, end: 1),
     duration: const Duration(milliseconds: 900),
@@ -256,14 +264,14 @@ Widget _animatedHeader() {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF8E24AA), Color(0xFF6A1B9A)],
+          colors: [AppColor.secondaryColor, AppColor.mainColor],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
         borderRadius: BorderRadius.circular(22),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF7E2670).withOpacity(0.25),
+            color:  AppColor.mainColor.withOpacity(0.25),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -273,8 +281,9 @@ Widget _animatedHeader() {
         child: Text(
             "profile_title".tr()
           ,
-          style: const TextStyle(
-            color: Colors.white,
+          style:  TextStyle(
+            color: AppColor.white,
+            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),

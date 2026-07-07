@@ -10,6 +10,7 @@ import '../../home/presentation/home_screen.dart';
 import '../cubit/welcome_cuibit.dart';
 import '../cubit/welcome_state.dart';
 import '../widget/button_widget.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -37,64 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                onTap: (){
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => const HomeScreen(),
-                                        settings: const RouteSettings(name: "HomeScreen"),)
-                                  );
-                                },
-                                child:  Row(
-                                  children: [
-                                    Container(
 
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-
-                                      ),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Container(
-
-                                            decoration: BoxDecoration(
-                                              color: const Color(0xFF7E2670),
-
-                                              borderRadius: BorderRadius.circular(50),
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  color: Colors.grey,
-                                                  blurRadius: 2,
-                                                  offset: Offset(1, 1), // Shadow position
-                                                ),
-                                              ],
-                                            ),
-                                            child: const Center(
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(4.0),
-                                                  child: Icon(Icons.home,color: Colors.white,size: 15,),
-                                                )
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10,),
-                                  Text("skipToHomeBTN".tr(),
-                                      textAlign: TextAlign.center,
-                                      style:  const TextStyle(
-
-                               color: Color(0xFF7E2670),
-
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 13),),
-
-
-                                  ],
-                                ),
-                              ),
                               InkWell(
                                 onTap: (){
                                   context.read<LocalizationCubit>().toggleLanguage(context);
@@ -111,9 +55,10 @@ class WelcomeScreen extends StatelessWidget {
 
                                     Text("languageWelcomeBTN".tr(),
                                       textAlign: TextAlign.center,
-                                      style:  const TextStyle(
+                                      style:   TextStyle(
+                                          fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
 
-                                          color: Color(0xFF7E2670),
+                                          color: AppColor.mainColor,
                                           fontWeight: FontWeight.w800,
                                           fontSize: 15),),
                                     const SizedBox(width: 10,),
@@ -130,10 +75,10 @@ class WelcomeScreen extends StatelessWidget {
 
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(50),
-                                              color: const Color(0xFF7E2670),
+                                              color:  AppColor.mainColor,
                                               boxShadow: const [
                                                 BoxShadow(
-                                                  color: Colors.grey,
+                                                  color: AppColor.grey,
                                                   blurRadius: 2,
                                                   offset: Offset(1, 1), // Shadow position
                                                 ),
@@ -142,7 +87,7 @@ class WelcomeScreen extends StatelessWidget {
                                             child: const Center(
                                                 child: Padding(
                                                   padding: EdgeInsets.all(4.0),
-                                                  child: Icon(Icons.translate,color: Colors.white,size: 15,),
+                                                  child: Icon(Icons.translate,color: AppColor.white,size: 15,),
                                                 )
                                             ),
                                           ),
@@ -176,11 +121,11 @@ class WelcomeScreen extends StatelessWidget {
                             children: [
                               const SizedBox(height: 20),
                               Text(
-                                  "welcome_title".tr(),
+                                "welcome_title".tr(),
 
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color: Colors.black,
+                                  color: AppColor.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -214,7 +159,17 @@ class WelcomeScreen extends StatelessWidget {
                                       builder: (_) => const RegisterScreen(),
                                       settings: const RouteSettings(name: "RegisterScreen"),)
                                 ),
+                              ), const SizedBox(height: 12),
+                              buildButton(
+                                context,
+                                text:"skipToHomeBTN".tr(),
+                                onTap: () =>  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const HomeScreen(),
+                                      settings: const RouteSettings(name: "HomeScreen"),)
                                 ),
+                              ),
 
                             ],
                           ),

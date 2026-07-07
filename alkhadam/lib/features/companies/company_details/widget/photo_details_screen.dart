@@ -8,6 +8,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 
 import '../../../../core/utils/responsive.dart';
 import '../../../../loader.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class PhotoDetailedScreen extends StatefulWidget {
@@ -59,7 +60,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
 
                 zoomEnabled: true,
                 child: CachedNetworkImage(
-                  color: Colors.grey.withOpacity(0.5),
+                  color: AppColor.grey.withOpacity(0.5),
                   imageUrl:   widget.index == -1?(widget.link?[0]??""):(widget.link?[activeIndex]??""),
                   imageBuilder: ((context, image){
                     return  Container(
@@ -112,7 +113,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.clear_outlined,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppColor.mainColor,
                   size: 50,
                 ),
               )),
@@ -124,7 +125,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 height:screenHeight(context)*0.04,
                 decoration:BoxDecoration(
                   borderRadius:BorderRadius.circular(20),
-                  color: const Color(0xFF6A1B9A).withOpacity(0.65),
+                  color: AppColor.mainColor.withOpacity(0.65),
                 ),
                 child:Center(
                   child: Row(
@@ -137,7 +138,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                           fontSize: 12,
                           letterSpacing: 0,
 
-                          color: Colors.white,
+                          color: AppColor.white,
                         ),
                       ),
                       const SizedBox(
@@ -145,7 +146,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                       ),
                       const Icon(
                         Icons.image,
-                        color: Colors.white,
+                        color: AppColor.white,
                         size: 17,
                       ),
                     ],
@@ -163,7 +164,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.arrow_back_ios_new_sharp,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppColor.mainColor,
                   size: 50,
                 ),
               )):const SizedBox(),
@@ -176,7 +177,7 @@ class _PhotoDetailedScreenState extends State<PhotoDetailedScreen> {
                 },
                 child:  const Icon(
                   Icons.arrow_forward_ios_sharp,
-                  color:  Color(0xFF6A1B9A),
+                  color:  AppColor.mainColor,
                   size: 50,
                 ),
               )):const SizedBox(),

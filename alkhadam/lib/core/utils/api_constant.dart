@@ -1,6 +1,7 @@
 class ApiConstant {
   static String baseUrl = "https://api.alkhadam.net/";
   static String regesteirLink = "register";//post
+    static String getUserBalance = "balance";//get
   static String loginLink = "login";//post
   static String profileLink = "user";//post
   static String checkingOtpLink = "otp";//post
@@ -25,5 +26,8 @@ class ApiConstant {
 
   static String bookingListLink = "booking/list";//get
   static String locationListLink = "locations";//get
+  static String checkerForHomeLink = "sections/status";//get
+  static String bookingCancelStatusLink = "booking/cancel/status";//get
+ static String bookingCancelLink = "booking/cancel";//get
 
 }

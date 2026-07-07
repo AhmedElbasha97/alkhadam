@@ -11,6 +11,8 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/nursing_companies_cubit.dart';
 import '../cubit/nursing_companies_state.dart';
+import 'package:alkhadam/core/config/app_color.dart';
+import '../../widget/companies_search_bar.dart';
 
 
 
@@ -27,6 +29,7 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
 
   late AnimationController controller;
   final ScrollController scrollController = ScrollController();
+  final TextEditingController _searchCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -48,11 +51,19 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
   final GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
 
   @override
+  void dispose() {
+    controller.dispose();
+    scrollController.dispose();
+    _searchCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return  Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -60,7 +71,7 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -87,11 +98,20 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
         ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
       ),
 
-      body: BlocBuilder<NursingCompaniesCubit, NursingCompaniesState>(
-        builder: (context, state) {
+      body: Column(
+        children: [
+          CompaniesSearchBar(
+            controller: _searchCtrl,
+            hintKey: 'search_companies_hint',
+            onChanged: (q) => context.read<NursingCompaniesCubit>().search(q,context),
+            onCleared: () => context.read<NursingCompaniesCubit>().search('',context),
+          ),
+          Expanded(
+            child: BlocBuilder<NursingCompaniesCubit, NursingCompaniesState>(
+              builder: (context, state) {
 
           if (state is NursingCompaniesLoading) {
             return const Loader();
@@ -103,21 +123,26 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
 
           if (state is NursingCompaniesLoaded || state is NursingCompaniesLoadingMore) {
             final cubit = context.read<NursingCompaniesCubit>();
-            if (cubit.nursingCompanies?.isEmpty??true) {
+            final displayed = (state is NursingCompaniesLoaded
+                ? state.displayedCompanies
+                : (state as NursingCompaniesLoadingMore).displayedCompanies) ??
+                cubit.nursingCompanies ??
+                [];
+            if (displayed.isEmpty) {
               return const NoDataWidget();
             } else {
               return SafeArea(
               child: ListView.builder(
                 controller: scrollController,
                 padding: const EdgeInsets.all(16),
-                itemCount: (cubit.nursingCompanies?.length ?? 0) +
+                itemCount: (displayed.length) +
                     (cubit.hasMore? 1 : 0),
                 itemBuilder: (context, index) {
-                  if (index == cubit.nursingCompanies?.length) {
+                  if (index == displayed.length&&cubit.isLoadingMore ) {
                     return const CompaniesMoreDataLoader();
                   }
 
-                  final item = cubit.nursingCompanies?[index];
+                  final item = displayed[index];
 
                   return AnimatedBuilder(
                     animation: controller,
@@ -156,9 +181,12 @@ class _NursingCompaniesScreenState extends State<NursingCompaniesScreen>
           }
           }
 
-          return const SizedBox();
+          return const SizedBox.shrink();
         },
       ),
+      ),
+        ],
+    ),
     );
   }
 

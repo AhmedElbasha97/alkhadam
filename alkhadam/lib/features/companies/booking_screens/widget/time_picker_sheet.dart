@@ -1,7 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
+import  'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../data/booking_category_model.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 
 class TimePickerSheet extends StatelessWidget {
@@ -21,7 +22,7 @@ class TimePickerSheet extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: SafeArea(
@@ -34,7 +35,7 @@ class TimePickerSheet extends StatelessWidget {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color:  Color(0xFF8E2393),
+                color:  AppColor.secondaryColor,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -44,7 +45,7 @@ class TimePickerSheet extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color:Color(0xFF424242),
+                color:AppColor.textPrimaryDark,
               ),
             ),
             const SizedBox(height: 24),
@@ -63,21 +64,21 @@ class TimePickerSheet extends StatelessWidget {
                 itemBuilder: (context, i) {
                   final slot = timeSlots?[i];
                   return Material(
-                    color: Colors.transparent,
+                    color: AppColor.transparent,
                     child: InkWell(
                       onTap: () => onTimeSelected(slot),
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color:  Color(0xFF8E2393)),
+                          border: Border.all(color:  AppColor.secondaryColor),
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           slot?.name??"",
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
-                            color:  Color(0xFF8E2393),
+                            color:  AppColor.secondaryColor,
                             fontSize: 16,
                           ),
                         ),

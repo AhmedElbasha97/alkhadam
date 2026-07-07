@@ -5,7 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/presentation/cubit/localization_cubit.dart';
 import '../worker_companies/data/worker_companies_model.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class CompaniesTapWidget extends StatelessWidget {
   const CompaniesTapWidget({super.key, required this.company, required this.onTap,});
@@ -19,7 +22,7 @@ class CompaniesTapWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFF8E2393), width: 2),
+        border: Border.all(color:  AppColor.mainColor, width: 2),
       ),
       child: Row(
         children: [
@@ -52,17 +55,17 @@ class CompaniesTapWidget extends StatelessWidget {
                   height: 110,
                   width: 110,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF2F0F3),
+                    color:  AppColor.cardSoft,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: AppColor.black.withOpacity(0.1),
                         offset: const Offset(0.0, 0.0),
                         blurRadius: 13.0,
                         spreadRadius: 2.0,
                       ),
                       BoxShadow(
-                        color: Colors.white.withOpacity(0.2),
+                        color: AppColor.white.withOpacity(0.2),
                         offset: const Offset(0.0, 0.0),
                       ),
                     ],
@@ -72,7 +75,7 @@ class CompaniesTapWidget extends StatelessWidget {
                       height: 110,
                       width: 110,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFDFDDDF),
+                        color:  AppColor.borderSoft,
                         borderRadius: BorderRadius.circular(15),
                       ),
                     )
@@ -109,18 +112,21 @@ class CompaniesTapWidget extends StatelessWidget {
               children: [
                 Text(
                   company?.name??"",
-                  style: const TextStyle(
+                  style:  TextStyle(
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
                     fontSize: 18,
-                    color: Color(0xFF8E2393),
+                    color: AppColor.secondaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   "${company?.workers} ${"worker_suffix".tr()}",
-                  style: const TextStyle(
+
+                  style:  TextStyle(
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
                     fontSize: 14,
-                    color: Colors.black87,
+                    color: AppColor.black87,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -128,6 +134,7 @@ class CompaniesTapWidget extends StatelessWidget {
                 Align(
                   alignment: StorageLocalDataSource.instance.getSavedLocaleCode() == "en"?Alignment.centerRight:Alignment.centerLeft,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
                         onTap:onTap,
@@ -138,13 +145,14 @@ class CompaniesTapWidget extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF8E2393),
+                            color:  AppColor.mainColor,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child:  Text(
                             "more_button".tr(),
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style:  TextStyle(
+                              fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                              color: AppColor.white,
                               fontSize: 14,
                             ),
                           ),

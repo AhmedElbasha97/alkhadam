@@ -1,4 +1,4 @@
-import 'package:alkhadam/loader.dart';
+import  'package:alkhadam/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../widget/no_data_widget.dart';
@@ -10,6 +10,8 @@ import '../../widget/companies_more_data_loader.dart';
 import '../../widget/companies_tap_widget.dart';
 import '../cubit/worker_companies_cubit.dart';
 import '../cubit/worker_companies_states.dart';
+import 'package:alkhadam/core/config/app_color.dart';
+import '../../widget/companies_search_bar.dart';
 
 
 class WorkerCompaniesScreen extends StatefulWidget {
@@ -24,6 +26,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
 
   late AnimationController controller;
   final ScrollController scrollController = ScrollController();
+  final TextEditingController _searchCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -45,11 +48,19 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    scrollController.dispose();
+    _searchCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       appBar:AppBar(
-        backgroundColor: const Color(0xFFdcdbdb),
+        backgroundColor:  AppColor.appBarBackground,
         elevation: 3,
         title: Image.asset(
           "assets/logo with out background.png",
@@ -57,7 +68,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
         ),
         centerTitle: true,
         leading:IconButton(
-            icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
+            icon: const Icon(Icons.menu, color:  AppColor.mainColor),
             onPressed: (){
               // inside any widget with context:
               showGeneralDialog(
@@ -83,11 +94,20 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
             }        ),
         actions:[IconButton(onPressed: (){
           Navigator.maybePop(context);
-        }, icon: const Icon(Icons.arrow_forward_ios, color:  Color(0xFF6A1B9A))) ],
+        }, icon: const Icon(Icons.arrow_forward_ios, color:  AppColor.mainColor)) ],
       ),
 
-      body: BlocBuilder<WorkerCompaniesCubit, WorkerCompaniesState>(
-        builder: (context, state) {
+      body: Column(
+        children: [
+          CompaniesSearchBar(
+            controller: _searchCtrl,
+            hintKey: 'search_companies_hint',
+            onChanged: (q) => context.read<WorkerCompaniesCubit>().search(q,context),
+            onCleared: () => context.read<WorkerCompaniesCubit>().search('',context),
+          ),
+          Expanded(
+            child: BlocBuilder<WorkerCompaniesCubit, WorkerCompaniesState>(
+              builder: (context, state) {
 
           if (state is WorkerCompaniesLoading) {
             return const Loader();
@@ -99,21 +119,26 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
 
           if (state is WorkerCompaniesLoaded || state is WorkerCompaniesLoadingMore) {
             final cubit = context.read<WorkerCompaniesCubit>();
-           if (cubit.workerCompanies?.isEmpty??true) {
+            final displayed = (state is WorkerCompaniesLoaded
+                ? state.displayedCompanies
+                : (state as WorkerCompaniesLoadingMore).displayedCompanies) ??
+                cubit.workerCompanies ??
+                [];
+           if (displayed.isEmpty) {
               return const NoDataWidget();
             } else {
               return   SafeArea(
               child: ListView.builder(
                 controller: scrollController,
                 padding: const EdgeInsets.all(16),
-                itemCount: (cubit.workerCompanies?.length ?? 0) +
+                itemCount: (displayed.length) +
                     (cubit.hasMore ? 1 : 0),
                 itemBuilder: (context, index) {
-                  if (index == cubit.workerCompanies?.length) {
+                  if (index == displayed.length&&cubit.isLoadingMore ) {
                     return const CompaniesMoreDataLoader();
                   }
 
-                  final item = cubit.workerCompanies?[index];
+                  final item = displayed[index];
 
                   return AnimatedBuilder(
                     animation: controller,
@@ -151,9 +176,12 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
           }
           }
 
-          return const SizedBox();
+          return const SizedBox.shrink();
         },
       ),
+      ),
+        ],
+    ),
     );
 
   }

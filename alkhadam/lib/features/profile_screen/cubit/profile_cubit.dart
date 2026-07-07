@@ -13,6 +13,7 @@ import '../../auth/data/data_model.dart';
 import '../../home/presentation/home_screen.dart';
 import '../data/profile_model.dart';
 import '../presentation/profile_screen.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final AuthServices repo;
@@ -29,6 +30,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     });
 
     return isOpen;
+  }
+  String getYearFromIsoString(String dateString) {
+    try {
+      final dateTime = DateTime.parse(dateString);
+      return "${dateTime.year}";
+    } catch (e) {
+      // Fallback if the string is malformed
+      return "${DateTime.now().year}"  ;
+    }
   }
   void _navigateIfNotOpen(
       BuildContext context, {
@@ -79,7 +89,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           ? "logout_btn".tr()
           : "delete_btn".tr(),
       btnOkOnPress: onConfirm,
-      btnOkColor: isLogout ? Colors.orange : Colors.red,
+      btnOkColor: isLogout ? AppColor.orange : AppColor.red,
       showCloseIcon: true,
     ).show();
   }
@@ -136,9 +146,9 @@ class ProfileCubit extends Cubit<ProfileState> {
       SnackBar(
         content: Text(
           message,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: AppColor.white, fontSize: 16),
         ),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColor.green : AppColor.red,
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.all(16),
         duration: const Duration(milliseconds: 1500),
