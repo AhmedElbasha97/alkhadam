@@ -131,7 +131,7 @@ class _WorkerCompaniesScreenState extends State<WorkerCompaniesScreen>
               child: ListView.builder(
                 controller: scrollController,
                 padding: const EdgeInsets.all(16),
-                itemCount: (displayed.length) +
+                itemCount: (displayed.length-1) +
                     (cubit.hasMore ? 1 : 0),
                 itemBuilder: (context, index) {
                   if (index == displayed.length&&cubit.isLoadingMore ) {

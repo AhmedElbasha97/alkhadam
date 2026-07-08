@@ -103,12 +103,12 @@ class HomeCubit extends Cubit<HomeState> {
 
      HomeModel? data = await HomeServices(ApiService()).getAllHomeTaps();
     var homeTapFixedData = [
-         Datum(id: 18,name: titles[5],active: 1,url: "cleaning services"),
-    Datum(id: 1,name: titles[0],active: 1,url: "WorkerCompaniesScreen"),
-    Datum(id: 2,name: titles[1],active: 1,url: "CleaningCompaniesScreen"),
-    Datum(id: 3,name: titles[2],active: 1,url: "AntiBugCompaniesScreen"),
-    Datum(id:4,name: titles[3],active: 1,url: "NursingCompaniesScreen"),
-    Datum(id: 8,name: titles[4],active: 1,url: "WorkerSuppliersScreen")];
+         Datum(id: 18,name: titles[5],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=3"),
+    Datum(id: 1,name: titles[0],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=2"),
+    Datum(id: 2,name: titles[1],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=3"),
+    Datum(id: 3,name: titles[2],active: 1,url:"https://alkhadam.net/qa/en/mobile/workers?type=9"),
+    Datum(id:4,name: titles[3],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=8"),
+    Datum(id: 8,name: titles[4],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=1")];
     List<Datum> homeListAfterChecking = [];
     for(var homeTap in homeTapFixedData){
       bool? checker = await homeTapChecker("${homeTap.id??0}");
