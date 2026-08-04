@@ -26,7 +26,8 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.light,
       scaffoldBackgroundColor: lightBackground,
-      fontFamily: locale.languageCode == 'ar' ? 'ElMessiri' : 'NotoSans',
+      fontFamily: 'Droid Arabic Kufi',
+      fontFamilyFallback: const ['serif'],
 
       // 👇 Global System UI Overlay (Status + Nav bar)
       appBarTheme: const AppBarTheme(
@@ -74,7 +75,8 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: darkBackground,
-      fontFamily: locale.languageCode == 'ar' ? 'ElMessiri' : 'NotoSans',
+      fontFamily: 'Droid Arabic Kufi',
+      fontFamilyFallback: const ['serif'],
 
       // 👇 Global System UI Overlay (Status + Nav bar)
       appBarTheme: const AppBarTheme(

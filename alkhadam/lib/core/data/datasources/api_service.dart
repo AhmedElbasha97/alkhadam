@@ -1,7 +1,8 @@
-// ignore_for_file: avoid_print
+import 'dart:io';
 
 import 'package:alkhadam/core/data/datasources/storage_local_data_source.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../utils/api_constant.dart';
@@ -15,14 +16,24 @@ class ApiService {
   ApiService._internal() : dio = Dio() {
     dio.options
       ..baseUrl = ApiConstant.baseUrl
-      ..connectTimeout = const Duration(seconds: 15)
-      ..receiveTimeout = const Duration(seconds: 15)
+      ..connectTimeout = const Duration(seconds: 10)
+      ..receiveTimeout = const Duration(seconds: 10)
       ..headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       };
 
-    // Logging
+    // ⚡ Connection pooling and HTTP keep-alive optimization
+    if (dio.httpClientAdapter is IOHttpClientAdapter) {
+      (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+        final client = HttpClient();
+        client.idleTimeout = const Duration(seconds: 30);
+        client.connectionTimeout = const Duration(seconds: 8);
+        return client;
+      };
+    }
+
+    // Logging in debug mode only
     assert(() {
       dio.interceptors.add(
         PrettyDioLogger(
@@ -39,16 +50,14 @@ class ApiService {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          // Always fetch latest token from SharedPreferences
           final token = StorageLocalDataSource.instance.getUserToken();
           final localLang = StorageLocalDataSource.instance.getSavedLocaleCode();
           if (token.isNotEmpty) {
             options.headers['Authorization'] = 'Bearer $token';
-
           }
-            if (localLang.isNotEmpty) {
-              options.headers['x-locale'] = localLang;
-            }
+          if (localLang.isNotEmpty) {
+            options.headers['x-locale'] = localLang;
+          }
           return handler.next(options);
         },
       ),
@@ -71,6 +80,7 @@ class ApiService {
       ),
     );
   }
+
   bool _shouldRetry(DioException error) {
     return error.type == DioExceptionType.connectionError ||
         error.type == DioExceptionType.receiveTimeout ||
@@ -78,12 +88,10 @@ class ApiService {
   }
 
   // GET request
-  Future<Response> get(String path, {Map<String, dynamic>? query,Map<String, dynamic>? data}) async {
+  Future<Response> get(String path, {Map<String, dynamic>? query, Map<String, dynamic>? data}) async {
     try {
-      print(data);
-      return await dio.get(path, queryParameters: query,data:data );
+      return await dio.get(path, queryParameters: query, data: data);
     } on DioException catch (e) {
-      // Centralized error handling
       throw _handleError(e);
     }
   }
@@ -112,4 +120,3 @@ class ApiService {
     }
   }
 }
-

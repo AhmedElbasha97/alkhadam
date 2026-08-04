@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                                     Text("languageWelcomeBTN".tr(),
                                       textAlign: TextAlign.center,
                                       style:   TextStyle(
-                                          fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                                          fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                                           color: AppColor.mainColor,
                                           fontWeight: FontWeight.w800,

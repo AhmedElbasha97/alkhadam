@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   late List<Animation<double>> fadeAnimations;
   late List<Animation<Offset>> slideAnimations;
 
-   List<String> titles = [];
+  List<String> titles = [];
 
   final List<String> icons = [
     "assets/icons/1.png",
@@ -55,7 +55,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<Datum> homeData = [];
 
   void resetState(  BuildContext context) {
-   _navigateIfNotOpen(context, screen: const HomeScreen(), routeName: "HomeScreen");
+    _navigateIfNotOpen(context, screen: const HomeScreen(), routeName: "HomeScreen");
   }
   bool isScreenAlreadyOpen(BuildContext context, Type screenType) {
     bool isOpen = false;
@@ -88,73 +88,77 @@ class HomeCubit extends Cubit<HomeState> {
   /// LOAD DATA (Fake Example)
   /// -------------------------
   Future<void> loadHomeData(AnimationController ctrl) async {
-   controller = ctrl;
-   homeData.clear();
-   titles =  [
-     "company_home".tr(),
-     "company_home1".tr(),
-     "company_home2".tr(),
-     "company_home3".tr(),
-     "company_home4".tr(),
-     "company_home5".tr(),
-   ];
+    controller = ctrl;
+    homeData.clear();
+    titles = [
+      "company_home".tr(),
+      "company_home1".tr(),
+      "company_home2".tr(),
+      "company_home3".tr(),
+      "company_home4".tr(),
+      "company_home5".tr(),
+    ];
     try {
       emit(HomeLoading());
 
-     HomeModel? data = await HomeServices(ApiService()).getAllHomeTaps();
-    var homeTapFixedData = [
-         Datum(id: 18,name: titles[5],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=3"),
-    Datum(id: 1,name: titles[0],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=2"),
-    Datum(id: 2,name: titles[1],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=3"),
-    Datum(id: 3,name: titles[2],active: 1,url:"https://alkhadam.net/qa/en/mobile/workers?type=9"),
-    Datum(id:4,name: titles[3],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=8"),
-    Datum(id: 8,name: titles[4],active: 1,url: "https://alkhadam.net/qa/en/mobile/workers?type=1")];
-    List<Datum> homeListAfterChecking = [];
-    for(var homeTap in homeTapFixedData){
-      bool? checker = await homeTapChecker("${homeTap.id??0}");
-      if(checker??false){
+      final homeServices = HomeServices(ApiService());
+
+      var homeTapFixedData = [
+        Datum(id: 18, name: titles[5], active: 1, url: "cleaning services"),
+        Datum(id: 1, name: titles[0], active: 1, url: "WorkerCompaniesScreen"),
+        Datum(id: 2, name: titles[1], active: 1, url: "CleaningCompaniesScreen"),
+        Datum(id: 3, name: titles[2], active: 1, url: "AntiBugCompaniesScreen"),
+        Datum(id: 4, name: titles[3], active: 1, url: "NursingCompaniesScreen"),
+        Datum(id: 8, name: titles[4], active: 1, url: "WorkerSuppliersScreen"),
+      ];
+
+      // ⚡ Run all 7 home API calls in parallel concurrently!
+      final results = await Future.wait([
+        homeServices.getAllHomeTaps(),
+        ...homeTapFixedData.map((tap) => homeServices.checkAllHomeTaps("${tap.id ?? 0}")),
+      ]);
+
+      final HomeModel? data = results[0] as HomeModel?;
+
+      List<Datum> homeListAfterChecking = [];
+      for (int i = 0; i < homeTapFixedData.length; i++) {
+        final tap = homeTapFixedData[i];
+        final bool isSectionActive = (results[i + 1] as bool?) ?? false;
         homeListAfterChecking.add(Datum(
-          id: homeTap.id,
-          name: homeTap.name,
-          active: 1,
-          url: homeTap.url
-        ));
-      }else{
-        homeListAfterChecking.add(Datum(
-            id: homeTap.id,
-            name: homeTap.name,
-            active: 0,
-            url: homeTap.url
+          id: tap.id,
+          name: tap.name,
+          active: isSectionActive ? 1 : 0,
+          url: tap.url,
         ));
       }
-    }
-     if(data?.data == []){
-       homeData.clear();
-       for(Datum? homeTap in (homeListAfterChecking) ) {
-         if (homeTap?.active == 1) {
-           homeData.add(homeTap!);
-         }
-       }
-     }else{
-       homeData.clear();
-       if(homeListAfterChecking[0].active == 1) {
-         homeData.add(homeListAfterChecking[0],);
-       }
-       for(Datum? homeTap in (data!.data!) ) {
-         if (homeTap?.active == 1) {
-           homeData.add(homeTap!);
-         }
 
+      if (data?.data == null || data!.data!.isEmpty) {
+        homeData.clear();
+        for (var homeTap in homeListAfterChecking) {
+          if (homeTap.active == 1) {
+            homeData.add(homeTap);
+          }
+        }
+      } else {
+        homeData.clear();
+        if (homeListAfterChecking.isNotEmpty && homeListAfterChecking[0].active == 1) {
+          homeData.add(homeListAfterChecking[0]);
+        }
+        for (var homeTap in data.data!) {
+          if (homeTap.active == 1) {
+            homeData.add(homeTap);
+          }
+        }
+        if (homeListAfterChecking.length > 1) {
+          final restChecks = homeListAfterChecking.sublist(1);
+          for (var homeTap in restChecks) {
+            if (homeTap.active == 1) {
+              homeData.add(homeTap);
+            }
+          }
+        }
+      }
 
-       }
-       homeListAfterChecking.removeAt(0);
-       for(Datum? homeTap in (homeListAfterChecking) ) {
-         if (homeTap?.active == 1) {
-           homeData.add(homeTap!);
-         }
-       }
-
-     }
       _createAnimations(homeData.length);
       emit(HomeLoaded(homeData));
       ctrl.forward();
@@ -163,13 +167,13 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
   Future<bool?> homeTapChecker(String? homeTapId) async {
-   try{
-     bool? data = await HomeServices(ApiService()).checkAllHomeTaps(homeTapId);
-     return data;
-   }catch (e){
-     emit(HomeError("Failed to load data"));
-   }
-   return null;
+    try{
+      bool? data = await HomeServices(ApiService()).checkAllHomeTaps(homeTapId);
+      return data;
+    }catch (e){
+      emit(HomeError("Failed to load data"));
+    }
+    return null;
   }
   void _createAnimations(int count) {
     fadeAnimations = List.generate(

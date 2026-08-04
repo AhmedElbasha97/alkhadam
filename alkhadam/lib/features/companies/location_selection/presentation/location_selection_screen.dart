@@ -148,7 +148,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                             "saved_locations".tr(),
                             style:  TextStyle(
                               fontSize: 14,
-                              fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                              fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                               color: AppColor.textSecondaryDark,
                               fontWeight: FontWeight.w500,
                             ),
@@ -184,7 +184,7 @@ class _LocationSelectionScreenState extends State<LocationSelectionScreen> {
                               onPressed: () => _onNext(state),
                               child: Text(
                                 "next".tr(),
-                                style:  TextStyle(color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+                                style:  TextStyle(color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
                               ),
                             ),
                           ),
@@ -483,7 +483,7 @@ class _SuggestionsList extends StatelessWidget {
                     style:  TextStyle(
                       fontSize: 14,
                       color: AppColor.textPrimaryDark,
-                      fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                      fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                     ),
                   ),
                     dense: true,
@@ -566,7 +566,7 @@ class _SearchBarState extends State<_SearchBar> {
               onSubmitted: (_) => widget.onSearch(),
               decoration: InputDecoration(
                 hintText: "search_placeholder".tr(),
-                hintStyle:  TextStyle(color: AppColor.textSecondaryDark, fontSize: 15,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+                hintStyle:  TextStyle(color: AppColor.textSecondaryDark, fontSize: 15,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
                 border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
@@ -638,7 +638,7 @@ class _UseCurrentLocationButton extends StatelessWidget {
               Text(
                 "use_current_location".tr(),
                 style:  TextStyle(
-                  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                   fontSize: 16,
                   color: AppColor.textPrimaryDark,
                   fontWeight: FontWeight.w500,
@@ -770,7 +770,7 @@ class _AddressTextFieldState extends State<_AddressTextField> {
         Text(
           widget.label,
           style:  TextStyle(
-            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+            fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
             fontSize: 14,
             color: AppColor.textSecondaryDark,
             fontWeight: FontWeight.w500,
@@ -791,7 +791,7 @@ class _AddressTextFieldState extends State<_AddressTextField> {
           },
           decoration: InputDecoration(
             hintText: widget.hint ?? widget.label,
-            hintStyle:  TextStyle(color: AppColor.gray400,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+            hintStyle:  TextStyle(color: AppColor.gray400,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
@@ -846,7 +846,7 @@ class _SavedLocationChip extends StatelessWidget {
               const SizedBox(width: 12),
               Text(
                 label,
-                style:  TextStyle(  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                style:  TextStyle(  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                   fontSize: 16,
                   color: AppColor.textPrimaryDark,

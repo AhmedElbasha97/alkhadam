@@ -168,7 +168,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                     flex: 2,
                                     child: Text("company_details_phone_label".tr(),
                                         style:  TextStyle(
-                                            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                                            fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                        )),
@@ -200,7 +200,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                     flex: 2,
                                     child: Text("company_details_whatsapp_label".tr(),
                                         style: TextStyle(
-                                            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                                            fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                        )),
@@ -232,7 +232,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
                                     flex: 2,
                                     child: Text("company_details_email_label".tr(),
                                         style: TextStyle(
-                                            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                                            fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                        )),
@@ -386,13 +386,13 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
           Expanded(
               child: Text("$title:",
                   style:  TextStyle(
-                      fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                      fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                       fontSize: 16, fontWeight: FontWeight.bold), )),
           Expanded(
               child:
               Text(value, style:  TextStyle(
-                  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                   fontSize: 16), textAlign: TextAlign.right)),
 
@@ -455,7 +455,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
             Text(
               phone,
               style:  TextStyle(
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                 color: AppColor.white,
                 fontSize: 16,
@@ -523,7 +523,7 @@ class _CompanyDetailsScreenState extends State<CompanyDetailsScreen>
             Text(
               phone,
               style:  TextStyle(
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                 color: AppColor.white,
                 fontWeight: FontWeight.bold,

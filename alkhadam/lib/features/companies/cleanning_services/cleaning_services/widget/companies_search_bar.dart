@@ -27,7 +27,7 @@ class CompaniesSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isArabic = context.read<LocalizationCubit>().isArabic();
-    final font = isArabic ? 'Cairo' : 'Montserrat';
+    final font = isArabic ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi';
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),

@@ -24,7 +24,7 @@ class CleaningServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isArabic = context.read<LocalizationCubit>().isArabic();
-    final font = isArabic ? 'Cairo' : 'Montserrat';
+    final font = isArabic ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 18),

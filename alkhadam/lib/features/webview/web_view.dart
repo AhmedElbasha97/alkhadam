@@ -48,8 +48,6 @@ class _WebViewContainerState extends State<WebViewContainer> {
     await [
       Permission.location,
       Permission.camera,
-      Permission.photos,
-      Permission.storage,
     ].request();
 
 
@@ -122,8 +120,8 @@ class _WebViewContainerState extends State<WebViewContainer> {
                     allowsInlineMediaPlayback: true,
                     mediaPlaybackRequiresUserGesture: false,
                     useOnDownloadStart: true,
-                    allowUniversalAccessFromFileURLs: true,
-                    allowFileAccess: true,
+                    allowUniversalAccessFromFileURLs: false,
+                    allowFileAccess: false,
                     allowContentAccess: true,
                     domStorageEnabled: true,
                     databaseEnabled: true,
@@ -132,15 +130,22 @@ class _WebViewContainerState extends State<WebViewContainer> {
                   ),
                   onWebViewCreated: (c) => webViewController = c,
 
-
                   androidOnGeolocationPermissionsShowPrompt: (ctrl, origin) async {
+                    final isTrusted = origin.contains("alkhadam.net") ||
+                        origin.contains("alkhadam.com") ||
+                        origin.contains("dohamaid.com");
                     return GeolocationPermissionShowPromptResponse(
-                        origin: origin, allow: true, retain: true);
+                        origin: origin, allow: isTrusted, retain: isTrusted);
                   },
-                  androidOnPermissionRequest: (_, __, resources) async {
+                  androidOnPermissionRequest: (controller, origin, resources) async {
+                    final isTrusted = origin.contains("alkhadam.net") ||
+                        origin.contains("alkhadam.com") ||
+                        origin.contains("dohamaid.com");
                     return PermissionRequestResponse(
                         resources: resources,
-                        action: PermissionRequestResponseAction.GRANT);
+                        action: isTrusted
+                            ? PermissionRequestResponseAction.GRANT
+                            : PermissionRequestResponseAction.DENY);
                   },
 
                   onLoadStart: (_, __) => setState(() => isLoading = true),
@@ -235,7 +240,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15,
-                                  fontFamily: context.read<LocalizationCubit>().isArabic() ? "Cairo" : "Montserrat",
+                                  fontFamily: context.read<LocalizationCubit>().isArabic() ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi',
                                   height: 1,
                                   letterSpacing: -1,
                                 ),

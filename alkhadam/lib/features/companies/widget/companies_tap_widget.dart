@@ -113,7 +113,7 @@ class CompaniesTapWidget extends StatelessWidget {
                 Text(
                   company?.name??"",
                   style:  TextStyle(
-                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                     fontSize: 18,
                     color: AppColor.secondaryColor,
                     fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class CompaniesTapWidget extends StatelessWidget {
                   "${company?.workers} ${"worker_suffix".tr()}",
 
                   style:  TextStyle(
-                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                     fontSize: 14,
                     color: AppColor.black87,
                   ),
@@ -151,7 +151,7 @@ class CompaniesTapWidget extends StatelessWidget {
                           child:  Text(
                             "more_button".tr(),
                             style:  TextStyle(
-                              fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                              fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                               color: AppColor.white,
                               fontSize: 14,
                             ),

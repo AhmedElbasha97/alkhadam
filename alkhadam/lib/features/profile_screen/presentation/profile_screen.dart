@@ -170,10 +170,10 @@ Widget _infoRow(IconData icon, String title, String value,BuildContext context) 
               Text(title, style:  TextStyle(
                 fontSize: 13,
                 color: AppColor.black54,
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
               )),
               Text(value, style:  TextStyle(fontSize: 16, fontWeight: FontWeight.w600,
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",)),
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',)),
             ],
           ),
         ),
@@ -208,7 +208,7 @@ Widget _logoutButton(BuildContext context) {
         Text(
             "logout".tr()
           ,
-          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
         ),
       ],
     ),
@@ -241,7 +241,7 @@ Widget _deleteButton(BuildContext context) {
         Text(
             "delete_title".tr()
           ,
-          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+          style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColor.white,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
         ),
       ],
     ),
@@ -283,7 +283,7 @@ Widget _animatedHeader(BuildContext context) {
           ,
           style:  TextStyle(
             color: AppColor.white,
-            fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+            fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),

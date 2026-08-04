@@ -264,21 +264,20 @@ class DrawerCubit extends Cubit<DrawerState> {
   }
   bool isScreenAlreadyOpen(BuildContext context, Type screenType) {
     bool isOpen = false;
-
     Navigator.popUntil(context, (route) {
       if (route.settings.name == "$screenType") {
         isOpen = true;
       }
-      return true;
+      return true; // Stop immediately after checking top route
     });
-
     return isOpen;
   }
+
   /// select item (fires navigation outside)
-  void select(String id,BuildContext context) {
+  void select(String id, BuildContext context) {
     selectedId = id;
     handleDrawerNavigation(context, id);
     emit(DrawerItemSelected(id));
-
   }
+
 }

@@ -63,7 +63,7 @@ class CancellationPolicyScreen extends StatelessWidget {
               "cancellationPolicy".tr(),
               style:  TextStyle(
                 fontSize: 16,
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                 fontWeight: FontWeight.w600,
                 color: AppColor.secondaryColor,
               ),
@@ -72,7 +72,7 @@ class CancellationPolicyScreen extends StatelessWidget {
             Text(
               "cancellation".tr(),
               style:  TextStyle(
-                fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: AppColor.textPrimaryDark,
@@ -118,7 +118,7 @@ class _Bullet extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style:  TextStyle(fontSize: 15, color: AppColor.textPrimaryDark, height: 1.5,  fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",),
+            style:  TextStyle(fontSize: 15, color: AppColor.textPrimaryDark, height: 1.5,  fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',),
           ),
         ),
       ],

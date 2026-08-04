@@ -73,7 +73,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       : '';
 
   String get _fontFamily =>
-      context.read<LocalizationCubit>().isArabic() ? "Cairo" : "Montserrat";
+      context.read<LocalizationCubit>().isArabic() ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi';
 
   @override
   Widget build(BuildContext context) {
@@ -695,7 +695,7 @@ class _InfoRow extends StatelessWidget {
             style: TextStyle(
                 color: AppColor.textSecondaryDark,
                 fontSize: 15,
-                fontFamily: isArabic ? "Cairo" : "Montserrat")),
+                fontFamily: isArabic ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi')),
       ],
     );
   }
@@ -727,11 +727,11 @@ class _SummaryRow extends StatelessWidget {
               style: TextStyle(
                   color: valueColor ?? AppColor.textPrimaryDark,
                   fontWeight: FontWeight.w600,
-                  fontFamily: isArabic ? "Cairo" : "Montserrat")),
+                  fontFamily: isArabic ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi')),
           Text(label,
               style: TextStyle(
                   color: AppColor.textSecondaryDark,
-                  fontFamily: isArabic ? "Cairo" : "Montserrat")),
+                  fontFamily: isArabic ? 'Droid Arabic Kufi' : 'Droid Arabic Kufi')),
         ],
       ),
     );

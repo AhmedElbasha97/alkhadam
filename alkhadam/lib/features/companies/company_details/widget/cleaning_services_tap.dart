@@ -118,7 +118,7 @@ class CleaningServicesTap extends StatelessWidget {
                 Text(
                   companyServices?.name??"",
                   style:  TextStyle(
-                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                     fontSize: 18,
                     color: AppColor.secondaryColor,
@@ -129,7 +129,7 @@ class CleaningServicesTap extends StatelessWidget {
                 Text(
                   "${companyServices?.price} ${"currencyQAR".tr()}",
                   style:  TextStyle(
-                    fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                    fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                     fontSize: 14,
                     color: AppColor.black87,
@@ -182,7 +182,7 @@ class CleaningServicesTap extends StatelessWidget {
                             "reservationOfServices".tr(),
                             maxLines: 2,
                             style:  TextStyle(
-                              fontFamily: context.read<LocalizationCubit>().isArabic()?"Cairo":"Montserrat",
+                              fontFamily: context.read<LocalizationCubit>().isArabic()?'Droid Arabic Kufi':'Droid Arabic Kufi',
 
                               color: AppColor.white,
                               fontSize: 14,
