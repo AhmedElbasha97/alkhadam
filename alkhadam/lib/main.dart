@@ -22,6 +22,7 @@ import 'features/auth/sign_up/cubit/regestier_cubit.dart';
 import 'features/companies/anti_bug_companies/cubit/anti_bug_companies_cubit.dart';
 import 'features/companies/booking_screens/cubit/booking_cubit.dart';
 import 'features/companies/cleaning_companies/cubit/cleaning_companies_cubit.dart';
+import 'features/companies/cleanning_services/cleaning_services/cubit/cleaning_services_cubit.dart';
 import 'features/companies/company_details/cubit/company_details_cubit.dart';
 import 'features/companies/nursing_companies/cubit/nursing_companies_cubit.dart';
 import 'features/companies/payment/cubit/payment_cubit.dart';
@@ -98,6 +99,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => WorkerSuppliersCubit()),
             BlocProvider(create: (_) => CompanyDetailsCubit()),
             BlocProvider(create: (_) => DrawerCubit()),
+            BlocProvider(create: (_) => CleaningServicesCubit()),
+
             BlocProvider(
               create: (_) => NotificationCubit(PushNotificationService())
                 ..initialize(),

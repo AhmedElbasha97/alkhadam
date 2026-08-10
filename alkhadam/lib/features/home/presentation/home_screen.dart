@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import '../../companies/anti_bug_companies/presentaion/anti_bug_companies_screen.dart';
 import '../../companies/cleaning_companies/presentation/cleaning_companies_screen.dart';
+import '../../companies/cleanning_services/cleaning_services/presentation/cleaning_services_screen.dart';
 import '../../companies/nursing_companies/presentation/nursing_companies_screen.dart';
 import '../../companies/worker_suppliers/presentation/worker_suppliers_screen.dart';
 import '../../drawer/cubit/drawer_cubit.dart';
@@ -13,6 +14,7 @@ import '../../drawer/presentation/drawer_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../widget/home_tap_widget.dart';
+import 'package:alkhadam/core/config/app_color.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             body: Center(
               child: Text(
                 state.message,
-                style: const TextStyle(color: Colors.red, fontSize: 18),
+                style: const TextStyle(color: AppColor.red, fontSize: 18),
               ),
             ),
           );
@@ -65,39 +67,39 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   PreferredSizeWidget  _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color(0xFFdcdbdb),
+      backgroundColor:  AppColor.appBarBackground,
       elevation: 3,
       title: Image.asset(
         "assets/logo with out background.png",
         scale: 4.5,
       ),
       centerTitle: true,
-actions: const [SizedBox()],
+      actions: const [SizedBox()],
       leading: IconButton(
-        icon: const Icon(Icons.menu, color:  Color(0xFF6A1B9A)),
-        onPressed: (){
-          // inside any widget with context:
-          showGeneralDialog(
-            context: context,
-            barrierDismissible: true,
-            barrierLabel: 'drawer',
-            pageBuilder: (ctx, anim1, anim2) {
-              return BlocProvider(
-                create: (_) => DrawerCubit()..load(),
-                child: const CustomDrawer(
+          icon: const Icon(Icons.menu, color:  AppColor.mainColor),
+          onPressed: (){
+            // inside any widget with context:
+            showGeneralDialog(
+              context: context,
+              barrierDismissible: true,
+              barrierLabel: 'drawer',
+              pageBuilder: (ctx, anim1, anim2) {
+                return BlocProvider(
+                  create: (_) => DrawerCubit()..load(),
+                  child: const CustomDrawer(
 
-                ),
-              );
-            },
-            transitionBuilder: (ctx, anim, secAnim, child) {
-              return FadeTransition(
-                opacity: anim,
-                child: child,
-              );
-            },
-          );
+                  ),
+                );
+              },
+              transitionBuilder: (ctx, anim, secAnim, child) {
+                return FadeTransition(
+                  opacity: anim,
+                  child: child,
+                );
+              },
+            );
 
-        }
+          }
       ),
 
     );
@@ -121,7 +123,7 @@ actions: const [SizedBox()],
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: state.homeData.length,
+              itemCount: (state.homeData.length-1),
               itemBuilder: (context, index) {
                 return AnimatedBuilder(
                   animation: controller,
@@ -138,40 +140,48 @@ actions: const [SizedBox()],
                     title: state.homeData[index].name ?? "",
                     icon: cubit.icons[index],
                     onTap: () {
-                      if (index == 0) {
+                      if ("cleaning services" ==  state.homeData[index].url) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const WorkerCompaniesScreen(),
-                              settings: const RouteSettings(name: "WorkerCompaniesScreen"),
+                            builder: (_) => const CleaningServicesScreen(),
+                            settings: const RouteSettings(name: "cleaning services"),
                           ),
                         );
-                      }else if (index == 1) {
+                      }else if ("WorkerCompaniesScreen" ==  state.homeData[index].url) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const CleaningCompaniesScreen(),
-                              settings: const RouteSettings(name: "CleaningCompaniesScreen"),
+                            builder: (_) => const WorkerCompaniesScreen(),
+                            settings: const RouteSettings(name: "WorkerCompaniesScreen"),
                           ),
                         );
-                      } else if (index == 2) {
+                      }else if ("CleaningCompaniesScreen" ==  state.homeData[index].url) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
+                            builder: (_) => const CleaningCompaniesScreen(),
+                            settings: const RouteSettings(name: "CleaningCompaniesScreen"),
+                          ),
+                        );
+                      } else if ("AntiBugCompaniesScreen" ==  state.homeData[index].url) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
                               builder: (_) => const AntiBugCompaniesScreen(),
                               settings: const RouteSettings(name: "AntiBugCompaniesScreen"),)
-                        );} else if (index == 3) {
+                        );} else if ("NursingCompaniesScreen" ==  state.homeData[index].url) {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                            context,
+                            MaterialPageRoute(
                               builder: (_) => const NursingCompaniesScreen(),
                               settings: const RouteSettings(name: "NursingCompaniesScreen"),)
-                        );} else if (index == 4) {
+                        );} else if ("WorkerSuppliersScreen" ==  state.homeData[index].url) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const WorkerSuppliersScreen(),
-                              settings: const RouteSettings(name: "WorkerSuppliersScreen"),),
+                            builder: (_) => const WorkerSuppliersScreen(),
+                            settings: const RouteSettings(name: "WorkerSuppliersScreen"),),
                         );
                       }else{
                         Navigator.push(
