@@ -253,7 +253,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         child: GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute<void>(
-                              builder: (_) => WebViewContainer('https://dohamaid.com/qa/ar/page/13/mobile'),
+                              builder: (_) => WebViewContainer('https://alkhadam.net/qa/ar/page/13/mobile'),
                               settings: const RouteSettings(name: "WebViewContainer"),
                             ),
                           ),
