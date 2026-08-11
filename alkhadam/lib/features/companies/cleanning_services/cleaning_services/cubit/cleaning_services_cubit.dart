@@ -12,7 +12,7 @@ class CleaningServicesCubit extends Cubit<CleaningServicesState>
 
   // ── Pagination ────────────────────────────────────────────────────────────
   static const int _pageSize = 10;
-  static const String _endpoint = 'https://alkhadam.com/api/all/services';
+  static const String _endpoint = 'https://api.alkhadam.net/all/services';
 
   int _currentPage = 1;
   bool _isLoadingMore = false;
